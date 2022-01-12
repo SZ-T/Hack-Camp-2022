@@ -41,11 +41,37 @@ body {
  }
 
 #slider {
-    display: none;
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 0px;
     margin-top: 8px;
     z-index: 1;
+}
+
+@keyframes marginIn {
+    0% {margin-left: -640px;}
+    100% {margin-left: 0;}
+}
+@keyframes marginOut {
+    0% {margin-left: 0px;}
+    100% {margin-left: -640px;}
+}
+
+.show {
+    display: block;
+    margin-left: 0;
+    animation-name: marginIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.hide {
+    display: none;
+}
+
+.marginOut {
+    margin-left: -640px;
+    animation-name: marginOut;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 }
