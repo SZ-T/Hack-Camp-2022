@@ -2,51 +2,53 @@ body {
     background-color: #393939 !important;
 }
 
-#menu-button {
-    background-color: #76A1AC;
-    border: none;
-    padding: 10px;
-    width: fit-content;
-    height: fit-content;
+.bg-blue {
+    background-color: #76A1AC !important;
 }
 
-.arrow-right {
-    width: 0;
-    height: 0;
-    margin: 0;
-    border-top: 11.5px solid transparent;
-    border-bottom: 11.5px solid transparent;
-    border-left: 20px solid #76A1AC;
+.font-blue {
+    color: #76A1AC !important;
 }
 
-.bright {
-    color: #76A1AC;
-}
-
-.search-icon {
+.font-grey {
     color: #393939;
-    font-size: 24px;
 }
-
-#search-bar {
-    background-color: #262626;
-    border: 1px solid rgba(118, 161, 172, 0.3);
-    box-shadow: 5px 5px 10px rgba(118, 161, 172, 0.6);
-    border-radius: 15px 0px 0px 15px !important;
-    color: #76A1AC;
+.font-white {
+    color: #FFFFFFFF !important;
 }
-
-#search-bar-addOn {
-    width: 50px;
-    background-color: #262626;
-    border: 1px solid rgba(118, 161, 172, 0.3);
-    box-shadow: 5px 5px 10px rgba(118, 161, 172, 0.6);
-    border-radius: 0px 15px 15px 0px !important;
+.font-22 {
+    font-size: 22px;
 }
+.bg-grey {
+    background-color: #393939 !important;
+}
+ .no-radius {
+     border-radius: 0px 20px 20px 0px !important;
+ }
 
-#filters-button {
-    width: fit-content;
-    height: fit-content;
-    border: none;
-    background: none;
+ .radius-left {
+     border-radius: 15px 0px 0px 15px !important;
+ }
+
+ .radius-right {
+     border-radius: 0px 15px 15px 0px !important;
+ }
+
+ .glow-border {
+     border: 1px solid rgba(118, 161, 172, 0.3);
+     border-radius: 15px;
+     box-shadow: 5px 5px 10px rgba(118, 161, 172, 0.6);
+ }
+
+#slider {
+    transition: width 1s;
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0px;
+    margin-top: 8px;
+    z-index: 1;
+    transition: width 1s;
+    transition-timing-function: ease-in;
 }

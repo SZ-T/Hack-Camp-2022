@@ -20,15 +20,28 @@
     <title><?php echo $view->pageTitle; ?></title>
 </head>
 <body role="document">
-    <header class="d-flex mt-1">
-        <button id="menu-button"><span class="bi bi-list search-icon"><span class="arrow-right"></span></button>
-        <form action="/search.php" method="post" class="form-check-inline mx-auto">
-            <div class="input-group">
-                <input id="search-bar" name="searchText" type="text" placeholder="Search by ID" aria-label="Search" />
-                <button type="submit" name="Search" id="search-bar-addOn" value=""><span class="bi bi-search bright"></span></button>
-            </div>
-        </form>
-        <button id="filters-button"> <span class="bi bi-filter-circle-fill bright"></span></button>
-    </header>
-
-
+   <header class="sticky-top">
+       <nav class="navbar navbar-light d-flex justify-content-between">
+           <button onclick="slideIn()" class="btn bg-blue radius-right"><span class="bi bi-list font-grey display-5 "></span></button>
+           <div id="slider">
+           <ul class="navbar-nav bg-blue font-grey d-flex flex-row radius-right p-3">
+               <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../proofReader.php">Proof-reader</a></li>
+               <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../salesRep.php">Sales Representative</a></li>
+               <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../developer.php">Developer</a></li>
+               <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../dataAnalyst.php">Data analyst</a></li>
+               <li class="nav-item mx-3 my-auto"><button onclick="slideOut()" class="btn"><span class="bi bi-x font-22"></span></button></li>
+           </ul>
+       </div>
+           <form action="/search.php" method="post" class="form-check-inline col-md-4 mx-auto">
+               <div class="input-group glow-border">
+                   <input class="form-control px-2 bg-grey font-blue radius-left" name="searchText" type="text" placeholder="Search" aria-label="Search" />
+                   <div class="input-group-append">
+                       <button type="submit" name="Search" class="input-group-text bg-grey radius-right " id="basic-addon1" value="Search">
+                           <span class="bi bi-search font-blue font-22">
+                       </button>
+                   </div>
+               </div>
+           </form>
+           <button class="btn mx-3"><span class="bi bi-filter-circle-fill display-5 font-blue"></span></button>
+       </nav>
+   </header>
