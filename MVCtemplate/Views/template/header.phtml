@@ -23,15 +23,13 @@
    <header class="sticky-top">
        <nav class="navbar navbar-light d-flex justify-content-between">
            <button onclick="slideIn()" class="btn bg-blue radius-right"><span class="bi bi-list font-grey display-5 "></span></button>
-           <div id="slider" class="hide d-flex justify-content-evenly">
-           <ul class="navbar-nav bg-blue font-grey d-flex flex-row radius-right p-3">
+           <ul id="slider" class="hide navbar-nav bg-blue font-grey d-flex flex-lg-row radius-right p-3">
                <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../proofReader.php">Proof-reader</a></li>
                <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../salesRep.php">Sales Representative</a></li>
                <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../developer.php">Developer</a></li>
                <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../dataAnalyst.php">Data analyst</a></li>
-               <li class="nav-item mx-3 my-auto"><button onclick="slideOut()" class="btn"><span class="bi bi-x font-22"></span></button></li>
+               <li class="nav-item mx-auto my-auto"><button onclick="slideOut()" class="btn"><span class="bi bi-x font-22"></span></button></li>
            </ul>
-       </div>
            <form action="/search.php" method="post" class="form-check-inline col-md-4 mx-auto">
                <div class="input-group glow-border">
                    <input class="form-control px-2 bg-grey font-blue radius-left" name="searchText" type="text" placeholder="Search" aria-label="Search" />
@@ -42,6 +40,87 @@
                    </div>
                </div>
            </form>
-           <button class="btn mx-3"><span class="bi bi-filter-circle-fill display-5 font-blue"></span></button>
+           <button class="btn mx-3" onclick="showFilters()"><span class="bi bi-filter-circle-fill display-5 font-blue"></span></button>
        </nav>
    </header>
+<main>
+    <div id="filters" class="bg-shadow hide-filters">
+    <div class="filer-container">
+        <button onclick="showReleaseDate()" class="filter-item">Release date<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="release-date" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showEnglish()" class="filter-item">English<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="english" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showDeveloper()" class="filter-item">Developer<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="developer" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showPublisher()" class="filter-item">Publisher<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="publisher" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showStatus()" class="filter-item">Status<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="status" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showRequiredAge()" class="filter-item">Required age<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="required-age" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showCategories()" class="filter-item">Categories<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="categories" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showGenres()" class="filter-item">Genres<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="genres" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showTags()" class="filter-item">Tags<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="tags" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showAchievements()" class="filter-item">Achievements<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="achievements" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showPositiveRatings()" class="filter-item">Positive ratings<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="positive-ratings" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showNegativeRatings()" class="filter-item">Negative ratings<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="negative-ratings" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showAveragePlaytime()" class="filter-item">Average playtime<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="average-playtime" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showMedianPlaytime()" class="filter-item">Median playtime<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="median-playtime" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showPhysical()" class="filter-item">Physical<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="physical" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showUnitsAvailable()" class="filter-item">Units available<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="units-available" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showUnitsSold()" class="filter-item">Units sold<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="units-sold" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <button onclick="showPrice()" class="filter-item">Price<span class="bi bi-arrow-down font-white"></span></button>
+        <div id="price" class="hide-slide">
+            <p>Release date</p>
+        </div>
+        <div class="d-flex justify-content-between m-5">
+        <button class="btn bg-bright" onclick="hideFilters()">Back</button>
+        <button class="btn font-blue bg-bright">Apply</button>
+        </div>
+    </div>
+    </div>
