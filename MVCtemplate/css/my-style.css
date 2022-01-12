@@ -4,4 +4,49 @@ body {
 
 #menu-button {
     background-color: #76A1AC;
+    border: none;
+    padding: 10px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    margin: 0;
+    border-top: 11.5px solid transparent;
+    border-bottom: 11.5px solid transparent;
+    border-left: 20px solid #76A1AC;
+}
+
+.bright {
+    color: #76A1AC;
+}
+
+.search-icon {
+    color: #393939;
+    font-size: 24px;
+}
+
+#search-bar {
+    background-color: #262626;
+    border: 1px solid rgba(118, 161, 172, 0.3);
+    box-shadow: 5px 5px 10px rgba(118, 161, 172, 0.6);
+    border-radius: 15px 0px 0px 15px !important;
+    color: #76A1AC;
+}
+
+#search-bar-addOn {
+    width: 50px;
+    background-color: #262626;
+    border: 1px solid rgba(118, 161, 172, 0.3);
+    box-shadow: 5px 5px 10px rgba(118, 161, 172, 0.6);
+    border-radius: 0px 15px 15px 0px !important;
+}
+
+#filters-button {
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    background: none;
 }

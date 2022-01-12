@@ -19,10 +19,16 @@
 
     <title><?php echo $view->pageTitle; ?></title>
 </head>
-
-<body role=""document">
-<header>
-    <button class="p-3" id="menu-button">Menu</button>
-</header>
+<body role="document">
+    <header class="d-flex mt-1">
+        <button id="menu-button"><span class="bi bi-list search-icon"><span class="arrow-right"></span></button>
+        <form action="/search.php" method="post" class="form-check-inline mx-auto">
+            <div class="input-group">
+                <input id="search-bar" name="searchText" type="text" placeholder="Search by ID" aria-label="Search" />
+                <button type="submit" name="Search" id="search-bar-addOn" value=""><span class="bi bi-search bright"></span></button>
+            </div>
+        </form>
+        <button id="filters-button"> <span class="bi bi-filter-circle-fill bright"></span></button>
+    </header>
 
 
