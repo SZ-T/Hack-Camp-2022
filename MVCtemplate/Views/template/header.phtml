@@ -23,7 +23,7 @@
    <header class="sticky-top">
        <nav class="navbar navbar-light d-flex justify-content-between">
            <button onclick="slideIn()" class="btn bg-blue radius-right"><span class="bi bi-list font-grey display-5 "></span></button>
-           <div id="slider">
+           <div id="slider" class="hide d-flex justify-content-evenly">
            <ul class="navbar-nav bg-blue font-grey d-flex flex-row radius-right p-3">
                <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../proofReader.php">Proof-reader</a></li>
                <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../salesRep.php">Sales Representative</a></li>
@@ -32,7 +32,7 @@
                <li class="nav-item mx-3 my-auto"><button onclick="slideOut()" class="btn"><span class="bi bi-x font-22"></span></button></li>
            </ul>
        </div>
-           <form action="search.php" method="post" class="form-check-inline col-md-4 mx-auto">
+           <form action="/search.php" method="post" class="form-check-inline col-md-4 mx-auto">
                <div class="input-group glow-border">
                    <input class="form-control px-2 bg-grey font-blue radius-left" name="searchText" type="text" placeholder="Search" aria-label="Search" />
                    <div class="input-group-append">
