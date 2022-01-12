@@ -41,7 +41,6 @@ body {
  }
 
 #slider {
-    transition: width 1s;
     display: none;
     position: absolute;
     top: 0px;
@@ -49,6 +48,4 @@ body {
     width: 0px;
     margin-top: 8px;
     z-index: 1;
-    transition: width 1s;
-    transition-timing-function: ease-in;
 }
