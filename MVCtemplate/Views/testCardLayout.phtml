@@ -1,0 +1,39 @@
+<?php require('Views/template/header.phtml'); ?>
+
+<h3>Test</h3>
+
+    <div class="container-xxl">
+        <?php foreach($view->gameDataSet as $gameData) {
+            /*
+            echo '<div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>App ID</td><td>Units Available</td><td>Status</td><td>Units Sold</td>
+                    </tr>
+                </thead>
+                <tbody>';
+                    echo '<tr><td>' . $gameData->getAppID() . '</td> <td>' .
+                    $gameData->getUnitsAvailable() . '</td> <td>' .
+                    $gameData->getStatus() . '</td> <td>' .
+                    $gameData->getUnitsSold() . '</td></tr>';
+
+                echo '</tbody>
+                </table>
+            </div>';
+            */
+            echo '<div class="card">';
+                echo '<div class="cardInfo"><h5>App ID</h5><h6>' . $gameData->getAppID() . '</h6></div>';
+                echo '<div class="cardInfo"><h5>Units Available</h5><h6>' . $gameData->getUnitsAvailable() . '</h6></div>';
+                echo '<div class="cardInfo"><h5>Status</h5><h6>' . $gameData->getStatus() . '</h6></div>';
+                echo '<div class="cardInfo"><h5>Units Sold</h5><h6>' . $gameData->getUnitsSold() . '</h6></div>';
+                echo '<div class="cardInfo"><h5>Price</h5><h6>' . $gameData->getPrice() . '</h6></div>';
+            echo '</div>';
+            
+        }
+        ?>
+    </div>
+
+
+
+<?php require('Views/template/footer.phtml'); ?>

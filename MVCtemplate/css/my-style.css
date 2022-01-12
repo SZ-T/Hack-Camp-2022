@@ -1,38 +1,80 @@
-#title {
-    margin-top: 12px;
-    background-color: #fff;
-    color: #000;
-
-}
-#menu {
-    border-top: solid 6px #000;
-    background-color: #fff
-    color: #fff;
-    height: 400px;
-}
-
-#menu a {
-    background-color: #f00;
-    color: #fff;
-    text-decoration: none;
-    display: block;
-}
-#menu a:hover {
-    background-color: #f00;
-    color: #ddd;
-    text-decoration:underline;
-    display: block;
-}
-
-#content {
-    background-color: #fff;
-    border-top: solid 6px #f00;
-
-}
-
-#footer {
-    margin_top: 20px;
+body {
+    background-color: #393939;
     text-align: center;
-    background-color: #000;
-    color: #fff;
+} 
+
+p, h3, td{
+    color: #FFFFFF;
+}
+
+table {
+    border-color: #FFFFFF;
+}
+
+.card{
+    display: block;
+    width: 25%;
+    margin: 5px;
+    float: left;
+    border-style: solid;
+    border-color: black;
+}
+
+.cardInfo{
+    display: block;
+    float: left;
+    width: 40%;
+    color: white;
+}
+
+body {
+    background-color: #393939 !important;
+}
+
+.bg-blue {
+    background-color: #76A1AC !important;
+}
+
+.font-blue {
+    color: #76A1AC !important;
+}
+
+.font-grey {
+    color: #393939;
+}
+.font-white {
+    color: #FFFFFFFF !important;
+}
+.font-22 {
+    font-size: 22px;
+}
+.bg-grey {
+    background-color: #393939 !important;
+}
+ .no-radius {
+     border-radius: 0px 20px 20px 0px !important;
+ }
+
+ .radius-left {
+     border-radius: 15px 0px 0px 15px !important;
+ }
+
+ .radius-right {
+     border-radius: 0px 15px 15px 0px !important;
+ }
+
+ .glow-border {
+     border: 1px solid rgba(118, 161, 172, 0.3);
+     border-radius: 15px;
+     box-shadow: 5px 5px 10px rgba(118, 161, 172, 0.6);
+ }
+
+#slider {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0px;
+    margin-top: 8px;
+    z-index: 1;
 }
