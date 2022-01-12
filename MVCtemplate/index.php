@@ -3,7 +3,7 @@
 $view = new stdClass();
 $view->pageTitle = 'Homepage';
 
-require_once("logincontroller.php");
+
 
 
 
