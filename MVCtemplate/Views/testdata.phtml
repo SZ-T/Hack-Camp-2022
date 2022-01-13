@@ -1,0 +1,181 @@
+<?php require('Views/template/header.phtml'); ?>
+
+<h3>Test</h3>
+
+<table class="table-bordered">
+    <thead>
+        <tr>
+            <td>App ID</td><td>Release Date</td><td>Is English</td><td>Developer</td><td>Publisher</td><td>Status</td><td>Platforms</td><td>Age Restriction</td><td>Is Physical</td>
+            <td>Units Sold</td><td>Price</td><td>Categories</td><td>Genres</td><td>Achievements</td><td>Positive Ratings</td><td>Negative Ratings</td><td>Tags</td>
+            <td>Avg Playtime</td><td>Median Playtime</td><td>Units Available</td>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($view->gameDataSet as $gameData) {
+            echo ' <tr> <td>' . $gameData->getAppID() . '</td> <td>' .
+            $gameData->getReleaseDate() . '</td> <td>' .
+            $gameData->getIsEnglish() . '</td> <td>' .
+            $gameData->getDeveloper() . '</td> <td>' .
+            $gameData->getPublisher() . '</td> <td>' .
+            $gameData->getStatus() . '</td> <td>' .
+            $gameData->getPlatforms() . '</td> <td>' .
+            $gameData->getRequiredAge() . '</td> <td>' .
+            $gameData->getIsPhysical() . '</td> <td>' .
+            $gameData->getUnitsSold() . '</td> <td>' . 
+            $gameData->getPrice() . '</td> <td>' . 
+            $gameData->getCategories() . '</td> <td>' .
+            $gameData->getGenres() . '</td> <td>' .
+            $gameData->getAchievements() . '</td> <td>' .
+            $gameData->getPositiveRatings() . '</td> <td>' .
+            $gameData->getNegativeRatings() . '</td> <td>' .
+            $gameData->getTags() . '</td> <td>' .
+            $gameData->getAveragePlaytime() . '</td> <td>' .
+            $gameData->getMedianPlaytime() . '</td> <td>' .
+            $gameData->getUnitsAvailable() . '</td></tr>';
+            
+        }
+        ?>
+    </tbody>
+</table>
+
+
+<div>
+<?php
+$var = $gameData->getPositiveRatings();
+?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+var xValues = ["Positive Reviews", "Negative Reviews"];
+var yValues = [<?php $gameData->getPositiveRatings();?>, <?php $gameData->getNegativeRatings();?>];
+//var yValues = [1,2];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Reviews"
+    }
+  }
+});
+ript>
+
+
+    <script>
+var xValues = ["Positive Reviews", "Negative Reviews"];
+var yValues = [<?php $gameData->getPositiveRatings();?>, <?php $gameData->getNegativeRatings();?>];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Reviews"
+    }
+  }
+});
+</script>
+    </div>    
+    </div>
+<body>
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+var xValues = ["Positive Reviews", "Negative Reviews"];
+var yValues = [<?php $gameData->getPositiveRatings();?>, <?php $gameData->getNegativeRatings();?>];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Reviews"
+    }
+  }
+});
+</script>
+    </div>    
+    </div>
+re('Views/template/footer.phtml'); ?>    </div>
+<body>
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+var xValues = ["Positive Reviews", "Negative Reviews"];
+var yValues = [<?php $gameData->getPositiveRatings();?>, <?php $gameData->getNegativeRatings();?>];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Reviews"
+    }
+  }
+});
+</script>
+    </div>    
+    </div>
+re('Views/template/footer.phtml'); ?>
