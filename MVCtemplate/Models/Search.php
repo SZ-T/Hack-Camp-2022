@@ -16,7 +16,7 @@ class Search
     function appID($Search)//Term being passed
     {   
         $test = '%' . $Search . '%';
-        $sqlQuery = "SELECT * FROM gameinfo WHERE appID  LIKE '" . $test . "' LIMIT 10";  // SQL select statement doing comparison check
+        $sqlQuery = "SELECT * FROM gameinfo WHERE appID  LIKE '" . $test . "' LIMIT 360";  // SQL select statement doing comparison check
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute(); // execution for data information
         $dataSet = [];

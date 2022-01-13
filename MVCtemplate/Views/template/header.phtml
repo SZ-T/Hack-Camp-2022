@@ -21,20 +21,20 @@
 </head>
 <body role="document">
    <header class="sticky-top bg-grey">
-       <nav class="navbar navbar-light d-flex justify-content-between">
-           <button onclick="slideIn()" id="menu-button" class="btn bg-blue radius-right"><span class="bi bi-list font-grey font-28 p-1"></span></button>
+       <nav class="d-flex justify-content-between">
+           <button onclick="slideIn()" id="menu-button" class="btn bg-blue radius-right p-0 my-auto"><span class="bi bi-list font-grey font-28"></span></button>
            <?php
-           echo '<span class="font-blue mx-3 font-bold font-xs" id="page-title">'.$view->pageTitle.'</span>';
+           echo '<span class="font-blue mx-3 my-auto font-bold font-xs" id="page-title">'.$view->pageTitle.'</span>';
            ?>
            <ul id="slider" class="hide navbar-nav bg-blue font-grey d-flex flex-lg-row radius-right">
-                <li class="nav-item mx-auto my-auto"><a class="nav-link" href="../../index.php"><span class="bi bi-house-door-fill font-22"></span></a></li>
+                <li class="nav-item mx-auto my-auto"><a class="nav-link" href="../../index.php"><span class="bi bi-house-door-fill font-22 mx-3"></span></a></li>
                <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../proofReader.php">Proof-reader</a></li>
                <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../salesRep.php">Sales Representative</a></li>
                <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../developer.php">Developer</a></li>
                <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../dataAnalyst.php">Data analyst</a></li>
                <li class="nav-item mx-auto my-auto"><button onclick="slideOut()" class="btn"><span class="bi bi-x font-22"></span></button></li>
            </ul>
-           <form action="/search.php" method="post" id="search-bar" class="form-check-inline col-md-4 mx-auto">
+           <form action="/search.php" method="post" id="search-bar" class="form-check-inline col-md-4 m-auto">
                <div class="input-group glow-border">
                    <input class="form-control px-2 bg-grey font-blue radius-left" name="searchText" type="text" placeholder="Search" aria-label="Search" />
                    <div class="input-group-append">

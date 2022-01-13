@@ -1,5 +1,5 @@
 <?php require('Views/template/header.phtml'); ?>
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center m-0">
         <?php foreach($view->gameDataSet as $gameData) {
             $gamePrice = "£" . $gameData->getPrice();
             if($gamePrice == "£0"){

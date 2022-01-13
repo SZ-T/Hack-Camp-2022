@@ -5,7 +5,7 @@ require_once("Models/Database.php");
 $_dbInstance = Database::getInstance();
 $_dbHandle = $_dbInstance->getdbConnection();
 
-$sqlQuery = 'SELECT devName from developers WHERE devName LIKE ?';
+$sqlQuery = 'SELECT devName from developers WHERE devName LIKE ? LIMIT 10';
 $statement = $_dbHandle->prepare($sqlQuery);
 $statement->execute([$_POST["data"]."%"]);
 $attributeList = $statement->fetchAll();

@@ -9,9 +9,9 @@ class liveSearch{
         $this->_dbHandle = $this->_dbInstance->getdbConnection();
     }
 
-    public function getCategories(){
-        $test = '%' . $Search . '%';
-        $sqlQuery = "SELECT categoryName FROM categories  LIKE '" . $test . "' LIMIT 10";";
+        public function getCategories($liveSearch){
+        $test = '%' . $liveSearch . '%';
+        $sqlQuery = "SELECT categoryName FROM categories  LIKE '" . $test . "'";
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();
         $dataSet = [];
@@ -21,3 +21,4 @@ class liveSearch{
         }
         return $dataSet;
     }
+}

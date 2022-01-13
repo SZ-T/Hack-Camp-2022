@@ -7,27 +7,27 @@
                 $gamePrice = $gamePrice . ".00";
             }
             echo '
-            <div class="col-md-2 m-2 text-center">
-                <div class="row font-white glow-border">
-                    <div class="col-sm-5 my-2 p-0">
+            <div class="width-23 mx-auto my-1 p-0 text-center bg-bl radius-border font-xs">
+                <div class="row font-white glow-border m-0 p-0">
+                    <div class="col-sm-6 my-1 p-0">
                         <p>ID</p>
-                        <p>'.$gameData->getAppID().'</p>
+                        <p class="font-blue font-bold">'.$gameData->getAppID().'</p>
                     </div>
-                    <div class="col-sm-7 my-2">
+                    <div class="col-sm-6 my-1 p-0">
                         <p>Status</p>
-                        <p>'.$gameData->getStatus().'</p>
+                        <p class="font-blue font-bold">'.$gameData->getStatus().'</p>
                     </div>
-                    <div class="col-sm-12 my-2>
+                    <div class="col-sm-12 my-1 p-0">
                         <p>Units available</p>
-                        <p>'.$gameData->getUnitsAvailable().'</p>
+                        <p class="font-blue font-bold">'.$gameData->getUnitsAvailable().'</p>
                     </div>
-                    <div class="col-sm-12 my-2">
+                    <div class="col-sm-12 my-1 p-0">
                         <p>Units sold</p>
-                        <p>'.$gameData->getUnitsSold().'</p>
+                        <p class="font-blue font-bold">'.$gameData->getUnitsSold().'</p>
                     </div>
-                    <div class="col-sm-12 my-2">
-                        <p>Price</p>
-                        <p>'.$gamePrice.'</p>
+                    <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
+                        <span>Price</span>
+                        <span class="font-blue font-bold">'.$gamePrice.'</span>
                     </div>
                 </div>
             </div>';

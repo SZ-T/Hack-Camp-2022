@@ -37,5 +37,5 @@ function send(type, data) {
         alert("Request failed");
     };
     xhr.send("type=" + type + "&data=" + data);
-    return JSON.parse(xhr.response);
+    return xhr;
 }

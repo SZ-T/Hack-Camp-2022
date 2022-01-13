@@ -97,12 +97,17 @@ body {
      box-shadow: 5px 5px 10px rgba(118, 161, 172, 0.6);
  }
 
+ header, nav {
+     height: 72px;
+ }
+
 #slider {
     position: absolute;
     top: 0px;
     left: 0px;
-    margin-top: 15px;
+    margin-top: 11px;
     z-index: 1;
+    min-height: 50px;
 }
 
 @keyframes marginIn {
@@ -267,6 +272,7 @@ hr {
     animation-name: leftIn;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
+    height: 50px;
 }
 
 #search-bar {
@@ -338,4 +344,17 @@ input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
     box-sizing: border-box;
     padding: 2px;
     color:white;
+}
+
+#paginationLinks{
+    width: 100%;
+    display: block;
+    clear: right;
+}
+
+.searchPaginationInput{
+    color: #ffffff;
+    background-color: #76A1AC;
+    float: left;
+    margin: 2px;
 }
