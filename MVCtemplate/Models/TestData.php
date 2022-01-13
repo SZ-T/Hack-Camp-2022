@@ -11,7 +11,7 @@ class TestDataSet
     }
 
     public function TestDatabase() {
-        $sqlQuery = 'SELECT * FROM gameinfo LIMIT 12;';
+        $sqlQuery = 'SELECT * FROM gameinfo LIMIT 24;';
 
         $statement = $this->_dbHandle->prepare($sqlQuery); 
         $statement->execute(); 

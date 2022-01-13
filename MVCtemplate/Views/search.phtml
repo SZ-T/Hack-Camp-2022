@@ -1,6 +1,53 @@
 <?php require('template/header.phtml') ?>
-<h3>Your Results:</h3>
+<h3>Results:</h3>
 
+<?php 
+
+    echo '<div id="paginationLinks">';
+        for($i=1; $i<=$view->numberOfPages; $i++){
+            echo '<form method="post" action="search.php?page=' . $i . '"><input class="searchPaginationInput" type="submit" name="paginationButton" value="' . $i . '"><input type="hidden" value="' . $view->userSearchTerm . '" name="userSearchTerm"></form>';
+        }
+    echo '</div>';
+    
+?>
+
+<div class="row">
+    <?php 
+        foreach($view->paginatedSearchResults as $data) {
+
+            $gamePrice = "£" . $data->getPrice();
+            if($gamePrice == "£0"){
+                $gamePrice = $gamePrice . ".00";
+            }
+            echo '
+            <div class="col-md-2 m-2 text-center">
+                <div class="row font-white glow-border">
+                    <div class="col-sm-5 my-2 p-0">
+                        <p>ID</p>
+                        <p>'.$data->getAppID().'</p>
+                    </div>
+                    <div class="col-sm-7 my-2">
+                        <p>Status</p>
+                        <p>'.$data->getStatus().'</p>
+                    </div>
+                    <div class="col-sm-12 my-2>
+                        <p>Units available</p>
+                        <p>'.$data->getUnitsAvailable().'</p>
+                    </div>
+                    <div class="col-sm-12 my-2">
+                        <p>Units sold</p>
+                        <p>'.$data->getUnitsSold().'</p>
+                    </div>
+                    <div class="col-sm-12 my-2">
+                        <p>Price</p>
+                        <p>'.$gamePrice.'</p>
+                    </div>
+                </div>
+            </div>';
+            
+        }
+    ?>
+    </div>
 
 
 <?php require('template/footer.phtml') ?>

@@ -1,5 +1,38 @@
-<?php require('template/header.phtml') ?>
+<?php require('Views/template/header.phtml'); ?>
 
-<h3>Page for Developer</h3>
+<div class="row">
+        <?php foreach($view->gameDataSet as $gameData) {
+            $gamePrice = "£" . $gameData->getPrice();
+            if($gamePrice == "£0"){
+                $gamePrice = $gamePrice . ".00";
+            }
+            echo '
+            <div class="col-md-2 m-2 text-center">
+                <div class="row font-white glow-border">
+                    <div class="col-sm-5 my-2 p-0">
+                        <p>ID</p>
+                        <p>'.$gameData->getAppID().'</p>
+                    </div>
+                    <div class="col-sm-7 my-2">
+                        <p>Status</p>
+                        <p>'.$gameData->getStatus().'</p>
+                    </div>
+                    <div class="col-sm-12 my-2>
+                        <p>Units available</p>
+                        <p>'.$gameData->getUnitsAvailable().'</p>
+                    </div>
+                    <div class="col-sm-12 my-2">
+                        <p>Units sold</p>
+                        <p>'.$gameData->getUnitsSold().'</p>
+                    </div>
+                    <div class="col-sm-12 my-2">
+                        <p>Price</p>
+                        <p>'.$gamePrice.'</p>
+                    </div>
+                </div>
+            </div>';
+        }
+        ?>
+</div>
 
-<?php require('template/footer.phtml') ?>
+<?php require('Views/template/footer.phtml'); ?>
