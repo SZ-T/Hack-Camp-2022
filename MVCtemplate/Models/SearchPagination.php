@@ -22,7 +22,7 @@ class SearchPagination{
         $this->_dbHandle = $this->_dbInstance->getdbConnection();
 
         //define number of results per page
-        $this->noOfRecordsPerPage = 36;
+        $this->noOfRecordsPerPage = 12;
 
         //number of results in the database
         $this->totalNumberOfRecords = $newTotalNumberOfRecords;

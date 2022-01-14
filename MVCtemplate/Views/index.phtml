@@ -1,6 +1,144 @@
 <?php require('Views/template/header.phtml') ?>
-
-<h3>Page for Dashboard</h3>
+<script src="custom-js.js"></script>
+<h1 id="h1-index">The Dashboard</h1>
 <a href="testdata.php">Test data</a>
 
+<!-- <?php foreach($view->gameDataSet as $gameData) {
+            echo ' <tr> <td>' . $gameData->getAppID() . '</td> <td>' .
+            $gameData->getReleaseDate() . '</td> <td>' .
+            $gameData->getIsEnglish() . '</td> <td>' .
+            $gameData->getDeveloper() . '</td> <td>' .
+            $gameData->getPublisher() . '</td> <td>' .
+            $gameData->getStatus() . '</td> <td>' .
+            $gameData->getPlatforms() . '</td> <td>' .
+            $gameData->getRequiredAge() . '</td> <td>' .
+            $gameData->getIsPhysical() . '</td> <td>' .
+            $gameData->getUnitsSold() . '</td> <td>' . 
+            $gameData->getPrice() . '</td> <td>' . 
+            $gameData->getCategories() . '</td> <td>' .
+            $gameData->getGenres() . '</td> <td>' .
+            $gameData->getAchievements() . '</td> <td>' .
+            $gameData->getPositiveRatings() . '</td> <td>' .
+            $gameData->getNegativeRatings() . '</td> <td>' .
+            $gameData->getTags() . '</td> <td>' .
+            $gameData->getAveragePlaytime() . '</td> <td>' .
+            $gameData->getMedianPlaytime() . '</td> <td>' .
+            $gameData->getUnitsAvailable() . '</td></tr>';
+            
+        }
+        ?> -->
+
+<div class="container-xxl">
+<script type="text/javascript">
+    var YvalueA = "<?php Print($gameData->getPositiveRatings()); ?>";
+    var YvalueB = "<?php Print($gameData->getNegativeRatings()); ?>";
+</script>
+
+<div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<canvas id="myChart" style="width:100%;max-width:582px"></canvas>
+
+<script>
+var xValues = ["Positive Reviews", "Negative Reviews"];
+var yValues = [YvalueA, YvalueB];
+var barColors = [
+  "#b91d47",
+  "#00aba9"
+];
+
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    responsive: true,
+    title: {
+      display: true,
+      text: "Positive vs negative reviews"
+    }
+  }
+});
+</script>
+</div>
+
+<<div>
+<script type="text/javascript">
+    var YvalueD = "<?php Print($gameData->getUnitsSold()); ?>";
+    var YvalueC = "<?php Print($gameData->getUnitsAvailable()); ?>";
+</script>
+
+<div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<canvas id="myChartC" style="width:100%;max-width:600px"></canvas>
+
+<script>
+var xValues = ["Units Sold", "Units Available"];
+var yValues = [YvalueC, YvalueD];
+//var yValues = [80,55];
+var barColors = [
+  "#39ff14",
+  "#18191a"
+];
+
+new Chart("myChartC", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "The units of items that have been sold!"
+    }
+  }
+});
+</script>
+</div>
+
+
+
+<script type="text/javascript">
+    var cat = "<?php Print($gameData->getCategories()); ?>";
+</script>
+
+<div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<canvas id="myChartD" style="width:100%;max-width:600px"></canvas>
+
+<script>
+var xValues = ["1", "2"];
+var yValues = [cat];
+//var yValues = [80,55];
+var barColors = [
+  "#39ff14",
+  "#18191a"
+];
+
+new Chart("myChartD", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Number of each categories"
+    }
+  }
+});
+</script>
+</div>
 <?php require('Views/template/footer.phtml') ?>

@@ -1,9 +1,14 @@
 <?php
-require_once('Models/TestData.php');
+require_once('Models/CardView.php');
 $view = new stdClass();
 $view->pageTitle = 'CardViewTest';
 
-$gameDataSet = new TestDataSet();
-$view->gameDataSet = $gameDataSet->TestDatabase2();
+$cardView = new CardView();
+$view->cardView = $cardView->gameInfo(20);
 
-require_once('Views/proofReader.phtml');
+if (isset($_POST("cardView")))
+{
+
+};
+
+require_once('Views/cardViewTest.phtml');

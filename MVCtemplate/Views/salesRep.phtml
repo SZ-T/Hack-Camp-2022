@@ -6,7 +6,7 @@
                 $gamePrice = $gamePrice . ".00";
             }
             echo '
-            <div class="width-23 mx-auto my-1 p-0 text-center bg-bl radius-border font-xs">
+            <div class="width-23 h-25 mx-auto my-1 p-0 text-center bg-bl radius-border font-xs">
                 <div class="row font-white glow-border m-0 p-0">
                     <div class="col-sm-6 my-1 p-0">
                         <p>ID</p>
@@ -15,14 +15,39 @@
                     <div class="col-sm-6 my-1 p-0">
                         <p>Status</p>
                         <p class="font-blue font-bold">'.$gameData->getStatus().'</p>
-                    </div>
+                    </div>                    
                     <div class="col-sm-12 my-1 p-0">
-                        <p>Units available</p>
-                        <p class="font-blue font-bold">'.$gameData->getUnitsAvailable().'</p>
-                    </div>
-                    <div class="col-sm-12 my-1 p-0">
-                        <p>Units sold</p>
-                        <p class="font-blue font-bold">'.$gameData->getUnitsSold().'</p>
+                        <p>Units Available vs Units Sold</p>
+                        <script type="text/javascript">
+                        var YvalueA = "' . $gameData->getUnitsSold() . '";
+                        var YvalueB = "' . $gameData->getUnitsAvailable() . '";
+                        </script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                        <canvas id="myChart' . $index . '" style="width:100%;max-width:400px"></canvas>
+                        
+                        <script>
+                        var xValues = ["Units Sold", "Units Available"];
+                        var yValues = [YvalueA, YvalueB];
+                        
+                        var barColors = [
+                        "#b91d47",
+                        "#00aba9"
+                        ];
+                        
+                        new Chart("myChart' . $index . '", {
+                        type: "doughnut",
+                        data: {
+                        labels: xValues,
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                        }]
+                        },
+                        options: {
+                            responsive: true
+                        }
+                        });
+                        </script>
                     </div>
                     <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
                         <span>Price</span>
@@ -30,6 +55,7 @@
                     </div>
                 </div>
             </div>';
+            $index++;
         }
         ?>
     </div>

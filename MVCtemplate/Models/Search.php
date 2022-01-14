@@ -13,10 +13,10 @@ class Search
         $this->_dbHandle = $this->_dbInstance->getdbConnection();
     }
 
-    function appID($Search)//Term being passed
+    function searchDB($Search)//Term being passed
     {   
         $test = '%' . $Search . '%';
-        $sqlQuery = "SELECT * FROM gameinfo WHERE appID  LIKE '" . $test . "' LIMIT 360";  // SQL select statement doing comparison check
+        $sqlQuery = "SELECT * FROM gameinfo WHERE appID  LIKE '" . $test . "' LIMIT 80";  // SQL select statement doing comparison check
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute(); // execution for data information
         $dataSet = [];
@@ -31,7 +31,7 @@ class Search
     }
 
 
-    function paginatedAppID($Search, $limitParam)//Term being passed
+    function paginatedSearchDB($Search, $limitParam)//Term being passed
     {   
         $test = '%' . $Search . '%';
         $sqlQuery = "SELECT * FROM gameinfo WHERE appID  LIKE '" . $test . "' LIMIT $limitParam";  // SQL select statement doing comparison check
@@ -48,4 +48,3 @@ class Search
         return $dataSet;
     }
 }
-    

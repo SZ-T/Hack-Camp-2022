@@ -1,7 +1,8 @@
 <?php 
+require_once('Models/Game.php');
 require_once('Models/Database.php');
 
-class liveSearch{
+class CardView{
     protected $_dbHandle, $_dbInstance;
 
     public function __construct() {
@@ -9,13 +10,13 @@ class liveSearch{
         $this->_dbHandle = $this->_dbInstance->getdbConnection();
     }
 
-        public function getCategories($liveSearch){
-        $test = '%' . $liveSearch . '%';
-        $sqlQuery = "SELECT categoryName FROM categories  LIKE '" . $test . "'";
-        $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute();
-        $dataSet = [];
+    public function gameInfo($id) {
+        $sqlQuery = 'SELECT * FROM gameinfo WHERE appID = '.$id.';';
 
+        $statement = $this->_dbHandle->prepare($sqlQuery); 
+        $statement->execute(); 
+        
+        $dataSet = [];
         while ($row = $statement->fetch()) {
             $dataSet[] = new Game($row);
         }

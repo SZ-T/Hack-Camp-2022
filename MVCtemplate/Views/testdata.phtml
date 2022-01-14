@@ -2,7 +2,7 @@
 
 <h3>Test</h3>
 
-<table class="table-bordered">
+<!-- <table class="table-bordered">
     <thead>
         <tr>
             <td>App ID</td><td>Release Date</td><td>Is English</td><td>Developer</td><td>Publisher</td><td>Status</td><td>Platforms</td><td>Age Restriction</td><td>Is Physical</td>
@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($view->gameDataSet as $gameData) {
+        <!-- <?php foreach($view->gameDataSet as $gameData) {
             echo ' <tr> <td>' . $gameData->getAppID() . '</td> <td>' .
             $gameData->getReleaseDate() . '</td> <td>' .
             $gameData->getIsEnglish() . '</td> <td>' .
@@ -34,9 +34,9 @@
             $gameData->getUnitsAvailable() . '</td></tr>';
             
         }
-        ?>
+        ?> -->
     </tbody>
-</table>
+</table> -->
 <!-- Ratings pie chart-->
 <script type="text/javascript">
     var YvalueA = "<?php Print($gameData->getPositiveRatings()); ?>";
@@ -82,7 +82,7 @@ new Chart("myChart", {
     var YvalueD = "<?php Print($gameData->getMedianPlaytime()); ?>";
 </script>
 
-<div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <canvas id="myChartB" style="width:100%;max-width:600px"></canvas>
 

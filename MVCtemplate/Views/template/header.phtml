@@ -22,29 +22,30 @@
 <body role="document">
    <header class="sticky-top bg-grey">
        <nav class="d-flex justify-content-between">
-           <button onclick="slideIn()" id="menu-button" class="btn bg-blue radius-right p-0 my-auto"><span class="bi bi-list font-grey font-28"></span></button>
+           <button onclick="slideIn()" id="menu-button" class="btn bg-blue radius-right p-0 my-auto"><span class="bi bi-list font-grey font-28 white-hover"></span></button>
            <?php
            echo '<span class="font-blue mx-3 my-auto font-bold font-xs" id="page-title">'.$view->pageTitle.'</span>';
            ?>
+           <a class="font-white" href="../../cardViewTest.php">Full view</a>
            <ul id="slider" class="hide navbar-nav bg-blue font-grey d-flex flex-lg-row radius-right">
-                <li class="nav-item mx-auto my-auto"><a class="nav-link" href="../../index.php"><span class="bi bi-house-door-fill font-22 mx-3"></span></a></li>
-               <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../proofReader.php">Proof-reader</a></li>
-               <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../salesRep.php">Sales Representative</a></li>
-               <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../developer.php">Developer</a></li>
-               <li class="nav-item mx-3 my-auto"><a class="nav-link" href="../../dataAnalyst.php">Data analyst</a></li>
-               <li class="nav-item mx-auto my-auto"><button onclick="slideOut()" class="btn"><span class="bi bi-x font-22"></span></button></li>
+                <li class="mx-auto my-auto"><a class="font-grey m-1" href="../../index.php"><span class="bi bi-house-door-fill font-22 mx-3 white-hover"></span></a></li>
+               <li class="mx-3 my-auto"><a class="font-grey" href="../../proofReader.php">Proof-reader</a></li>
+               <li class="mx-3 my-auto"><a class="font-grey" href="../../salesRep.php">Sales Representative</a></li>
+               <li class="mx-3 my-auto"><a class="font-grey" href="../../developer.php">Developer</a></li>
+               <li class="mx-3 my-auto"><a class="font-grey" href="../../dataAnalyst.php">Data analyst</a></li>
+               <li class="mx-auto my-auto"><button onclick="slideOut()" class="btn"><span class="bi bi-x font-22 white-hover"></span></button></li>
            </ul>
            <form action="/search.php" method="post" id="search-bar" class="form-check-inline col-md-4 m-auto">
                <div class="input-group glow-border">
-                   <input class="form-control px-2 bg-grey font-blue radius-left" name="searchText" type="text" placeholder="Search" aria-label="Search" />
+                   <input class="form-control px-2 bg-grey font-blue radius-left" name="searchText" type="text" placeholder="Search by App ID" aria-label="Search" />
                    <div class="input-group-append">
-                       <button type="submit" name="Search" class="input-group-text bg-grey radius-right " id="basic-addon1" value="Search">
-                           <span class="bi bi-search font-blue">
+                       <button type="submit" name="Search" class="input-group-text bg-grey radius-right white-hover" id="basic-addon1" value="Search">
+                           <span class="bi bi-search font-blue white-hover">
                        </button>
                    </div>
                </div>
            </form>
-           <button class="btn mx-3" onclick="toggleFiltersMenu()"><span id="filter-button" class="bi bi-filter-circle-fill display-5 font-blue"></span></button>
+           <button class="btn mx-3" onclick="toggleFiltersMenu()"><span id="filter-button" class="bi bi-filter-circle-fill display-5 font-blue white-hover"></span></button>
        </nav>
    </header>
 <main>
@@ -66,22 +67,18 @@
         <button onclick="toggleFilter('english');return false;" class="filter-item">English<span class="bi bi-arrow-down font-white"></span></button>
         <div id="english" class="hide-slide">
         <div class="row p-3 m-3 text-center">
-        <input type="radio" id="yes" name="english" value="yes" class="col-sm-1 p-2 m-auto"/>
-            <label for="yes" id="yes-lbl" class="col-sm-2 p-2 font-white font-16 font-bold">Yes</label>
-            <input type="radio" id="no" name="english" value="no" class="col-sm-1 p-2 m-auto"/>
-            <label for="no" id="no-lbl" class="col-sm-2 p-2 font-white font-16 font-bold">No</label>
+        <input type="radio" id="e-yes" name="english" value="e-yes" class="col-sm-1 p-2 m-auto"/>
+            <label for="e-yes" id="yes-lbl" class="col-sm-2 p-2 font-white font-16 font-bold">Yes</label>
+            <input type="radio" id="e-no" name="english" value="e-no" class="col-sm-1 p-2 m-auto"/>
+            <label for="e-no" id="no-lbl" class="col-sm-2 p-2 font-white font-16 font-bold">No</label>
             <span class="col-sm-6"></span>
             </div>
         </div>
         <button onclick="toggleFilter('developer');return false;" class="filter-item">Developer<span class="bi bi-arrow-down font-white"></span></button>
         <div id="developer" class="hide-slide">
-        <div class="row p-3 m-3 text-center">
-          <input list="developer" oninput='send("developer", value)'>
-          <datalist id="developer">
-          <option value="VALVE">
-
-          </datalist>
-            
+            <div class="row p-3 m-3 text-center">
+                <input id="developerInput" list="developerList" onkeyup='send("Developer", this.value, this)'>
+                <div id="developerList"></div>
             </div>
         </div>
         <button onclick="toggleFilter('publisher');return false;" class="filter-item">Publisher<span class="bi bi-arrow-down font-white"></span></button>
@@ -200,12 +197,12 @@
         </div>
         <button onclick="toggleFilter('physical');return false;" class="filter-item">Physical<span class="bi bi-arrow-down font-white"></span></button>
         <div id="physical" class="hide-slide">
-        <div class="row p-3 m-3">
-            <label class="col-md-1 p-2 font-white font-16 font-bold">From:</label>
-            <input type="number" class="col-md-4 p-2"/>
-            <span class="col-md-2"></span>
-            <label class="col-md-1 p-2 font-white font-16 font-bold">To:</label>
-            <input type="number" class="col-md-4 p-2"/>
+        <div class="row p-3 m-3 text-center">
+        <input type="radio" id="p-yes" name="physical" value="p-yes" class="col-sm-1 p-2 m-auto"/>
+            <label for="p-yes" id="yes-lbl" class="col-sm-2 p-2 font-white font-16 font-bold">Yes</label>
+            <input type="radio" id="p-no" name="physical" value="p-no" class="col-sm-1 p-2 m-auto"/>
+            <label for="p-no" id="no-lbl" class="col-sm-2 p-2 font-white font-16 font-bold">No</label>
+            <span class="col-sm-6"></span>
             </div>
         </div>
         <button onclick="toggleFilter('units-available');return false;" class="filter-item">Units available<span class="bi bi-arrow-down font-white"></span></button>

@@ -74,7 +74,7 @@
 
 @media (min-width: 1px) {
   .font-xs {
-    font-size: 8px !important;
+    font-size: 10px !important;
   }
 }
 
@@ -84,7 +84,7 @@
   }
 
   .font-xs {
-    font-size: 8px !important;
+    font-size: 10px !important;
   }
 
 }
@@ -94,7 +94,7 @@
   }
 
   .font-xs {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
 }
 @media (min-width: 992px) {
@@ -102,7 +102,7 @@
     max-width: 960px;
   }
   .font-xs {
-    font-size: 14px !important;
+    font-size: 12x !important;
   }
 }
 @media (min-width: 1200px) {
@@ -118,7 +118,7 @@
     max-width: 1320px;
   }
   .font-xs {
-    font-size: 18px !important;
+    font-size: 16px !important;
   }
 }
 .row {

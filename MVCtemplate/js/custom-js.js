@@ -27,15 +27,20 @@ function toggleFilter(filter) {
     } 
 }
 
-function send(type, data) {
+function send(type, data, self) {
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', "/partSearch.php", true);
+    xhr.open('POST', "/liveSearch.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
+        document.getElementById(type.toLowerCase() + 'List').innerHTML = xhr.response;
     };
     xhr.onerror = function() {
         alert("Request failed");
     };
     xhr.send("type=" + type + "&data=" + data);
-    return xhr;
+}
+
+function cardView(id) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', "/CardView.php", true);
 }

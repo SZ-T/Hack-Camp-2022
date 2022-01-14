@@ -1,16 +1,17 @@
 <?php
-require_once("Models/liveSearch.php");
+require_once("Models/LiveSearch.php");
 
-if (isset($_POST['catSearch'])) {
-    $searchTerm = $_POST['catSearch'];
+if (isset($_POST['data'])) {
+    $searchTerm = $_POST['data'];
 
-    $searchResults = new liveSearch();
-    $view->searchResults = $searchResults->getCategories($searchTerm);
+    $searchResults = new LiveSearch();
+    $view->searchResults = $searchResults->{'get'.strval($_POST['type']).'s'}($searchTerm);
 
     echo '<ul>';
-    while($row = MySQLi_fetch_array($view->searchResults))
-    {
-
+    foreach ($view->searchResults as $result)
+        echo '<a><li onclick="document.getElementById('."'".strtolower($_POST['type']).'Input'."'".').value = '."'".  $result ."'".'">'.$result.'</li></a>';
     }
-}
+    echo '</ul>';
+
+
 

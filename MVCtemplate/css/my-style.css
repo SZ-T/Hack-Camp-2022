@@ -1,3 +1,6 @@
+#h1-index{
+    text-align: center;
+}
 body {
     background-color: #393939 !important;
 }
@@ -94,11 +97,26 @@ body {
  .glow-border {
      border: 1px solid rgba(118, 161, 172, 0.3);
      border-radius: 15px;
-     box-shadow: 5px 5px 10px rgba(118, 161, 172, 0.6);
+     box-shadow: 3px 3px 10px rgba(118, 161, 172, 0.6);
  }
 
  header, nav {
      height: 72px;
+ }
+
+ a, li {
+     text-decoration: none !important;
+ }
+
+ a:hover {
+     border-bottom: 3px solid #ffffff;
+     color: #393939 !important;
+     transition: 0.3s;
+ }
+
+ .white-hover:hover {
+    color: #ffffff !important;
+    transition: 0.3s;
  }
 
 #slider {
@@ -138,7 +156,7 @@ body {
     background-color: rgba(57, 56, 56, 0.50);
     width: 100%;
     position: absolute;
-    height: 150%;
+    height: 250%;
     top: 0;
     left: 0;
     z-index: 2000;
@@ -148,10 +166,10 @@ body {
     border-radius: 20px;
     padding: 20px;
     margin: 2% 0;
-    width: 80%;
+    width: 70%;
     position: absolute;
     top: 10px;
-    left: 10%;
+    left: 15%;
 }
 
 .filter-item {
@@ -227,7 +245,6 @@ body {
     animation-name: slideDown;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
-
 }
 
 .card{
@@ -357,4 +374,17 @@ input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
     background-color: #76A1AC;
     float: left;
     margin: 2px;
+}
+
+canvas{
+    margin: 0 auto;
+    }
+
+div[id*="List"] a{
+    border-color: black;
+    border-width: 1px;
+}
+
+div[id*="List"] li{
+    list-style: none;
 }

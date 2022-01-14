@@ -1,12 +1,13 @@
 <?php
 require_once('Models/Search.php');
 require_once('Models/TestData.php');
+require_once('Models/SearchPagination.php');
+
 $view = new stdClass();
 $view->pageTitle = 'Results';
 $view->search = "";
-require_once('Models/SearchPagination.php');
 $searchResults = new Search();
-$view->searchResults = $searchResults->appID($_POST['searchText']);
+$view->searchResults = $searchResults->searchDB($_POST['searchText']);
 
 $view->userSearchTerm = $_POST['searchText']; 
 
@@ -21,7 +22,8 @@ $firstPageResults = $pagination->getPageFirstResults();
 $noOfRecordsPerPage = $pagination->getNoOfRecordsPerPage();
 $paginationParam = $firstPageResults . ", " . $noOfRecordsPerPage;
 
-$view->paginatedSearchResults = $searchResults->paginatedAppID($_POST['searchText'], $paginationParam);
+$view->paginatedSearchResults = $searchResults->paginatedSearchDB($_POST['searchText'], $paginationParam);
+//var_dump($view->paginatedSearchResults);
 
 //Now make another SearchPagination object, passing it the dynamic size depending on how many results the previous search returned
 $pagination2 = new SearchPagination(sizeof($view->searchResults));

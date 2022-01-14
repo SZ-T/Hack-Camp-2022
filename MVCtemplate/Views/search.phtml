@@ -1,21 +1,20 @@
 <?php require('template/header.phtml') ?>
-<h3>Results:</h3>
-
+<h3 class="text-center">Results:</h3>
+<div class="row text-center m-auto">
 <?php 
-
-    echo '<div id="paginationLinks">';
+    
+    echo '<div class="col-md-12 d-flex justify-content-center">';
         for($i=1; $i<=$view->numberOfPages; $i++){
-            echo '<form method="post" action="search.php?page=' . $i . '"><input class="searchPaginationInput" type="submit" name="paginationButton" value="' . $i . '"><input type="hidden" value="' . $view->userSearchTerm . '" name="userSearchTerm"></form>';
+            echo '<form method="post" class="m-2 p-2" action="search.php?page=' . $i . '"><input class="bg-blue font-grey white-hover font-bold" type="submit" name="paginationButton" value="' . $i . '"><input type="hidden" value="' . $view->userSearchTerm . '" name="userSearchTerm"></form>';
         }
     echo '</div>';
     
+    
 ?>
-
-<div class="row">
-    <?php 
-        foreach($view->paginatedSearchResults as $data) {
-
-            $gamePrice = "£" . $data->getPrice();
+<div class="row m-0 col-md-12">
+        <?php 
+        foreach($view->paginatedSearchResults as $searchResultData) {
+            $gamePrice = "£" . $searchResultData->getPrice();
             if($gamePrice == "£0"){
                 $gamePrice = $gamePrice . ".00";
             }
@@ -24,19 +23,19 @@
                 <div class="row font-white glow-border m-0 p-0">
                     <div class="col-sm-6 my-1 p-0">
                         <p>ID</p>
-                        <p class="font-blue font-bold">'.$data->getAppID().'</p>
+                        <p class="font-blue font-bold">'.$searchResultData->getAppID().'</p>
                     </div>
                     <div class="col-sm-6 my-1 p-0">
                         <p>Status</p>
-                        <p class="font-blue font-bold">'.$data->getStatus().'</p>
+                        <p class="font-blue font-bold">'.$searchResultData->getStatus().'</p>
                     </div>
                     <div class="col-sm-12 my-1 p-0">
                         <p>Units available</p>
-                        <p class="font-blue font-bold">'.$data->getUnitsAvailable().'</p>
+                        <p class="font-blue font-bold">'.$searchResultData->getUnitsAvailable().'</p>
                     </div>
                     <div class="col-sm-12 my-1 p-0">
                         <p>Units sold</p>
-                        <p class="font-blue font-bold">'.$data->getUnitsSold().'</p>
+                        <p class="font-blue font-bold">'.$searchResultData->getUnitsSold().'</p>
                     </div>
                     <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
                         <span>Price</span>
@@ -46,8 +45,7 @@
             </div>';
             
         }
-    ?>
+        ?>
     </div>
-
-
-<?php require('template/footer.phtml') ?>
+    </div>
+<?php require('Views/template/footer.phtml') ?>
