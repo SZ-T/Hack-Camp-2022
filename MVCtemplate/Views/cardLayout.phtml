@@ -1,0 +1,43 @@
+<?php require('Views/template/header.phtml'); ?>
+
+    <div class="container-xxl">
+        <?php foreach($view->gameDataSet as $gameData) {
+            $gamePrice = $gameData->getPrice();
+            if($gamePrice == "0"){
+                $gamePrice = $gamePrice . ".00";
+            }
+            echo '<div class="card">';
+            echo '<div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="cardInfo"><h5 class="font-white">App ID</h5><h6 class="font-blue">' . $gameData->getAppID() . '</h6></div>
+                    </div>
+                    <div class="col">
+                        <div class="cardInfo"><h5 class="font-white">Units Available</h5><h6 class="font-blue">' . $gameData->getUnitsAvailable() . '</h6></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="cardInfo"><h5 class="font-white">Status</h5><h6 class="font-blue">' . $gameData->getStatus() . '</h6></div>
+                    </div>
+                    <div class="col">
+                        <div class="cardInfo"><h5 class="font-white">Units Sold</h5><h6 class="font-blue">' . $gameData->getUnitsSold() . '</h6></div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="cardInfo"><h5 class="font-white">Price</h5></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cardInfo"><h6 class="font-blue">£' . $gamePrice . '</h6></div>
+                    </div>
+                </div>
+            </div>';
+            echo '</div>';
+            
+        }
+        ?>
+    </div>
+
+<?php require('Views/template/footer.phtml'); ?>

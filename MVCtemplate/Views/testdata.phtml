@@ -2,7 +2,7 @@
 
 <h3>Test</h3>
 
-<table class="table-bordered">
+<!-- <table class="table-bordered">
     <thead>
         <tr>
             <td>App ID</td><td>Release Date</td><td>Is English</td><td>Developer</td><td>Publisher</td><td>Status</td><td>Platforms</td><td>Age Restriction</td><td>Is Physical</td>
@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($view->gameDataSet as $gameData) {
+        <!-- <?php foreach($view->gameDataSet as $gameData) {
             echo ' <tr> <td>' . $gameData->getAppID() . '</td> <td>' .
             $gameData->getReleaseDate() . '</td> <td>' .
             $gameData->getIsEnglish() . '</td> <td>' .
@@ -34,34 +34,143 @@
             $gameData->getUnitsAvailable() . '</td></tr>';
             
         }
-        ?>
+        ?> -->
     </tbody>
-</table>
+</table> -->
+<!-- Ratings pie chart-->
+<script type="text/javascript">
+    var YvalueA = "<?php Print($gameData->getPositiveRatings()); ?>";
+    var YvalueB = "<?php Print($gameData->getNegativeRatings()); ?>";
+</script>
+
+<div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<canvas id="myChart" style="width:100%;max-width:300px"></canvas>
+
+<script>
+var xValues = ["Positive Reviews", "Negative Reviews"];
+var yValues = [YvalueA, YvalueB];
+//var yValues = [80,55];
+var barColors = [
+  "#b91d47",
+  "#00aba9"
+];
+
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    responsive: true,
+    title: {
+      display: true,
+      text: "Positive vs negative reviews"
+    }
+  }
+});
+</script>
+</div>
+<!-- Playtime pie chart-->
+<div>
+<script type="text/javascript">
+    var YvalueC = "<?php Print($gameData->getAveragePlaytime()); ?>";
+    var YvalueD = "<?php Print($gameData->getMedianPlaytime()); ?>";
+</script>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<canvas id="myChartB" style="width:100%;max-width:600px"></canvas>
+
+<script>
+var xValues = ["Average Playtime", "Median Playtime"];
+var yValues = [YvalueC, YvalueD];
+//var yValues = [80,55];
+var barColors = [
+  "#b91d47",
+  "#00aba9"
+];
+
+new Chart("myChartB", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Playtime"
+    }
+  }
+});
+</script>
+</div>
+<!-- Units  chart-->
+<div>
+<script type="text/javascript">
+    var YvalueD = "<?php Print($gameData->getUnitsSold()); ?>";
+    var YvalueC = "<?php Print($gameData->getUnitsAvailable()); ?>";
+</script>
+
+<div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<canvas id="myChartC" style="width:100%;max-width:600px"></canvas>
+
+<script>
+var xValues = ["Units Sold", "Units Available"];
+var yValues = [YvalueC, YvalueD];
+//var yValues = [80,55];
+var barColors = [
+  "#39ff14",
+  "#18191a"
+];
+
+new Chart("myChartC", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Playtime"
+    }
+  }
+});
+</script>
+</div>
+
+
+
 
 
 <div>
-<?php
-$var = $gameData->getPositiveRatings();
-?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<body>
-
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+<canvas id="myChartD" style="width:100%;max-width:600px"></canvas>
 
 <script>
-var xValues = ["Positive Reviews", "Negative Reviews"];
-var yValues = [<?php $gameData->getPositiveRatings();?>, <?php $gameData->getNegativeRatings();?>];
-//var yValues = [1,2];
+var xValues = ["Units Sold", "Units Available"];
+var yValues = [YvalueC, YvalueD];
+//var yValues = [80,55];
 var barColors = [
   "#b91d47",
-  "#00aba9",
-  "#2b5797",
-  "#e8c3b9",
-  "#1e7145"
+  "#39ff14"
 ];
 
-new Chart("myChart", {
-  type: "pie",
+new Chart("myChartD", {
+  type: "line",
   data: {
     labels: xValues,
     datasets: [{
@@ -72,60 +181,28 @@ new Chart("myChart", {
   options: {
     title: {
       display: true,
-      text: "Reviews"
-    }
-  }
-});
-ript>
-
-
-    <script>
-var xValues = ["Positive Reviews", "Negative Reviews"];
-var yValues = [<?php $gameData->getPositiveRatings();?>, <?php $gameData->getNegativeRatings();?>];
-var barColors = [
-  "#b91d47",
-  "#00aba9",
-  "#2b5797",
-  "#e8c3b9",
-  "#1e7145"
-];
-
-new Chart("myChart", {
-  type: "pie",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Reviews"
+      text: "Playtime"
     }
   }
 });
 </script>
-    </div>    
-    </div>
-<body>
+</div>
 
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+<div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<canvas id="myChartD" style="width:100%;max-width:600px"></canvas>
 
 <script>
-var xValues = ["Positive Reviews", "Negative Reviews"];
-var yValues = [<?php $gameData->getPositiveRatings();?>, <?php $gameData->getNegativeRatings();?>];
+var xValues = ["Units Sold", "Units Available"];
+var yValues = [YvalueC, YvalueD];
+//var yValues = [80,55];
 var barColors = [
   "#b91d47",
-  "#00aba9",
-  "#2b5797",
-  "#e8c3b9",
-  "#1e7145"
+  "#39ff14"
 ];
 
-new Chart("myChart", {
-  type: "pie",
+new Chart("myChartE", {
+  type: "line",
   data: {
     labels: xValues,
     datasets: [{
@@ -136,46 +213,65 @@ new Chart("myChart", {
   options: {
     title: {
       display: true,
-      text: "Reviews"
+      text: "Playtime"
     }
   }
 });
 </script>
-    </div>    
+</div>
+
+
+
+<div class="container-xxl">
+<?php 
+        $index= 1;
+        foreach($view->gameDataSet as $gameData) {
+                echo '<div class="graph">';
+                echo '<div><h5>App ID</h5><p>' . $gameData->getAppID() . '</p></div>';
+                //Start of JS
+                echo '<script type="text/javascript">
+                var YvalueA = "' . $gameData->getPositiveRatings() . '";
+                var YvalueB = "' . $gameData->getNegativeRatings() . '";
+                </script>';
+                echo '<div >
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                <canvas id="myChart' . $index . '" style="width:100%;max-width:300px"></canvas>
+                
+                <script>
+                var xValues = ["Positive Reviews", "Negative Reviews"];
+                var yValues = [YvalueA, YvalueB];
+                
+                var barColors = [
+                "#b91d47",
+                "#00aba9"
+                ];
+                
+                new Chart("myChart' . $index . '", {
+                type: "pie",
+                data: {
+                labels: xValues,
+                datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+                }]
+                },
+                options: {
+                title: {
+                display: true,
+                text: "Positive vs negative reviews"
+                }
+                }
+                });
+                </script></div>';
+                
+
+
+                //End of JS
+            echo '</div>';
+            $index++;
+            
+        }
+        ?>
     </div>
-re('Views/template/footer.phtml'); ?>    </div>
-<body>
 
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-
-<script>
-var xValues = ["Positive Reviews", "Negative Reviews"];
-var yValues = [<?php $gameData->getPositiveRatings();?>, <?php $gameData->getNegativeRatings();?>];
-var barColors = [
-  "#b91d47",
-  "#00aba9",
-  "#2b5797",
-  "#e8c3b9",
-  "#1e7145"
-];
-
-new Chart("myChart", {
-  type: "pie",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Reviews"
-    }
-  }
-});
-</script>
-    </div>    
-    </div>
-re('Views/template/footer.phtml'); ?>
+<?php require('Views/template/footer.phtml'); ?>

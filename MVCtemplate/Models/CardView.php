@@ -1,8 +1,8 @@
-<?php
+<?php 
 require_once('Models/Game.php');
 require_once('Models/Database.php');
-class TestDataSet
-{
+
+class CardView{
     protected $_dbHandle, $_dbInstance;
 
     public function __construct() {
@@ -10,21 +10,8 @@ class TestDataSet
         $this->_dbHandle = $this->_dbInstance->getdbConnection();
     }
 
-    public function TestDatabase() {
-        $sqlQuery = 'SELECT * FROM gameinfo LIMIT 24;';
-
-        $statement = $this->_dbHandle->prepare($sqlQuery); 
-        $statement->execute(); 
-        
-        $dataSet = [];
-        while ($row = $statement->fetch()) {
-            $dataSet[] = new Game($row);
-        }
-        return $dataSet;
-    }
-
-    public function TestDatabase2() {
-        $sqlQuery = 'SELECT * FROM gameinfo LIMIT 1;';
+    public function gameInfo($id) {
+        $sqlQuery = 'SELECT * FROM gameinfo WHERE appID = '.$id.';';
 
         $statement = $this->_dbHandle->prepare($sqlQuery); 
         $statement->execute(); 
