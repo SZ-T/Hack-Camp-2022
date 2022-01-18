@@ -5,13 +5,10 @@ if (isset($_POST['data'])) {
     $searchTerm = $_POST['data'];
 
     $searchResults = new LiveSearch();
-    $view->searchResults = $searchResults->{'get'.strval($_POST['type']).'s'}($searchTerm);
+    $view->searchResults = $searchResults->{'get'.strval($_POST['type'])}($searchTerm);
 
-    echo '<ul>';
+    $type = strtolower($_POST['type']);
+
     foreach ($view->searchResults as $result)
-        echo '<a><li onclick="document.getElementById('."'".strtolower($_POST['type']).'Input'."'".').value = '."'".  $result ."'".'">'.$result.'</li></a>';
+        echo '<button class="btn" onclick="document.getElementById('."'".$type.'Input'."'".').value = '."'".$result ."'".';clearSuggestions('."'".$type."'".');return false;">'.$result.'</button>';
     }
-    echo '</ul>';
-
-
-
