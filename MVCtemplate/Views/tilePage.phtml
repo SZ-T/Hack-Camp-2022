@@ -1,0 +1,21 @@
+<?php require('Views/template/header.phtml'); ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="/js/custom-js.js"></script>
+<div id="full"></div>
+<div class="row justify-content-md-center m-0">
+        <?php
+            if(isset($_POST["filter-form"]))
+            {
+                foreach($view->filter as $gameData) {
+                    tile($gameData);
+                }
+            }
+            else
+            {
+                foreach($view->gameDataSet as $gameData) {
+                tile($gameData);
+            }
+        }
+        ?>
+    </div>
+<?php require('Views/template/footer.phtml'); ?>

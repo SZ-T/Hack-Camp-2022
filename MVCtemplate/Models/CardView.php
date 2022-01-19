@@ -11,10 +11,10 @@ class CardView{
     }
 
     public function gameInfo($id) {
-        $sqlQuery = 'SELECT * FROM gameinfo WHERE appID = '.$id.';';
+        $sqlQuery = 'SELECT * FROM gameinfo WHERE appID = ?;';
 
         $statement = $this->_dbHandle->prepare($sqlQuery); 
-        $statement->execute(); 
+        $statement->execute([$id]); 
         
         $dataSet = [];
         while ($row = $statement->fetch()) {

@@ -9,27 +9,27 @@ class LiveSearch{
         $this->_dbHandle = $this->_dbInstance->getdbConnection();
     }
 
-    public function getPublishers($data) {
+    public function getPublisher($data) {
         $sqlQuery = 'SELECT publisherName from publishers WHERE publisherName LIKE ? LIMIT 10';
         return $this->getData('publisherName', $sqlQuery, $data);
     }
 
-    public function getDevelopers($data) {
+    public function getDeveloper($data) {
         $sqlQuery = 'SELECT devName from developers WHERE devName LIKE ? LIMIT 10';
         return $this->getData('devName', $sqlQuery, $data);
     }
 
-    public function getCategories($data) {
+    public function getCategory($data) {
         $sqlQuery = 'SELECT categoryName from categories WHERE categoryName LIKE ? LIMIT 10';
         return $this->getData('categoryName', $sqlQuery, $data);
     }
 
-    public function getGenres($data) {
+    public function getGenre($data) {
         $sqlQuery = 'SELECT genreName from genres WHERE genreName LIKE ? LIMIT 10';
         return $this->getData('genreName', $sqlQuery, $data);
     }
     
-    public function getTags($data) {
+    public function getTag($data) {
         $sqlQuery = 'SELECT tagName from tags WHERE tagName LIKE ? LIMIT 10';
         return $this->getData('tagName', $sqlQuery, $data);
     }
