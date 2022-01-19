@@ -22,5 +22,12 @@ $view->developerDataSet = $developerDataSet->topDeveloper();
 $platformDataSet = new TestDataSet(); 
 $view->platformDataSet  = $platformDataSet->topPlatform();
 
-var_dump($view->platformDataSet);
+//$total=0;
+foreach($view->platformDataSet as $platformData)
+{
+    $view->total = $view->total + $platformData->getPlatformNumber();
+}
+               
+
+var_dump($view->developerDataSet);
 require_once('Views/testdata.phtml');

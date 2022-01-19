@@ -20,13 +20,19 @@ class LoadData
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute([$test]); // execution for data information
         $dataSet = [];
+        $ids = [];
+        $sold = [];
+        $avail = [];
         /*
          *  Data is run through while loop produce each line of data.
          */
-        
         while ($row = $statement->fetch()) {
-            $dataSet[] = new Game($row);
+            $data = new Game($row);
+            $dataSet[] = $data;
+            $ids[] = $data->getAppID();
+            $sold[] = $data->getUnitsSold();
+            $avail[] = $data->getUnitsAvailable();
         }
-        return $dataSet;
+        return [$ids, $sold, $avail, $dataSet];
     }
 }

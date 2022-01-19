@@ -18,6 +18,7 @@
     <link href="/css/bootstrap-utilities.rtl.css" rel="stylesheet">
     <link href="/css/bootstrap-tagsinput.css" rel="stylesheet">
     <link href="/css/bootstrap-tagsinput.less" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
 
     <title><?php echo $view->pageTitle; ?></title>
 </head>
@@ -37,7 +38,7 @@
                <li class="mx-3 my-auto"><a class="font-grey" href="../../dataAnalyst.php">Data Analyst</a></li>
                <li class="mx-auto my-auto"><button onclick="slideOut()" class="btn"><span class="bi bi-x font-22 white-hover"></span></button></li>
            </ul>
-           <form action="/lazySearch.php" method="post" id="search-bar" class="form-check-inline col-md-4 m-auto">
+           <form action="/lazySearch.php" method="post" id="" class="form-check-inline col-md-4 m-auto animate__animated animate__fadeIn animate__delay-1s">
                <div class="input-group glow-border">
                    <input id="searchText" class="form-control px-2 bg-grey font-blue radius-left font-xs" name="searchText" type="text" placeholder="Search by App ID" aria-label="Search" <?php if (isset($view)){echo 'value="'.$view->userSearchTerm.'"';} ?>/>
                    <div class="input-group-append">
@@ -53,31 +54,32 @@
 <main>
     <div id="filters" class="bg-shadow hide-filters">
     <div class="filer-container">
-        <h1 class="font-white d-inline">Filters</h1>
-    <button class="btn close-button p-0" onclick="toggleFiltersMenu()"><span class="bi bi-x display-5 font-white"></span></button>
+        <h1 class="font-white d-inline font-28">Filters</h1>
+    <button class="btn close-button p-0" onclick="toggleFiltersMenu()"><span class="bi bi-x font-28 font-white"></span></button>
 <form name="filter-form" method="post" autocomplete="off" action="../../filter.php">
-        <button onclick="toggleFilter('release-date');return false;" class="filter-item">Release date<span class="bi bi-arrow-down font-white"></span></button>
-        <div id="release-date-specific-filter" class="hide-slide">
-            <div class="row p-3 m-3">
+        <button onclick="toggleFilter('release-date');arrow('arrow0');return false;" class="filter-item">Release date<span id="arrow0" class="bi bi-arrow-down font-white"></span></button>
+        <div id="release-date" class="hide-slide">
+            <div class="row m-1" id="release-date-specific-filter">
             <label class="col-md-1 p-2 font-white">From:</label>
-            <input type="date" class="col-md-4 p-2"/>
+            <input name="fromDate" type="date" class="col-md-4 p-2"/>
             <span class="col-md-2"></span>
             <label class="col-md-1 p-2 font-white">To:</label>
-            <input type="date" class="col-md-4 p-2"/>
+            <input name="toDate" type="date" class="col-md-4 p-2"/>
             </div>
             <div id="release-date-general-filter">
-                <label class="col-sm-2 p-2 font-white">
+            <p class="p-2 font-white">
                     General Filter Options
                     <select name="release-date-filter-type">
+                        <option value="none">No General Filter</option>
                         <option value="oldestToNewest">Oldest to Newest</option>
                         <option value="newestToOldest">Newest to Oldest</option>
                     </select>
-                </label>
+</p>
             </div>
         </div>
-        <button onclick="toggleFilter('english');return false;" class="filter-item">English<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('english');arrow('arrow1');return false;" class="filter-item">English<span id="arrow1" class="bi bi-arrow-down font-white"></span></button>
         <div id="english" class="hide-slide">
-        <div class="row p-3 m-3 text-center">
+        <div class="row m-1 text-center">
         <input type="radio" id="e-yes" name="english" value="e-yes" class="col-sm-1 p-2 m-auto"/>
             <label for="e-yes" id="yes-lbl" class="col-sm-2 p-2 font-white">Yes</label>
             <input type="radio" id="e-no" name="english" value="e-no" class="col-sm-1 p-2 m-auto"/>
@@ -85,23 +87,23 @@
             <span class="col-sm-6"></span>
             </div>
         </div>
-        <button onclick="toggleFilter('developer');return false;" class="filter-item">Developer<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('developer');arrow('arrow2');return false;" class="filter-item">Developer<span id="arrow2" class="bi bi-arrow-down font-white"></span></button>
         <div id="developer" class="hide-slide">
-            <div class="row p-3 m-3 text-center">
-                <input id="developerInput" onkeyup='send("Developer", this.value, this)'>
+            <div class="row m-1 text-center">
+                <input id="developerInput" onkeyup='liveSearch("Developer", this.value, this)'>
                 <div id="developerList"></div>
             </div>
         </div>
-        <button onclick="toggleFilter('publisher');return false;" class="filter-item">Publisher<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('publisher');arrow('arrow3');return false;" class="filter-item">Publisher<span id="arrow3" class="bi bi-arrow-down font-white"></span></button>
         <div id="publisher" class="hide-slide">
-            <div class="row p-3 m-3 text-center">
-                <input id="publisherInput" onkeyup='send("Publisher", this.value, this)'>
+            <div class="row m-1 text-center">
+                <input id="publisherInput" onkeyup='liveSearch("Publisher", this.value, this)'>
                 <div id="publisherList"></div>
             </div>
         </div>
-        <button onclick="toggleFilter('status');return false;" class="filter-item">Status<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('status');arrow('arrow4');return false;" class="filter-item">Status<span id="arrow4" class="bi bi-arrow-down font-white"></span></button>
         <div id="status" class="hide-slide">
-        <div class="row p-3 m-3 text-center">
+        <div class="row m-1 text-center">
         <input type="checkbox" id="In-Development" name="developer" value="In-Development"/>
         <label for="In-Development" class="col-sm-3 p-2 font-white">In-Development</label>
         <input type="checkbox" id="Restricted" name="developer" value="Restricted"/>
@@ -116,9 +118,9 @@
         <label for="Beta" class="col-sm-3 p-2 font-white">Beta</label>
         </div>
         </div>
-        <button onclick="toggleFilter('platforms');return false;" class="filter-item">Platforms<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('platforms');arrow('arrow5');return false;" class="filter-item">Platforms<span id="arrow5" class="bi bi-arrow-down font-white"></span></button>
         <div id="platforms" class="hide-slide">
-        <div class="row p-3 m-3 text-center">
+        <div class="row m-1 text-center">
         <input type="checkbox" id="windows" name="platforms" value="windows"/>
         <label for="windows" class="col-sm-3 p-2 font-white">windows</label>
         <input type="checkbox" id="mac" name="platforms" value="mac"/>
@@ -127,9 +129,9 @@
         <label for="linux" class="col-sm-3 p-2 font-white">linux</label>
         </div>
         </div>
-        <button onclick="toggleFilter('required-age');return false;" class="filter-item">Required age<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('required-age');arrow('arrow6');return false;" class="filter-item">Required age<span id="arrow6" class="bi bi-arrow-down font-white"></span></button>
         <div id="required-age" class="hide-slide">
-            <div class="row p-3 m-3 text-center">
+            <div class="row m-1 text-center">
                 <input type="radio" id="0" name="age" value="0"/>
                 <label for="0" class="col-sm-2 p-2 font-white">0+</label>
                 <input type="radio" id="12" name="age" value="12"/>
@@ -140,39 +142,40 @@
                 <label for="18" class="col-sm-2 p-2 font-white">18+</label>
             </div>
             <div id="required-age-general-filter">
-                <label class="col-sm-2 p-2 font-white">
+            <p class="p-2 font-white">
                     General Filter Options
                     <select name="required-age-filter-type">
+                        <option value="none">No General Filter</option>
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-                </label>
+</p>
             </div>
         </div>
-        <button onclick="toggleFilter('categories');return false;" class="filter-item">Categories<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('categories');arrow('arrow7');return false;" class="filter-item">Categories<span id="arrow7" class="bi bi-arrow-down font-white"></span></button>
         <div id="categories" class="hide-slide">
-            <div class="row p-3 m-3 text-center">
-                <input id="categoryInput" onkeyup='send("Category", this.value, this)'>
+            <div class="row m-1 text-center">
+                <input id="categoryInput" onkeyup='liveSearch("Category", this.value, this)'>
                 <div id="categoryList"></div>
             </div>
         </div>
-        <button onclick="toggleFilter('genres');return false;" class="filter-item">Genres<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('genres');arrow('arrow8');return false;" class="filter-item">Genres<span id="arrow8" class="bi bi-arrow-down font-white"></span></button>
         <div id="genres" class="hide-slide">
-            <div class="row p-3 m-3 text-center">
-                <input id="genreInput" onkeyup='send("Genre", this.value, this)'>
+            <div class="row m-1 text-center">
+                <input id="genreInput" onkeyup='liveSearch("Genre", this.value, this)'>
                 <div id="genreList"></div>
             </div>
         </div>
-        <button onclick="toggleFilter('tags');return false;" class="filter-item">Tags<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('tags');arrow('arrow9');return false;" class="filter-item">Tags<span id="arrow9" class="bi bi-arrow-down font-white"></span></button>
         <div id="tags" class="hide-slide">
-            <div class="row p-3 m-3 text-center">
-                <input id="tagInput" onkeyup='send("Tag", this.value, this)'>
+            <div class="row m-1 text-center">
+                <input id="tagInput" onkeyup='liveSearch("Tag", this.value, this)'>
                 <div id="tagList"></div>
             </div>
         </div>
-        <button onclick="toggleFilter('achievements');return false;" class="filter-item">Achievements<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('achievements');arrow('arrow10');return false;" class="filter-item">Achievements<span id="arrow10" class="bi bi-arrow-down font-white"></span></button>
         <div id="achievements" class="hide-slide">
-            <div class="row p-3 m-3">
+            <div class="row m-1">
                 <label class="col-md-1 p-2 font-white">From:</label>
                 <input type="number" class="col-md-4 p-2"/>
                 <span class="col-md-2"></span>
@@ -180,18 +183,19 @@
                 <input type="number" class="col-md-4 p-2"/>
             </div>
             <div id="achievements-general-filter">
-                <label class="col-sm-2 p-2 font-white">
+            <p class="p-2 font-white">
                     General Filter Options
                     <select name="achievements-filter-type">
+                        <option value="none">No General Filter</option>
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-                </label>
+</p>
             </div>
         </div>
-        <button onclick="toggleFilter('positive-ratings');return false;" class="filter-item">Positive ratings<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('positive-ratings');arrow('arrow11');return false;" class="filter-item">Positive ratings<span id="arrow11" class="bi bi-arrow-down font-white"></span></button>
         <div id="positive-ratings" class="hide-slide">
-            <div class="row p-3 m-3">
+            <div class="row m-1">
                 <label class="col-md-1 p-2 font-white">From:</label>
                 <input type="number" class="col-md-4 p-2"/>
                 <span class="col-md-2"></span>
@@ -199,18 +203,19 @@
                 <input type="number" class="col-md-4 p-2"/>
             </div>
             <div id="positive-ratings-general-filter">
-                <label class="col-sm-2 p-2 font-white">
+            <p class="p-2 font-white">
                     General Filter Options
                     <select name="positive-ratings-filter-type">
+                        <option value="none">No General Filter</option>
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-                </label>
+</p>
             </div>
         </div>
-        <button onclick="toggleFilter('negative-ratings');return false;" class="filter-item">Negative ratings<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('negative-ratings');arrow('arrow12');return false;" class="filter-item">Negative ratings<span id="arrow12" class="bi bi-arrow-down font-white"></span></button>
         <div id="negative-ratings" class="hide-slide">
-            <div class="row p-3 m-3">
+            <div class="row m-1">
                 <label class="col-md-1 p-2 font-white">From:</label>
                 <input type="number" class="col-md-4 p-2"/>
                 <span class="col-md-2"></span>
@@ -218,18 +223,19 @@
                 <input type="number" class="col-md-4 p-2"/>
             </div>
             <div id="negative-ratings-general-filter">
-                <label class="col-sm-2 p-2 font-white">
+            <p class="p-2 font-white">
                     General Filter Options
                     <select name="negative-ratings-filter-type">
+                        <option value="none">No General Filter</option>
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-                </label>
+</p>
             </div>
         </div>
-        <button onclick="toggleFilter('average-playtime');return false;" class="filter-item">Average playtime<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('average-playtime');arrow('arrow13');return false;" class="filter-item">Average playtime<span id="arrow13" class="bi bi-arrow-down font-white"></span></button>
         <div id="average-playtime" class="hide-slide">
-            <div class="row p-3 m-3">
+            <div class="row m-1">
                 <label class="col-md-1 p-2 font-white">From:</label>
                 <input type="number" class="col-md-4 p-2"/>
                 <span class="col-md-2"></span>
@@ -237,18 +243,19 @@
                 <input type="number" class="col-md-4 p-2"/>
             </div>
             <div id="avg-playtime-general-filter">
-                <label class="col-sm-2 p-2 font-white">
+            <p class="p-2 font-white">
                     General Filter Options
                     <select name="avg-playtime-filter-type">
+                        <option value="none">No General Filter</option>
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-                </label>
+</p>
             </div>
         </div>
-        <button onclick="toggleFilter('median-playtime');return false;" class="filter-item">Median playtime<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('median-playtime');arrow('arrow14');return false;" class="filter-item">Median playtime<span id="arrow14" class="bi bi-arrow-down font-white"></span></button>
         <div id="median-playtime" class="hide-slide">
-            <div class="row p-3 m-3">
+            <div class="row m-1">
                 <label class="col-md-1 p-2 font-white">From:</label>
                 <input type="number" class="col-md-4 p-2"/>
                 <span class="col-md-2"></span>
@@ -256,18 +263,19 @@
                 <input type="number" class="col-md-4 p-2"/>
             </div>
             <div id="median-playtime-general-filter">
-                <label class="col-sm-2 p-2 font-white">
+            <p class="p-2 font-white">
                     General Filter Options
                     <select name="median-playtime-filter-type">
+                        <option value="none">No General Filter</option>
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-                </label>
+</p>
             </div>
         </div>
-        <button onclick="toggleFilter('physical');return false;" class="filter-item">Physical<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('physical');arrow('arrow15');return false;" class="filter-item">Physical<span id="arrow15" class="bi bi-arrow-down font-white"></span></button>
         <div id="physical" class="hide-slide">
-        <div class="row p-3 m-3 text-center">
+        <div class="row m-1 text-center">
         <input type="radio" id="p-yes" name="physical" value="p-yes" class="col-sm-1 p-2 m-auto"/>
             <label for="p-yes" id="yes-lbl" class="col-sm-2 p-2 font-white">Yes</label>
             <input type="radio" id="p-no" name="physical" value="p-no" class="col-sm-1 p-2 m-auto"/>
@@ -275,9 +283,9 @@
             <span class="col-sm-6"></span>
             </div>
         </div>
-        <button onclick="toggleFilter('units-available');return false;" class="filter-item">Units available<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('units-available');arrow('arrow16');return false;" class="filter-item">Units available<span id="arrow16" class="bi bi-arrow-down font-white"></span></button>
         <div id="units-available" class="hide-slide">
-            <div class="row p-3 m-3">
+            <div class="row m-1">
                 <label class="col-md-1 p-2 font-white">From:</label>
                 <input type="number" class="col-md-4 p-2"/>
                 <span class="col-md-2"></span>
@@ -285,18 +293,19 @@
                 <input type="number" class="col-md-4 p-2"/>
             </div>
             <div id="units-available-general-filter">
-                <label class="col-sm-2 p-2 font-white">
+            <p class="p-2 font-white">
                     General Filter Options
                     <select name="units-available-filter-type">
+                        <option value="none">No General Filter</option>
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-                </label>
+</p>
             </div>
         </div>
-        <button onclick="toggleFilter('units-sold');return false;" class="filter-item">Units sold<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('units-sold');arrow('arrow17');return false;" class="filter-item">Units sold<span id="arrow17" class="bi bi-arrow-down font-white"></span></button>
         <div id="units-sold" class="hide-slide">
-            <div class="row p-3 m-3">
+            <div class="row m-1">
                 <label class="col-md-1 p-2 font-white">From:</label>
                 <input type="number" class="col-md-4 p-2"/>
                 <span class="col-md-2"></span>
@@ -304,18 +313,19 @@
                 <input type="number" class="col-md-4 p-2"/>
             </div>
             <div id="units-sold-general-filter">
-                <label class="col-sm-2 p-2 font-white">
+            <p class="p-2 font-white">
                     General Filter Options
                     <select name="units-sold-filter-type">
+                        <option value="none">No General Filter</option>
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-                </label>
+</p>
             </div>
         </div>
-        <button onclick="toggleFilter('price');return false;" class="filter-item">Price<span class="bi bi-arrow-down font-white"></span></button>
+        <button onclick="toggleFilter('price');arrow('arrow18');return false;" class="filter-item">Price<span id="arrow18" class="bi bi-arrow-down font-white"></span></button>
         <div id="price" class="hide-slide">
-            <div class="row p-3 m-3">
+            <div class="row m-1">
                 <label class="col-md-1 p-2 font-white">From:</label>
                 <input type="number" class="col-md-4 p-2"/>
                 <span class="col-md-2"></span>
@@ -323,13 +333,14 @@
                 <input type="number" class="col-md-4 p-2"/>
             </div>
             <div id="price-general-filter">
-                <label class="col-sm-2 p-2 font-white">
+                <p class="p-2 font-white">
                     General Filter Options
                     <select name="price-filter-type">
+                        <option value="none">No General Filter</option>
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-                </label>
+</p>
             </div>
         </div>
         <div class="row my-2 mx-0">

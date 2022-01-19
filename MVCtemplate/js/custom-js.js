@@ -31,7 +31,7 @@ function toggleFilter(filter) {
     } 
 }
 
-function send(type, data, self) {
+function liveSearch(type, data, self) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', "/liveSearch.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -96,11 +96,43 @@ function makeChart(id, type, A, B, x1, x2, legend=true){
     }]
     },
     options: {
-        
         responsive: true,
         legend: {display: legend, labels: {
             fontColor: 'white'
            }},
+    }
+    });
+}
+
+function makeChartQuick(id, type, A, B, x1, x2, legend=true){
+
+    var YvalueA = A;
+    var YvalueB = B;
+    var xValues = [x1, x2];
+    var yValues = [YvalueA, YvalueB];
+
+    var barColors = [
+    "#b91d47",
+    "#00aba9"
+    ];
+
+    new Chart(id, {
+    type: type,
+    data: {
+    labels: xValues,
+    datasets: [{
+    backgroundColor: barColors,
+    data: yValues
+    }]
+    },
+    options: {
+        responsive: true,
+        legend: {display: legend, labels: {
+            fontColor: 'white'
+           }},
+        animation: {
+            duration: 0
+        }
     }
     });
 }
@@ -145,4 +177,96 @@ function makeChartB(id, type, A, B, x1, x2, legend=true){
            }},
     }
     });
+}
+
+function indexChartA(){
+    
+
+    var xValues = [Xvalue1, Xvalue2, Xvalue3, Xvalue4, Xvalue5];
+    var yValues = [Yvalue1, Yvalue2, Yvalue3, Yvalue4, Yvalue5];
+    //var yValues = [80,55];
+    var barColors = [
+      "#b91d47",
+      "#00aba9",
+      "#244CEB",
+      "#DB0C02",
+      "#F58E20"
+    ];
+
+    var chart = new Chart("myChart", {
+      type: "bar",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+
+        }]
+      },
+      options: {
+        onClick(e) {
+        var activePoints = chart.getElementsAtEvent(e);
+        var selectedIndex = activePoints[0]._index; 
+        alert(chart.data.labels[selectedIndex]);
+        //console.log(chart.data.labels[selectedIndex]);    
+        },
+        responsive: true,
+        legend: {
+          display: false,
+       },
+       scales: {
+          yAxes: [{ticks: {
+                  fontColor: 'white'
+              },
+            scaleLabel: {
+              display: true,
+              labelString: 'Game',
+              fontColor: 'white'
+            }
+          }],
+          xAxes: [{
+            ticks: {
+                  fontColor: 'white'
+              },
+            scaleLabel: {
+              display: true,
+              labelString: 'Genre',
+              fontColor: 'white'
+            }
+          }]
+        }
+      }
+    });
+}
+
+
+function isCanvasBlank(canvas) {
+    const context = canvas.getContext('2d');
+  
+    const pixelBuffer = new Uint32Array(
+      context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
+    );
+  
+    return !pixelBuffer.some(color => color !== 0);
+}
+
+function isInView(el){
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+function arrow(arrow) {
+    if (document.getElementById(arrow).classList.contains("bi-arrow-down")) {
+        document.getElementById(arrow).classList.toggle("bi-arrow-up");
+        document.getElementById(arrow).classList.remove("bi-arrow-down");
+    }
+    else {
+        document.getElementById(arrow).classList.toggle("bi-arrow-down");
+        document.getElementById(arrow).classList.remove("bi-arrow-up");
+    } 
 }
