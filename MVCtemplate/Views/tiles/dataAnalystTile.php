@@ -16,7 +16,7 @@ function tile($row) {
                 <p>Average playtime vs Median playtime</p>
                 <canvas id="myChart' . $row->getAppID() . '" style="width:100%;max-width:400px"></canvas>
                 <script>
-                    makeChart('."'myChart".$row->getAppID()."', 'pie', '".$row->getAveragePlaytime()."', '".$row->getMedianPlaytime()."', 'Average Playtime', 'Median Playtime'".');
+                    makeChart('."'myChart".$row->getAppID()."', 'pie', ['".$row->getAveragePlaytime()."', '".$row->getMedianPlaytime()."'], ['Average Playtime', 'Median Playtime'".']);
                 </script>
             </div>
             <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">

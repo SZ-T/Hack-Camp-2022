@@ -1,6 +1,6 @@
 <?php require('template/header.phtml') ?>
 <div id="full"></div>
-<h3 class="text-center">Results for <?php echo $view->userSearchTerm ?>:</h3>
+<h3 class="text-center">Results for <?php echo $view->userSearchTerm; ?>:</h3>
 <div class="row text-center m-auto">
     <div id="tiles" class="row m-0 col-md-12">
     </div>
@@ -20,6 +20,6 @@
 </div>
 <?php require('Views/template/footer.phtml') ?>
 <script>
-    LazyLoad.init("/lazySearchData.php");
+    LazyLoad.init("/lazySearchData.php", "doughnut", ['Units Sold', 'Units Available']);
     LazyLoad.loadResults();
 </script>

@@ -7,6 +7,8 @@ if (isset($_POST["page"])){
 } else {
     $page = 1;
 }
+$view = new stdClass();
+$view->userSearchTerm = $_POST["searchText"];
 
 $searchResults = new LoadData();
 $data = $searchResults->loadSearchData($_POST['searchText'], $page);

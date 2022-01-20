@@ -74,12 +74,7 @@ function clearSuggestions (type){
     document.getElementById(type + 'List').innerHTML = "";
 }
 
-function makeChart(id, type, A, B, x1, x2, legend=true){
-
-    var YvalueA = A;
-    var YvalueB = B;
-    var xValues = [x1, x2];
-    var yValues = [YvalueA, YvalueB];
+function makeChart(id, type, yValues, xValues, legend=true){
 
     var barColors = [
     "#b91d47",
@@ -100,39 +95,6 @@ function makeChart(id, type, A, B, x1, x2, legend=true){
         legend: {display: legend, labels: {
             fontColor: 'white'
            }},
-    }
-    });
-}
-
-function makeChartQuick(id, type, A, B, x1, x2, legend=true){
-
-    var YvalueA = A;
-    var YvalueB = B;
-    var xValues = [x1, x2];
-    var yValues = [YvalueA, YvalueB];
-
-    var barColors = [
-    "#b91d47",
-    "#00aba9"
-    ];
-
-    new Chart(id, {
-    type: type,
-    data: {
-    labels: xValues,
-    datasets: [{
-    backgroundColor: barColors,
-    data: yValues
-    }]
-    },
-    options: {
-        responsive: true,
-        legend: {display: legend, labels: {
-            fontColor: 'white'
-           }},
-        animation: {
-            duration: 0
-        }
     }
     });
 }
@@ -237,27 +199,6 @@ function indexChartA(){
         }
       }
     });
-}
-
-
-function isCanvasBlank(canvas) {
-    const context = canvas.getContext('2d');
-  
-    const pixelBuffer = new Uint32Array(
-      context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
-    );
-  
-    return !pixelBuffer.some(color => color !== 0);
-}
-
-function isInView(el){
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
 }
 
 function arrow(arrow) {

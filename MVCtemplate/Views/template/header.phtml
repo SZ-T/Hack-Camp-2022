@@ -56,7 +56,10 @@
     <div class="filer-container">
         <h1 class="font-white d-inline font-28">Filters</h1>
     <button class="btn close-button p-0" onclick="toggleFiltersMenu()"><span class="bi bi-x font-28 font-white"></span></button>
+
 <form name="filter-form" method="post" autocomplete="off" action="../../filter.php">
+        <div>
+        </div>
         <button onclick="toggleFilter('release-date');arrow('arrow0');return false;" class="filter-item">Release date<span id="arrow0" class="bi bi-arrow-down font-white"></span></button>
         <div id="release-date" class="hide-slide">
             <div class="row m-1" id="release-date-specific-filter">
@@ -66,6 +69,7 @@
             <label class="col-md-1 p-2 font-white">To:</label>
             <input name="toDate" type="date" class="col-md-4 p-2"/>
             </div>
+            <!--
             <div id="release-date-general-filter">
             <p class="p-2 font-white">
                     General Filter Options
@@ -74,8 +78,9 @@
                         <option value="oldestToNewest">Oldest to Newest</option>
                         <option value="newestToOldest">Newest to Oldest</option>
                     </select>
-</p>
+            </p>
             </div>
+            -->
         </div>
         <button onclick="toggleFilter('english');arrow('arrow1');return false;" class="filter-item">English<span id="arrow1" class="bi bi-arrow-down font-white"></span></button>
         <div id="english" class="hide-slide">
@@ -141,6 +146,7 @@
                 <input type="radio" id="18" name="age" value="18"/>
                 <label for="18" class="col-sm-2 p-2 font-white">18+</label>
             </div>
+            <!--
             <div id="required-age-general-filter">
             <p class="p-2 font-white">
                     General Filter Options
@@ -149,8 +155,9 @@
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-</p>
+            </p>
             </div>
+            -->
         </div>
         <button onclick="toggleFilter('categories');arrow('arrow7');return false;" class="filter-item">Categories<span id="arrow7" class="bi bi-arrow-down font-white"></span></button>
         <div id="categories" class="hide-slide">
@@ -182,6 +189,7 @@
                 <label class="col-md-1 p-2 font-white">To:</label>
                 <input type="number" class="col-md-4 p-2"/>
             </div>
+            <!--
             <div id="achievements-general-filter">
             <p class="p-2 font-white">
                     General Filter Options
@@ -190,8 +198,9 @@
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-</p>
+            </p>
             </div>
+            -->
         </div>
         <button onclick="toggleFilter('positive-ratings');arrow('arrow11');return false;" class="filter-item">Positive ratings<span id="arrow11" class="bi bi-arrow-down font-white"></span></button>
         <div id="positive-ratings" class="hide-slide">
@@ -202,6 +211,7 @@
                 <label class="col-md-1 p-2 font-white">To:</label>
                 <input type="number" class="col-md-4 p-2"/>
             </div>
+            <!--
             <div id="positive-ratings-general-filter">
             <p class="p-2 font-white">
                     General Filter Options
@@ -210,8 +220,9 @@
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-</p>
+            </p>
             </div>
+            -->
         </div>
         <button onclick="toggleFilter('negative-ratings');arrow('arrow12');return false;" class="filter-item">Negative ratings<span id="arrow12" class="bi bi-arrow-down font-white"></span></button>
         <div id="negative-ratings" class="hide-slide">
@@ -222,6 +233,7 @@
                 <label class="col-md-1 p-2 font-white">To:</label>
                 <input type="number" class="col-md-4 p-2"/>
             </div>
+            <!--
             <div id="negative-ratings-general-filter">
             <p class="p-2 font-white">
                     General Filter Options
@@ -230,8 +242,9 @@
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-</p>
+            </p>
             </div>
+            -->
         </div>
         <button onclick="toggleFilter('average-playtime');arrow('arrow13');return false;" class="filter-item">Average playtime<span id="arrow13" class="bi bi-arrow-down font-white"></span></button>
         <div id="average-playtime" class="hide-slide">
@@ -242,6 +255,7 @@
                 <label class="col-md-1 p-2 font-white">To:</label>
                 <input type="number" class="col-md-4 p-2"/>
             </div>
+            <!--
             <div id="avg-playtime-general-filter">
             <p class="p-2 font-white">
                     General Filter Options
@@ -250,8 +264,9 @@
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-</p>
+            </p>
             </div>
+            -->
         </div>
         <button onclick="toggleFilter('median-playtime');arrow('arrow14');return false;" class="filter-item">Median playtime<span id="arrow14" class="bi bi-arrow-down font-white"></span></button>
         <div id="median-playtime" class="hide-slide">
@@ -262,6 +277,7 @@
                 <label class="col-md-1 p-2 font-white">To:</label>
                 <input type="number" class="col-md-4 p-2"/>
             </div>
+            <!--
             <div id="median-playtime-general-filter">
             <p class="p-2 font-white">
                     General Filter Options
@@ -270,8 +286,9 @@
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-</p>
+            </p>
             </div>
+            -->
         </div>
         <button onclick="toggleFilter('physical');arrow('arrow15');return false;" class="filter-item">Physical<span id="arrow15" class="bi bi-arrow-down font-white"></span></button>
         <div id="physical" class="hide-slide">
@@ -292,6 +309,7 @@
                 <label class="col-md-1 p-2 font-white">To:</label>
                 <input type="number" class="col-md-4 p-2"/>
             </div>
+            <!--
             <div id="units-available-general-filter">
             <p class="p-2 font-white">
                     General Filter Options
@@ -300,8 +318,9 @@
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-</p>
+            </p>
             </div>
+            -->
         </div>
         <button onclick="toggleFilter('units-sold');arrow('arrow17');return false;" class="filter-item">Units sold<span id="arrow17" class="bi bi-arrow-down font-white"></span></button>
         <div id="units-sold" class="hide-slide">
@@ -312,6 +331,7 @@
                 <label class="col-md-1 p-2 font-white">To:</label>
                 <input type="number" class="col-md-4 p-2"/>
             </div>
+            <!--
             <div id="units-sold-general-filter">
             <p class="p-2 font-white">
                     General Filter Options
@@ -320,8 +340,9 @@
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-</p>
+            </p>
             </div>
+            -->
         </div>
         <button onclick="toggleFilter('price');arrow('arrow18');return false;" class="filter-item">Price<span id="arrow18" class="bi bi-arrow-down font-white"></span></button>
         <div id="price" class="hide-slide">
@@ -332,6 +353,7 @@
                 <label class="col-md-1 p-2 font-white">To:</label>
                 <input type="number" class="col-md-4 p-2"/>
             </div>
+            <!--
             <div id="price-general-filter">
                 <p class="p-2 font-white">
                     General Filter Options
@@ -340,8 +362,9 @@
                         <option value="highToLow">High to Low</option>
                         <option value="lowToHigh">Low to High</option>
                     </select>
-</p>
+            </p>
             </div>
+            -->
         </div>
         <div class="row my-2 mx-0">
             <span class="col-sm-2"></span>
@@ -349,7 +372,59 @@
             <span class="col-sm-2"></span>
             <button class="col-sm-3 my-1 p-0 btn font-blue bg-bright" name="submitFilterOptions"><span class="bi bi-save-fill"></span></button>
             <span class="col-sm-2"></span>
-            </div>
+        </div>
+
+        <!--Code for sorting below here-->
+        <div id="release-date-general-filter">
+            <p class="p-2 font-white">
+                    General Filter Options
+                    <select name="release-date-filter-type">
+                        <option value="none">No General Filter</option>
+                        <option value="oldestToNewest">Oldest to Newest</option>
+                        <option value="newestToOldest">Newest to Oldest</option>
+                    </select>
+            </p>
+        </div>
+        <div id="required-age-general-filter">
+            <p class="p-2 font-white">
+                    General Filter Options
+                    <select name="required-age-filter-type">
+                        <option value="none">No General Filter</option>
+                        <option value="highToLow">High to Low</option>
+                        <option value="lowToHigh">Low to High</option>
+                    </select>
+            </p>
+        </div>
+        <div id="achievements-general-filter">
+            <p class="p-2 font-white">
+                    General Filter Options
+                    <select name="achievements-filter-type">
+                        <option value="none">No General Filter</option>
+                        <option value="highToLow">High to Low</option>
+                        <option value="lowToHigh">Low to High</option>
+                    </select>
+            </p>
+        </div>
+        <div id="positive-ratings-general-filter">
+            <p class="p-2 font-white">
+                    General Filter Options
+                    <select name="positive-ratings-filter-type">
+                        <option value="none">No General Filter</option>
+                        <option value="highToLow">High to Low</option>
+                        <option value="lowToHigh">Low to High</option>
+                    </select>
+            </p>
+        </div>
+        <div id="negative-ratings-general-filter">
+            <p class="p-2 font-white">
+                    General Filter Options
+                    <select name="negative-ratings-filter-type">
+                        <option value="none">No General Filter</option>
+                        <option value="highToLow">High to Low</option>
+                        <option value="lowToHigh">Low to High</option>
+                    </select>
+            </p>
+        </div>
 </form>
     </div>
     </div>

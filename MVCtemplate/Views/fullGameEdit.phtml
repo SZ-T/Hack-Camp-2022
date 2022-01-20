@@ -24,20 +24,28 @@ foreach ($view->cardView as $gameData) {
         }
         $platformsString = strval($gameData->getPlatforms());
         echo '
+        <form action="/cardViewTest.php" method="POST">
         <div id="cardView" class="bg-shadow">
-        <div class="filer-container p-0">
-        <button class="btn close-button p-0 d-block" onclick="history.back();return false;"><span class="bi bi-x display-5 font-white"></span></button>
+        <div class="filer-container p-0">';
+        if ($view->succesfullEdit) {
+            echo '<p>Done</p>';
+        }
+        if (!$view->succesfullEdit) {
+            echo '<p>Not done</p>';
+        }
+        echo '<button class="btn close-button p-0 d-block" onclick="history.back();return false;"><span class="bi bi-x display-5 font-white"></span></button>
         <div class="row d-block m-0">';            
         echo '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">App ID</span>
-        <input type="number" class="font-white col-sm-4" value="'.$gameData->getAppID().'" />
+        <span class="font-white col-sm-4">'.$gameData->getAppID().'</span>
+        <input type="hidden" name="appID" class="font-white col-sm-4" value="'.$gameData->getAppID().'" />
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Release date</span>
-        <input type="date" class="font-white col-sm-4" value="'.$gameData->getReleaseDate().'" />
+        <input type="date" name="releaseDate" class="font-white col-sm-4" value="'.$gameData->getReleaseDate().'" />
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
@@ -45,15 +53,15 @@ foreach ($view->cardView as $gameData) {
         <span class="font-blue col-sm-4">English</span>
         <div class="col-sm-4 row text-center m-0 bg-trans">';
         if ($isEnglish == "Yes") {
-            echo '<input type="radio" checked id="e-yes2" name="english2" value="e-yes" class="col-sm-1 p-0 m-auto"/>
+            echo '<input type="radio" name="isEnglish" checked id="e-yes2"  value="1" class="col-sm-1 p-0 m-auto"/>
         <label for="e-yes2" id="yes-lbl" class="col-sm-6 p-0 font-white">Yes</label>
-        <input type="radio" id="e-no2" name="english2" value="e-no" class="col-sm-1 p-2 m-auto"/>
-        <label for="e-no2" id="no-lbl" class="col-sm-6 p-0 font-white">No</label>';
+        <input type="radio" id="e-no2" name="isEnglish"  value="0" class="col-sm-1 p-2 m-auto"/>
+        <label for="e-no2" id="no-lbl"  class="col-sm-6 p-0 font-white">No</label>';
         }
         if ($isEnglish == "No") {
-            echo '<input type="radio" id="e-yes2" name="english2" value="e-yes" class="col-sm-1 p-0 m-auto"/>
+            echo '<input type="radio" name="isEnglish" id="e-yes2" value="1" class="col-sm-1 p-0 m-auto"/>
             <label for="e-yes2" id="yes-lbl" class="col-sm-6 p-0 font-white">Yes</label>
-            <input type="radio" id="e-no2" checked name="english2" value="e-no" class="col-sm-1 p-2 m-auto"/>
+            <input type="radio" id="e-no2" name="isEnglish" checked value="0" class="col-sm-1 p-2 m-auto"/>
             <label for="e-no2" id="no-lbl" class="col-sm-6 p-0 font-white">No</label>';
         }
         echo '                
@@ -64,14 +72,14 @@ foreach ($view->cardView as $gameData) {
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Developer</span>
         <div class="col-sm-4 bg-trans">
-        <input type="text" value="'.$gameData->getDeveloper().'" data-role="tagsinput" />
+        <input type="text" name="developer" value="'.$gameData->getDeveloper().'" data-role="tagsinput" />
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Publisher</span>
         <div class="col-sm-4 bg-trans">
-        <input type="text" value="'.$gameData->getPublisher().'" data-role="tagsinput" />
+        <input type="text" name="publisher" value="'.$gameData->getPublisher().'" data-role="tagsinput" />
         </div>
         <span class="col-sm-2"></span>
         </div>'.
@@ -80,7 +88,7 @@ foreach ($view->cardView as $gameData) {
         <span class="font-blue col-sm-4">Platforms</span>
         <div class="col-sm-4 row text-center m-0 bg-trans">';
         foreach ($platforms as $value) {
-            echo '<input type="checkbox" id="'.$value.'2" name="platforms2" value="'.$value.'"';
+            echo '<input type="checkbox" name="platforms" id="'.$value.'2" value="'.$value.'"';
             if (strstr($platformsString, $value)) {
                 echo ' checked ';
             }
@@ -95,7 +103,7 @@ foreach ($view->cardView as $gameData) {
         <span class="font-blue col-sm-4">Status</span>
         <div class="col-sm-4 row text-center m-0 bg-trans">';
         foreach ($status as $value) {
-            echo '<input type="radio" id="'.$value.'2" name="developer2" value="'.$value.'"';
+            echo '<input type="radio" name="status" id="'.$value.'2" value="'.$value.'"';
             if ($value == $gameData->getStatus()) {
                 echo ' checked ';
             }
@@ -110,7 +118,7 @@ foreach ($view->cardView as $gameData) {
         <span class="font-blue col-sm-4">Required age</span>
         <div class="col-sm-4 row text-center m-0 bg-trans">';
         foreach ($age as $value) {
-            echo '<input type="radio" id="'.$value.'2" name="age2" value="'.$value.'"';
+            echo '<input type="radio" name="requiredAge" id="'.$value.'2" name="age2" value="'.$value.'"';
             if ($value == $gameData->getRequiredAge()) {
                 echo ' checked ';
             }
@@ -124,7 +132,7 @@ foreach ($view->cardView as $gameData) {
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Categories</span>
         <div class="col-sm-4 bg-trans">
-        <input type="text" value="'.$gameData->getCategories().'" data-role="tagsinput" />
+        <input type="text" name="categories" value="'.$gameData->getCategories().'" data-role="tagsinput" />
         </div>
         <span class="col-sm-2"></span>
         </div>'.
@@ -132,7 +140,7 @@ foreach ($view->cardView as $gameData) {
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Genres</span>
         <div class="col-sm-4 bg-trans">
-        <input type="text" value="'.$gameData->getGenres().'" data-role="tagsinput" />
+        <input type="text" name="genres" value="'.$gameData->getGenres().'" data-role="tagsinput" />
         </div>
         <span class="col-sm-2"></span>
         </div>'.
@@ -140,38 +148,38 @@ foreach ($view->cardView as $gameData) {
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Tags</span>
         <div class="col-sm-4 bg-trans">
-        <input type="text" value="'.$gameData->getTags().'" data-role="tagsinput" />
+        <input type="text" name="tags" value="'.$gameData->getTags().'" data-role="tagsinput" />
         </div>
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Achievements</span>
-        <input type="text" class="font-white col-sm-4" value="'.$gameData->getAchievements().'"/>
+        <input type="text" name="numberOfAchievements" class="font-white col-sm-4" value="'.$gameData->getAchievements().'"/>
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Positive ratings</span>
-        <input type="text" class="font-white col-sm-4" value="'.$gameData->getPositiveRatings().'"/>
+        <input type="text" name="positiveRatings" class="font-white col-sm-4" value="'.$gameData->getPositiveRatings().'"/>
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Negative ratings</span>
-        <input type="text" class="font-white col-sm-4" value="'.$gameData->getNegative_Ratings().'"/>
+        <input type="text" name="negativeRatings" class="font-white col-sm-4" value="'.$gameData->getNegative_Ratings().'"/>
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Average playtime</span>
-        <input type="text" class="font-white col-sm-4" value="'.$gameData->getAveragePlaytime().'"/>
+        <input type="text" name="avgPlaytime" class="font-white col-sm-4" value="'.$gameData->getAveragePlaytime().'"/>
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Median playtime</span>
-        <input type="text" class="font-white col-sm-4" value="'.$gameData->getMedianPlaytime().'"/>
+        <input type="text" name="medianPlaytime" class="font-white col-sm-4" value="'.$gameData->getMedianPlaytime().'"/>
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
@@ -179,15 +187,15 @@ foreach ($view->cardView as $gameData) {
         <span class="font-blue col-sm-4">Physical</span>
         <div class="col-sm-4 row text-center m-0 bg-trans">';
         if ($isPhysical == "Yes") {
-            echo '<input type="radio" checked id="p-yes2" name="physical2" value="p-yes2" class="col-sm-1 p-0 m-auto"/>
+            echo '<input type="radio" checked id="p-yes2" name="physical" value="1" class="col-sm-1 p-0 m-auto"/>
         <label for="p-yes2" id="yes-lbl" class="col-sm-6 p-0 font-white">Yes</label>
-        <input type="radio" id="p-no2" name="physical2" value="p-no2" class="col-sm-1 p-2 m-auto"/>
+        <input type="radio" id="p-no2" name="physical" value="0" class="col-sm-1 p-2 m-auto"/>
         <label for="p-no2" id="no-lbl" class="col-sm-6 p-0 font-white">No</label>';
         }
         if ($isPhysical == "No") {
-            echo '<input type="radio" id="p-yes2" name="physical2" value="p-yes" class="col-sm-1 p-0 m-auto"/>
+            echo '<input type="radio" id="p-yes2" name="physical" value="1" class="col-sm-1 p-0 m-auto"/>
             <label for="p-yes2" id="yes-lbl" class="col-sm-6 p-0 font-white">Yes</label>
-            <input type="radio" id="p-no2" checked name="physical2" value="p-no2" class="col-sm-1 p-2 m-auto"/>
+            <input type="radio" id="p-no2" checked name="physical" value="0" class="col-sm-1 p-2 m-auto"/>
             <label for="p-no2" id="no-lbl" class="col-sm-6 p-0 font-white">No</label>';
         }
         echo '                
@@ -196,19 +204,19 @@ foreach ($view->cardView as $gameData) {
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Units available</span>
-        <input type="text" class="font-white col-sm-4" value="'.$gameData->getUnitsAvailable().'"/>
+        <input type="text" name="numberOfUnitsAvail" class="font-white col-sm-4" value="'.$gameData->getUnitsAvailable().'"/>
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Units sold</span>
-        <input type="text" class="font-white col-sm-4" value="'.$gameData->getUnitsSold().'"/>
+        <input type="text" name="unitsSold" class="font-white col-sm-4" value="'.$gameData->getUnitsSold().'"/>
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Price</span>
-        <input type="text" class="font-white col-sm-4" value="'.$gamePrice.'"/>
+        <input type="text" name="pricePerUnit" class="font-white col-sm-4" value="'.$gamePrice.'"/>
         <span class="col-sm-2"></span>
         </div>
         </div>
@@ -216,9 +224,10 @@ foreach ($view->cardView as $gameData) {
     <span class="col-sm-2"></span>
     <button class="col-sm-3 p-0 my-3 btn font-grey bg-bright" onclick="history.back();return false;"><span class="bi bi-x-octagon-fill"></span></button>
     <span class="col-sm-2"></span>
-    <button class="col-sm-3 my-3 p-0 btn font-blue bg-bright" onclick="history.back();return false;"><span class="bi bi-save-fill"></span></button>
+    <button class="col-sm-3 my-3 p-0 btn font-blue bg-bright" type="submit" name="edit" value="edit"><span class="bi bi-save-fill"></span></button>
     <span class="col-sm-2"></span>
-    </div>'
+    </div>
+    </form>'
     ;}
 
     require('Views/template/footer.phtml');

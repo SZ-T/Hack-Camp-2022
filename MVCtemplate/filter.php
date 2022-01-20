@@ -22,42 +22,42 @@ if(isset($_POST["submitFilterOptions"]))
         if($_POST["release-date-general-filter-type"] == "oldestToNewest")
         {
             $order = "ORDER BY " . $filterAttribute . "ASC";
-            $view->filter = $filter->filterSpecificRange($filterAttribute, $fromDate, $toDate, $order);
+            $view->gameDataSet = $filter->filterSpecificRange($filterAttribute, $fromDate, $toDate, $order);
         } else if($_POST["release-date-general-filter-type"] == "newestToOldest")
         {
             $order = "ORDER BY " . $filterAttribute . "DESC";
-            $view->filter = $filter->filterSpecificRange($filterAttribute, $fromDate, $toDate, $order);
+            $view->gameDataSet = $filter->filterSpecificRange($filterAttribute, $fromDate, $toDate, $order);
         }else{
             $order="";
-            $view->filter = $filter->filterSpecificRange($filterAttribute, $fromDate, $toDate, $order);
+            $view->gameDataSet = $filter->filterSpecificRange($filterAttribute, $fromDate, $toDate, $order);
         }             
-        //var_dump($view->filter);
+        //var_dump($view->gameDataSet);
     }
     elseif(isset($_POST["release-date-general-filter-type"]))
     {
         if($_POST["release-date-general-filter-type"] == "oldestToNewest")
         {
             $order = "ASC";
-            $view->filter = $filter->filter($filterAttribute, $order);
+            $view->gameDataSet = $filter->filter($filterAttribute, $order);
         }
         else if($_POST["release-date-general-filter-type"] == "newestToOldest")
         {
             $order = "DESC";
-            $view->filter = $filter->filter($filterAttribute, $order);
+            $view->gameDataSet = $filter->filter($filterAttribute, $order);
         }
-        //var_dump($view->filter);
+        //var_dump($view->gameDataSet);
     //}
     //else
     //{
         // if($_POST["filter-type"] == "highToLow")
         // {
         //     $order = "DESC";
-        //     $view->filter = $filter->filter($filterAttribute, $order);
+        //     $view->gameDataSet = $filter->filter($filterAttribute, $order);
         // }
         // elseif($_POST["filter-type"] == "lowToHigh")
         // {
         //     $order = "ASC";
-        //     $view->filter = $filter->filter($filterAttribute, $order);
+        //     $view->gameDataSet = $filter->filter($filterAttribute, $order);
         // }
         // else
         // {
@@ -65,5 +65,7 @@ if(isset($_POST["submitFilterOptions"]))
         // }
     }
 }
+
+
 
 require_once('Views/tilePage.phtml');

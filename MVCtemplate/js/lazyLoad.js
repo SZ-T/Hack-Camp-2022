@@ -1,15 +1,15 @@
-var prev_ids = [];
-var prev_sold = [];
-var prev_avail = [];
-
 class LazyLoad {
     
     static url;
     static isRunning = false;
     static page = 1;
+    static type;
+    static xValues;
 
-    static init(url){
+    static init(url, type, xValues){
         this.url = url;
+        this.type = type;
+        this.xValues = xValues;
     }
     
     static loadResults() {
@@ -37,25 +37,19 @@ class LazyLoad {
         if (data[3] == ""){
             document.getElementById("end").classList.remove("d-none");
         } else {
-            document.getElementById("tiles").innerHTML += data[3];
+            let body = document.getElementById("tiles");
+            let newDiv = document.createElement("DIV");
+            newDiv.classList.add("row");
+            newDiv.classList.add("m-0");
+            newDiv.classList.add("col-md-12");
+            body.appendChild(newDiv);
+            newDiv.innerHTML += data[3];
             document.getElementById("loading").classList.add("d-none");
-            for (let i = 0; i < prev_ids.length; i++) {
-                makeChartQuick('myChart' + prev_ids[i], 'doughnut', prev_sold[i], prev_avail[i], 'Units Sold', 'Units Available');
-            }
             let ids = JSON.parse(data[0]);
             let sold = JSON.parse(data[1]);
             let avail = JSON.parse(data[2]);
             for (let i = 0; i < ids.length; i++) {
-                makeChart('myChart' + ids[i], 'doughnut', sold[i], avail[i], 'Units Sold', 'Units Available');
-                document.addEventListener('scroll', function () {
-                    let canvas = document.getElementById('myChart' + ids[i]);
-                    if (isInView(canvas) && isCanvasBlank(canvas)){
-                        makeChartQuick('myChart' + ids[i], 'doughnut', sold[i], avail[i], 'Units Sold', 'Units Available');
-                    }
-                });
-                prev_ids = ids;
-                prev_sold = sold;
-                prev_avail = avail;
+                makeChart('myChart' + ids[i], this.type, [sold[i], avail[i]], this.xValues);
             }
             this.isRunning = false;
         }
