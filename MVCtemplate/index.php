@@ -23,4 +23,9 @@ $view->platformDataSet  = $platformDataSet->topPlatform();
 $publisherDataSet = new TestDataSet();
 $view->publisherDataSet = $publisherDataSet->topPublisher();
 
+foreach($view->platformDataSet as $platformData)
+{
+    $view->total = $view->total + $platformData->getPlatformNumber();
+}
+
 require_once('Views/index.phtml');

@@ -295,6 +295,7 @@ hr {
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
     height: 50px;
+    animation-delay: 1s;
 }
 
 #search-bar {
@@ -302,6 +303,7 @@ hr {
     animation-name: topIn;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
+    animation-delay: 1s;
 }
 
 #filter-button {
@@ -309,6 +311,7 @@ hr {
     animation-name: rightIn;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
+    animation-delay: 1s;
 }
 @keyframes rightIn {
     0% {
@@ -337,10 +340,14 @@ hr {
     }
 }
 
-input {
+input, select {
     border: none;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+select {
+    padding: 3px;
 }
 
 input[type="radio"], input[type="checkbox"] {
@@ -410,5 +417,65 @@ h3 {
 }
 
 .tag {
-    background-color: blue;
+    background-color: #76A1AC;
 }
+
+.bg-trans {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.center {
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .wave {
+    width: 5px;
+    height: 100px;
+    background: linear-gradient(45deg, cyan, #fff);
+    margin: 10px;
+    animation: wave 1s linear infinite;
+    border-radius: 20px;
+  }
+  .wave:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .wave:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .wave:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  .wave:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+  .wave:nth-child(6) {
+    animation-delay: 0.5s;
+  }
+  .wave:nth-child(7) {
+    animation-delay: 0.6s;
+  }
+  .wave:nth-child(8) {
+    animation-delay: 0.7s;
+  }
+  .wave:nth-child(9) {
+    animation-delay: 0.8s;
+  }
+  .wave:nth-child(10) {
+    animation-delay: 0.9s;
+  }
+  
+  @keyframes wave {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }

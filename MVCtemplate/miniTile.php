@@ -13,11 +13,11 @@ if ($_POST['source'] == "proofReader")
                 $gamePrice = $gamePrice . ".00";
             }
     echo'
-    <div ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".'>
+    <div ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
     <div class="row font-white">
                     <div class="col-sm-6 my-1 p-0">
                         <p>ID</p>
-                        <input type="text" class="font-white col-sm-4 w-75" value="'.$gameData->getAppID().'"</input>
+                        <p class="font-white col-sm-4 w-75">'.$gameData->getAppID().'</p>
                     </div>
                     <div class="col-sm-6 my-1 p-0">
                         <p>Status</p>
@@ -50,7 +50,7 @@ if ($_POST['mode'] == "view") {
                 $gamePrice = $gamePrice . ".00";
             }
     echo'
-    <div onclick='."'".'miniCard('.'"proofReader","edit",'.$gameData->getAppID().');return false;'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".'>
+    <div onclick='."'".'miniCard('.'"proofReader","edit",'.$gameData->getAppID().');return false;'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
     <div class="row font-white">
         <div class="col-sm-6 my-1 p-0">
             <p>ID</p>

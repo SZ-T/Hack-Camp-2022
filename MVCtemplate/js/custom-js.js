@@ -31,7 +31,7 @@ function toggleFilter(filter) {
     } 
 }
 
-function send(type, data, self) {
+function liveSearch(type, data, self) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', "/liveSearch.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -74,12 +74,7 @@ function clearSuggestions (type){
     document.getElementById(type + 'List').innerHTML = "";
 }
 
-function makeChart(id, type, A, B, x1, x2, legend=true){
-
-    var YvalueA = A;
-    var YvalueB = B;
-    var xValues = [x1, x2];
-    var yValues = [YvalueA, YvalueB];
+function makeChart(id, type, yValues, xValues, legend=true){
 
     var barColors = [
     "#b91d47",
@@ -96,7 +91,6 @@ function makeChart(id, type, A, B, x1, x2, legend=true){
     }]
     },
     options: {
-        
         responsive: true,
         legend: {display: legend, labels: {
             fontColor: 'white'
@@ -145,4 +139,75 @@ function makeChartB(id, type, A, B, x1, x2, legend=true){
            }},
     }
     });
+}
+
+function indexChartA(){
+    
+
+    var xValues = [Xvalue1, Xvalue2, Xvalue3, Xvalue4, Xvalue5];
+    var yValues = [Yvalue1, Yvalue2, Yvalue3, Yvalue4, Yvalue5];
+    //var yValues = [80,55];
+    var barColors = [
+      "#b91d47",
+      "#00aba9",
+      "#244CEB",
+      "#DB0C02",
+      "#F58E20"
+    ];
+
+    var chart = new Chart("myChart", {
+      type: "bar",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+
+        }]
+      },
+      options: {
+        onClick(e) {
+        var activePoints = chart.getElementsAtEvent(e);
+        var selectedIndex = activePoints[0]._index; 
+        alert(chart.data.labels[selectedIndex]);
+        //console.log(chart.data.labels[selectedIndex]);    
+        },
+        responsive: true,
+        legend: {
+          display: false,
+       },
+       scales: {
+          yAxes: [{ticks: {
+                  fontColor: 'white'
+              },
+            scaleLabel: {
+              display: true,
+              labelString: 'Game',
+              fontColor: 'white'
+            }
+          }],
+          xAxes: [{
+            ticks: {
+                  fontColor: 'white'
+              },
+            scaleLabel: {
+              display: true,
+              labelString: 'Genre',
+              fontColor: 'white'
+            }
+          }]
+        }
+      }
+    });
+}
+
+function arrow(arrow) {
+    if (document.getElementById(arrow).classList.contains("bi-arrow-down")) {
+        document.getElementById(arrow).classList.toggle("bi-arrow-up");
+        document.getElementById(arrow).classList.remove("bi-arrow-down");
+    }
+    else {
+        document.getElementById(arrow).classList.toggle("bi-arrow-down");
+        document.getElementById(arrow).classList.remove("bi-arrow-up");
+    } 
 }

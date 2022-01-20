@@ -1,6 +1,6 @@
 <?php
 
-require_once("Models/Attribute.php");
+require_once("Models/Attributes.php");
 require_once("Models/Status.php");
 
 class Game{
@@ -9,7 +9,7 @@ class Game{
 
     public function __construct($dbRow) {
         $this->appID = $dbRow['appID'];
-        $attribute = new Attribute($this->appID);
+        $attribute = new Attributes($this->appID);
         $this->releaseDate = $dbRow['releaseDate'];
         $this->isEnglish = $dbRow['isEnglish'];
         $this->developer = $attribute->getDeveloper();

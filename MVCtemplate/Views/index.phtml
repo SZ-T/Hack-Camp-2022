@@ -1,7 +1,8 @@
 <?php require('Views/template/header.phtml') ?>
-<div class="container">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<div class="container my-3 glow-border p-3 animate__animated animate__rollIn animate__fadeIn">
   <div class="row justify-content-md-center m-0">
-    <div class="col-md-6 my-2 text-center bg-bl radius-border font-xs glow-border">
+    <div class="col-md-5 mx-1 my-3 text-center bg-bl radius-border font-xs glow-border animate__animated animate__fadeIn animate__delay-07s animate__slow">
       <!-- php foreach($view->genreDataSet as $Genre) {
             $gameData->getGenreName() . '</td> <td>' .
             $gameData->getGameNumber() . '</td></tr>' .
@@ -26,7 +27,7 @@
           ?>
       </script>
       <div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> -->
       <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 
       <script>
@@ -44,7 +45,7 @@
       var chart = new Chart("myChart", {
         type: "bar",
         data: {
-          labels: [Xvalue1, Xvalue2, Xvalue3, Xvalue4, Xvalue5],
+          labels: xValues,
           datasets: [{
             backgroundColor: barColors,
             data: yValues
@@ -88,7 +89,8 @@
       </script>
      </div>
     </div>
-     <div class="col-md-6 my-2 text-center bg-bl radius-border font-xs glow-border" >
+    <div class="col-md-1"></div>
+     <div class="col-md-5 mx-1 my-3 text-center bg-bl radius-border font-xs glow-border animate__animated animate__fadeIn animate__delay-1s animate__slow" >
       <h3>Top Five Developers by Games Available</h3>
       <script type="text/javascript">  
         <?php
@@ -99,21 +101,20 @@
                 $yValue++;
               }
               $xValue=1;
-              foreach($view->genreDataSet as $genreData)
+              foreach($view->developerDataSet as $developerData)
             {
-              echo'var Xvalue' . $xValue . '  = "' . $genreData->getGenreName() . '";';
+              echo'var Xvalue' . $xValue . '  = "' . $developerData->getDeveloperName() . '";';
               $xValue++;
             }
           ?>
       </script>
-      <div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+      <div>      
       <canvas id="myChartB" style="width:100%;max-width:600px"></canvas>
 
       <script>
       var xValues = ["CHOICE OF GAMES", "KOEI TECMO GAMES CO., LTD.", "RIPKNOT SYSTEMS", "LAUSH DMITRIY SERGEEVICH", "NIKITA 'GHOST_RUS'"];
-      var yValues = [Yvalue1, Yvalue2, Yvalue3, Yvalue4, Yvalue5];
-      //var yValues = [80,55];
+      //var xValues = [Xvalue1, Xvalue2, Xvalue3, Xvalue4, Xvalue5];
+      var yValues = [Yvalue1, Yvalue2, Yvalue3, Yvalue4, Yvalue5];      
       var barColors = [
         "#b91d47",
         "#00aba9",
@@ -125,7 +126,7 @@
       var chartb = new Chart("myChartB", {
         type: "doughnut",
         data: {
-          labels: ["CHOICE OF GAMES", "KOEI TECMO GAMES CO., LTD.", "RIPKNOT SYSTEMS", "LAUSH DMITRIY SERGEEVICH", "NIKITA 'GHOST_RUS'"],
+          labels: xValues,
           datasets: [{
             backgroundColor: barColors,
             data: yValues
@@ -144,16 +145,16 @@
                   fontColor: 'white'
                  }
               },
-          
+            }
         
       });
       </script>
       </div>
-    </d)v>
+    </div>
 
     <div class="w-100"></div>
-
-    <div class="col-sm-6 my-2 text-center bg-bl radius-border font-xs glow-border">
+  
+    <div class="col-sm-5 mx-1 my-3 text-center bg-bl radius-border font-xs glow-border animate__animated animate__fadeIn animate__delay-13s animate__slow">
     <h3>Top Five Publishers by Games Available</h3>
     <script type="text/javascript">  
         <?php
@@ -171,14 +172,12 @@
             }
           ?>
       </script>
-      <div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+      <div>      
       <canvas id="myChartC" style="width:100%;max-width:600px"></canvas>
 
       <script>
       var xValues = [Xvalue1, Xvalue2, Xvalue3, Xvalue4, Xvalue5];
-      var yValues = [Yvalue1, Yvalue2, Yvalue3, Yvalue4, Yvalue5];
-      //var yValues = [80,55];
+      var yValues = [Yvalue1, Yvalue2, Yvalue3, Yvalue4, Yvalue5];      
       var barColors = [
         "#b91d47",
         "#00aba9",
@@ -190,7 +189,7 @@
       var chartc = new Chart("myChartC", {
         type: "bar",
         data: {
-          labels: [Xvalue1, Xvalue2, Xvalue3, Xvalue4, Xvalue5], 
+          labels: xValues, 
           datasets: [{
             backgroundColor: barColors,
             data: yValues
@@ -235,21 +234,17 @@
       </script>
     </div>
     </div>
-    
-    <div class="col-sm-6 my-2 text-center bg-bl radius-border font-xs glow-border">
+    <div class="col-md-1"></div>
+    <div class="col-sm-5 mx-1 my-3 text-center bg-bl radius-border font-xs glow-border animate__animated animate__fadeIn animate__delay-16s animate__slow">
     <h3>OS Compatibility</h3>
-        <?php  foreach($view->platformDataSet as $platformData)
-                  {
-                    $total = $total + $platformData->getPlatformNumber();
-                  }
-                  ?>
+        
       <script type="text/javascript">  
         <?php
             $yValue=1;
             $symbol="%";
                 foreach($view->platformDataSet as $platformData)
               {
-                $percent = round(($platformData->getPlatformNumber()/$total)*100, 2);
+                $percent = round(($platformData->getPlatformNumber()/$view->total)*100, 2);
             $symbol="%";
                 echo'var Yvalue' . $yValue . '  = "' . $percent  .   '";';
                 $yValue++;
@@ -262,14 +257,12 @@
             }
           ?>
       </script>
-      <div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+      <div>      
       <canvas id="myChartZ" style="width:100%;max-width:600px"></canvas>
 
       <script>
       var xValues = [Xvalue1, Xvalue2, Xvalue3];
-      var yValues = [Yvalue1, Yvalue2, Yvalue3];
-      //var yValues = [80,55];
+      var yValues = [Yvalue1, Yvalue2, Yvalue3];      
       var barColors = [
         "#b91d47",
         "#00aba9",
@@ -279,7 +272,7 @@
       var chartd = new Chart("myChartZ", {
         type: "pie",
         data: {
-          labels: [Xvalue1, Xvalue2, Xvalue3],
+          labels: xValues,
           datasets: [{
             backgroundColor: barColors,
             data: yValues
@@ -305,10 +298,9 @@
           label: function (tooltipItems, data) {
             var i = tooltipItems.index;
             return data.labels[i] + ": " + data.datasets[0].data[i] + "%";
-        }
-    } 
-}
-         
+                        }
+            } 
+          }         
         }
       });
       </script>

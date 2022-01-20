@@ -20,7 +20,7 @@ function tile($row) {
                 <p>Units Available vs Units Sold</p>
                 <canvas id="myChart' . $row->getAppID() . '" style="width:100%;max-width:400px"></canvas>
                 <script>
-                    makeChart('."'myChart".$row->getAppID()."', 'doughnut', '".$row->getUnitsSold()."', '".$row->getUnitsAvailable()."', 'Units Sold', 'Units Available'".');
+                    makeChart('."'myChart".$row->getAppID()."', 'doughnut', ['".$row->getUnitsSold()."', '".$row->getUnitsAvailable()."'], ['Units Sold', 'Units Available'".']);
                 </script>
             </div>
             <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">

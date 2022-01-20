@@ -2,9 +2,9 @@
 
 <h3>Test</h3>
 
-<?php  foreach($view->platformDataSet as $platformData)
+<?php  //foreach($view->platformDataSet as $platformData)
               {
-                $total = $total + $platformData->getPlatformNumber();
+               // $total = $total + $platformData->getPlatformNumber();
               }
                echo '<h3>' . $total . '</h3>'?>
                
@@ -15,7 +15,7 @@
             $yValue=1;
                 foreach($view->platformDataSet as $platformData)
               {
-                $percent = round(($platformData->getPlatformNumber()/$total)*100, 2);
+                $percent = round(($platformData->getPlatformNumber()/$view->total)*100, 2);
                 echo'var Yvalue' . $yValue . '  = "' . $percent. '";';
                 $yValue++;
               }
@@ -185,7 +185,7 @@
 </script>
 
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    
 <canvas id="myChartB" style="width:100%;max-width:600px"></canvas>
 
 <script>
@@ -208,7 +208,9 @@ var chartb = new Chart("myChartB", {
   },
   options: {
     onClick(e) {
-          var activePoints = chart.getElementsAtEvent(e);
+          var activePoints = chart.getElementsAtEventForMode(e, 'nearest', {
+        intersect: true
+      }, false);
           var selectedIndex = activePoints[0]._index; 
           alert(chartb.data.labels[selectedIndex]);
           //console.log(chart.data.labels[selectedIndex]);    
@@ -513,7 +515,22 @@ new Chart("myChartF", {
         ?>
     </div>
 
-
+    <?php
+                $yValue=1;
+                foreach($view->genreDataSet as $genreData)
+              {
+                $y . $yValue . $genreData->getGameNumber() ;
+                $yValue++;
+              }
+              $xValue=1;
+              foreach($view->genreDataSet as $genreData)
+            {
+              $x . $xValue . $genreData->getGenreName() ;
+              $xValue++;
+            }
+            echo '<h3>' . $y1 .. $y2 . $y3 . $y4 . $y5  '</h3>'
+          ?>
+          
 
 <?php require('Views/template/footer.phtml'); ?>
 
