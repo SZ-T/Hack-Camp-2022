@@ -12,8 +12,7 @@
         }
 
         ?> -->
-        <form  action="/index.php" method="post">
-        <button class="btn" style="background-color:transparent" name="submitFilterOptions" >
+        
         <h3>Top Five Genres<h3>
         <script type="text/javascript">  
         <?php
@@ -60,9 +59,8 @@
         options: {
           onClick(e) {
           var activePoints = chart.getElementsAtEvent(e);
-          var selectedIndex = activePoints[0]._index;
-          //function indexClick button name="submitFilterOptions"></button>};
-          alert(chart.data.labels[selectedIndex]);
+          var selectedIndex = activePoints[0]._index;        
+          alert(chart.data.labels[selectedIndex]);          
           //console.log(chart.data.labels[selectedIndex]);    
           },
           responsive: true,
@@ -93,9 +91,7 @@
         }
       });
       </script>
-     </div>
-    </button>
-    </form>
+     </div>    
     </div>
     <div class="col-md-1"></div>
      <div class="col-md-5 mx-1 my-3 text-center bg-bl radius-border font-xs glow-border animate__animated animate__fadeIn animate__delay-1s animate__slow" >

@@ -1,7 +1,7 @@
 <?php
 require('Models/Edit.php');
 $edit = new Edit();
-$array = $_POST['array'];
+$array = explode(",", $_POST['array']);
 
     if ($_POST['target'] == "Status")
     {

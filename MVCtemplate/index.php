@@ -28,5 +28,8 @@ foreach($view->platformDataSet as $platformData)
     $view->total = $view->total + $platformData->getPlatformNumber();
 }
 //var_dump($_POST["submitFilterOptions"]));
-//if(isset())
+// if(isset($_POST["submitFilterOptions"]))
+// {
+//     echo '<h3>Working</h3>';
+// }
 require_once('Views/index.phtml');
