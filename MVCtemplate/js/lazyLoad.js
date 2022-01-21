@@ -1,18 +1,20 @@
 class LazyLoad {
     
-    static url;
-    static isRunning = false;
-    static page = 1;
-    static type;
-    static xValues;
-
-    static init(url, type, xValues){
+    constructor(url, type, xValues){
+        this.isRunning = false;
+        this.page = 1;
         this.url = url;
         this.type = type;
         this.xValues = xValues;
+        this.loadResults();
+        window.onscroll = function(ev) {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                load.loadResults();
+            }
+        };
     }
     
-    static loadResults() {
+    loadResults() {
         if (!this.isRunning){
             this.isRunning = true;
             document.getElementById("loading").classList.remove("d-none");
@@ -20,10 +22,10 @@ class LazyLoad {
             xhr.open('POST', this.url, true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onload = function() {
-                LazyLoad.processResponse(xhr.responseText);
+                load.processResponse(xhr.responseText);
             };
             xhr.onerror = function() {
-                alert("Request failed");
+                alert("Request failed");s
                 this.isRunning = false;
             };
             var data = document.getElementById("searchText").value;
@@ -32,7 +34,7 @@ class LazyLoad {
         }
     }
 
-    static processResponse(response){
+    processResponse(response){
         let data = response.split("|");
         if (data[3] == ""){
             document.getElementById("end").classList.remove("d-none");
@@ -55,9 +57,3 @@ class LazyLoad {
         }
     }
 }
-
-window.onscroll = function(ev) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        LazyLoad.loadResults();
-    }
-};

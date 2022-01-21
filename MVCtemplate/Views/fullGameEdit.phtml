@@ -4,10 +4,6 @@ $platforms = array("windows", "mac", "linux");
 $status = array("In-development", "Restricted", "Archived", "Live", "Banned", "Beta");
 $age = array("0", "12", "16", "18");
 foreach ($view->cardView as $gameData) {
-    $gamePrice = "£" . $gameData->getPrice();
-        if($gamePrice == "£0"){
-            $gamePrice = $gamePrice . ".00";
-        }
         $isEnglish = $gameData->getIsEnglish();
         if($isEnglish == "1"){
             $isEnglish = "Yes";
@@ -88,7 +84,7 @@ foreach ($view->cardView as $gameData) {
         <span class="font-blue col-sm-4">Platforms</span>
         <div class="col-sm-4 row text-center m-0 bg-trans">';
         foreach ($platforms as $value) {
-            echo '<input type="checkbox" name="platforms" id="'.$value.'2" value="'.$value.'"';
+            echo '<input type="checkbox" name="platforms[]" id="'.$value.'2" value="'.$value.'"';
             if (strstr($platformsString, $value)) {
                 echo ' checked ';
             }
@@ -216,7 +212,7 @@ foreach ($view->cardView as $gameData) {
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Price</span>
-        <input type="text" name="pricePerUnit" class="font-white col-sm-4" value="'.$gamePrice.'"/>
+        <input type="text" name="pricePerUnit" class="font-white col-sm-4" value="'.$gameData->getPrice().'"/>
         <span class="col-sm-2"></span>
         </div>
         </div>

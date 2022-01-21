@@ -70,6 +70,23 @@ function miniCard(source, mode, id) {
     xhr.send("source=" + source + "&id=" + id + "&mode=" + mode );
 }
 
+function miniCardEdit(source, mode, id) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', "/miniTile.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onload = function() {
+        document.getElementById(id).innerHTML = xhr.response;
+    };
+    xhr.onerror = function() {
+        alert("Request failed");
+    };
+        att1 = document.getElementById("att1").value;
+        att2 = document.getElementById("att2").value;
+        att3 = document.getElementById("att3").value;
+        att4 = document.getElementById("att4").value;
+    xhr.send("source=" + source + "&id=" + id + "&mode=" + mode + "&edit=edit" + "&att1=" + att1 + "&att2=" + att2 + "&att3=" + att3 + "&att4=" + att4);
+}
+
 function clearSuggestions (type){
     document.getElementById(type + 'List').innerHTML = "";
 }
@@ -211,3 +228,50 @@ function arrow(arrow) {
         document.getElementById(arrow).classList.remove("bi-arrow-up");
     } 
 }
+
+$(document).on("keydown", "form", function(event) { 
+    return event.key != "Enter";
+});
+
+var selected = [];
+
+function select(id) {
+    if (!selected.length == 0){
+        if (selected.includes(id)){
+            let index = selected.indexOf(id);
+            selected.splice(index, 1)
+            document.getElementById(id).classList.toggle("hover-bg");
+            document.getElementById(id).classList.remove("hover-bg-selected");
+        } else {
+            selected.push(id);
+            document.getElementById(id).classList.toggle("hover-bg-selected");
+            document.getElementById(id).classList.remove("hover-bg");
+            }
+        } else {
+        selected.push(id);
+            document.getElementById(id).classList.toggle("hover-bg-selected");
+            document.getElementById(id).classList.remove("hover-bg");
+        }
+    }
+
+
+    function destroy() {
+        selected = [];
+    }
+
+    function selectAll() {
+        let ids = JSON.parse(IDs);
+        for (let i = 0; i < ids.length; i++) {
+            select(ids[i]);
+        }
+    }
+
+    function editSelected() {
+
+    }
+
+
+    
+    
+
+

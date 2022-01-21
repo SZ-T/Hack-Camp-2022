@@ -11,6 +11,23 @@ class Filter {
         $this->_dbHandle = $this->_dbInstance->getdbConnection();
     }
 
+    public function test($sqlQuery){
+        $end = " limit 10;";
+        $sqlQuery = $sqlQuery . $end;
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+        //var_dump($sqlQuery);
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+    }
+
+    public function indexChartValue($value){
+        var_dump($value);
+    }
+
     public function filterSpecificRange($filterAttribute, $min, $max, $order)
     {
         $sqlQuery = "SELECT * FROM gameinfo WHERE " . $filterAttribute . " BETWEEN '". $min . "' AND '" . $max . $order . "';";
@@ -61,6 +78,7 @@ class Filter {
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
         $statement->execute(); // execute the PDO statement
 
+
         $dataSet = [];
         while ($row = $statement->fetch()) {
             $dataSet[] = new Game($row);
@@ -75,7 +93,7 @@ class Filter {
         WHERE appID IN
         (SELECT appID FROM developers_connector
         JOIN developers ON developers_connector.devID = developers.devID
-        WHERE developers.devName like '" . $filterAttribute . "') limit 10;"
+        WHERE developers.devName like '" . $filterAttribute . "%') limit 10;"
         ;
 
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
@@ -90,12 +108,11 @@ class Filter {
 
     public function filterPublisher($filterAttribute)
     {
-        $sqlQuery ="SELECT *
-        FROM gameinfo, publishers, publishers_connector
-        WHERE gameinfo.appID = publishers_connector.appID
-        AND publishers_connector.publisherID = publishers.publisherID
-        AND publishers.publisherName LIKE 'g%'
-        limit 10;"
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM publishers_connector
+        JOIN publishers ON publishers_connector.publisherID = publishers.publisherID 
+        WHERE publishers.publisherName   like '" . $filterAttribute . "%') limit 10;"
         ;
 
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
@@ -112,13 +129,50 @@ class Filter {
 
     public function  filterStatus($filterAttribute)
     {
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM status_connector
+        JOIN status ON status_connector.devID = developers.devID
+        WHERE status.statusName = " . $filterAttribute . ") limit 10;";
         
-        $sqlQuery ="SELECT *
-        FROM gameinfo, status, status_connector
-        WHERE gameinfo.appID = status_connector.appID
-        AND status_connector.statusID = status.statusID
-        AND status.statusName LIKE 'g%'
-        limit 10;"
+    
+
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+    }
+    
+    public function  filterPlatform($filterAttribute)
+    {
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM platforms_connector
+        JOIN platforms ON platforms_connector.platformID = platforms.platformID 
+        WHERE platforms.platformName  = " . $filterAttribute . ") limit 10;"
+        ;
+        
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+
+    }
+
+    public function filterAge($filterAttribute){
+
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM gameinfo
+        WHERE requiredAge " . $filterAttribute . ") limit 10;"
         ;
 
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
@@ -131,23 +185,15 @@ class Filter {
         return $dataSet;
     }
 
-    public function  filterPlatform($filterAttribute)
-    {
-
-    }
     
-    public function filterCategories(){
-        $sqlQuery="SELECT *
-
-        FROM gameinfo, status, status_connector
-
-        WHERE gameinfo.appID = status_connector.appID
-
-        AND status_connector.statusID = status.statusID
-
-        AND status.statusName LIKE 'g%'
-
-        limit 10;
+    
+    public function filterCategories($filterAttribute){
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM categories_connector
+        JOIN categories ON categories_connector.categoryID = categories.categoryID 
+        WHERE categories.categoryName  like '" . $filterAttribute . "%') limit 10;"
+        ;
         
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
         $statement->execute(); // execute the PDO statement
@@ -159,8 +205,128 @@ class Filter {
         return $dataSet;
     }
 
+    public function filterGenre($filterAttribute){
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM tags_connector
+        JOIN tags ON tags_connector.tagID = tags.tagID 
+        WHERE tags.tagName  like '" . $filterAttribute . "%') limit 10;"
+        ;
+        
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
 
-    public function isPhysical($filterAttribute, $bool) {
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+    }
+
+    public function filterTags($filterAttribute)
+    {
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM genres_connector
+        JOIN genres ON genres_connector.genreID = genres.genreID 
+        WHERE genres.genreName  like '" . $filterAttribute . "%') limit 10;"
+        ;
+        
+    }
+
+    public function filterAchievements($min, $max)
+    {
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM gameinfo
+        WHERE numberOfAchievements between  '" . $min . "' AND '" . $max . "') limit 10;"
+        ;
+        
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+        
+    }
+
+    public function filterPositiveRating($min, $max)
+    {
+
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM gameinfo
+        WHERE positiveRatings between  '" . $min . "' AND '" . $max . "') limit 10;";
+        
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+    }
+
+    public function filterNegativeRating($min, $max)
+    {
+
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM gameinfo
+        WHERE negativeRatings between  '" . $min . "' AND '" .$max . "') limit 10;";
+        
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+    }
+
+    public function filterAveragePlaytime($min, $max)
+    {
+        
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM gameinfo
+        WHERE avgPlaytime between  '" . $min . "' AND '" . $max . "') limit 10;";
+        
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+    }
+
+    public function filterMedianPlaytime($min, $max)
+    {
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM gameinfo
+        WHERE medianPlaytime between  '" . $min . "' AND '" . $max . "') limit 10;"
+        ;
+
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+    }
+
+
+    public function filterPhysical($filterAttribute, $bool) {
 
         $sqlQuery = 'SELECT * FROM gameinfo WHERE ' . $filterAttribute . ' = '. $bool . ";";
 
@@ -174,6 +340,62 @@ class Filter {
         return $dataSet;
 
     }
+
+    public function filterUnitsAvailable($min, $max)
+    {
+
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM gameinfo
+        WHERE numberOfUnitsAvail between  '" . $min . "' AND '" . $max . "') limit 10;"
+        ;
+
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+    }
+
+    public function filterUnitsSold($min, $max)
+    {
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM gameinfo
+        WHERE unitsSold between  '" . $min . "' AND '" . $max . "') limit 10;"
+        ;
+
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+    }
+
+    public function filterPrice($min, $max)
+    {
+        $sqlQuery ="SELECT * FROM gameinfo
+        WHERE appID IN
+        (SELECT appID FROM gameinfo
+        WHERE pricePerUnit between  '" . $min . "' AND '" . $max . "') limit 10;"
+        ;
+
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Game($row);
+        }
+        return $dataSet;
+    }
+
     /* public function filterRefine(){
         $sql = "SELECT * FROM gameinfo WHERE"
         $sqlEnd = ";"
@@ -195,4 +417,4 @@ class Filter {
     } */
 
     
-}
+    }

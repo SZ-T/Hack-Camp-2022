@@ -1,0 +1,325 @@
+                <form action="/lazySearch.php" method="post" id="" class="form-check-inline col-md-4 m-auto animate__animated animate__fadeIn animate__delay-1s">
+                <div class="input-group glow-border">
+                    <input id="searchText" class="form-control px-2 bg-grey font-blue radius-left font-xs" name="searchText" type="text" placeholder="Search by App ID" aria-label="Search" <?php if (isset($view)){echo 'value="'.$view->userSearchTerm.'"';} ?>/>
+                    <div class="input-group-append">
+                        <button type="submit" name="Search" class="input-group-text bg-grey radius-right white-hover font-xs" id="basic-addon1" value="Search">
+                            <span class="bi bi-search font-blue white-hover">
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <button class="btn mx-1" onclick="toggleFiltersMenu()"><span id="filter-button" class="bi bi-filter-circle-fill display-5 font-blue white-hover"></span></button>
+        </nav>
+    </header>
+<main>
+    <div id="filters" class="bg-shadow hide-filters">
+        <div class="filer-container">
+            <h1 class="font-white d-inline font-28">Filters</h1>
+            <button class="btn close-button p-0" onclick="toggleFiltersMenu()"><span class="bi bi-x font-28 font-white"></span></button>
+
+            <form name="filter-form" method="post" autocomplete="off" action="../../filter.php">
+                <div class="row">
+                    <div class="col-lg-6 col-m-6">
+                        <button onclick="toggleFilter('release-date');arrow('arrow0');return false;" class="filter-item">Release date<span id="arrow0" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="release-date" class="hide-slide">
+                            <div class="row m-1" id="release-date-specific-filter">
+                                <label class="col-md-1 p-2 font-white">From:</label>
+                                <input name="fromDate" type="date" class="col-md-4 p-2"/>
+                                <span class="col-md-2"></span>
+                                <label class="col-md-1 p-2 font-white">To:</label>
+                                <input name="toDate" type="date" class="col-md-4 p-2"/>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('english');arrow('arrow1');return false;" class="filter-item">English<span id="arrow1" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="english" class="hide-slide">
+                            <div class="row m-1 text-center">
+                                <input type="radio" id="e-yes" name="english" value="1" class="col-sm-1 p-2 m-auto"/>
+                                <label for="e-yes" id="yes-lbl" class="col-sm-2 p-2 font-white">Yes</label>
+                                <input type="radio" id="e-no" name="english" value="0" class="col-sm-1 p-2 m-auto"/>
+                                <label for="e-no" id="no-lbl" class="col-sm-2 p-2 font-white">No</label>
+                                <span class="col-sm-6"></span>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('developer');arrow('arrow2');return false;" class="filter-item">Developer<span id="arrow2" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="developer" class="hide-slide">
+                            <div class="row m-1 text-center">
+                                <input id="developerInput" name="developerInput" onkeyup='liveSearch("Developer", this.value, this)'>
+                                <div id="developerList"></div>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('publisher');arrow('arrow3');return false;" class="filter-item">Publisher<span id="arrow3" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="publisher" class="hide-slide">
+                            <div class="row m-1 text-center">
+                                <input id="publisherInput" name="publisherInput" onkeyup='liveSearch("Publisher", this.value, this)'>
+                                <div id="publisherList"></div>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('status');arrow('arrow4');return false;" class="filter-item">Status<span id="arrow4" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="status" name="status" class="hide-slide">
+                            <div class="row m-1 text-center">
+                                <input type="checkbox" id="In-Development" name="developer" value="In-Development"/>
+                                <label for="In-Development" class="col-sm-3 p-2 font-white">In-Development</label>
+                                <input type="checkbox" id="Restricted" name="developer" value="Restricted"/>
+                                <label for="Restricted" class="col-sm-3 p-2 font-white">Restricted</label>
+                                <input type="checkbox" id="Archived" name="developer" value="Archived"/>
+                                <label for="Archived" class="col-sm-3 p-2 font-white">Archived</label>
+                                <input type="checkbox" id="Live" name="developer" value="Live" />
+                                <label for="Live" class="col-sm-3 p-2 font-white">Live</label>
+                                <input type="checkbox" id="Banned" name="developer" value="Banned" />
+                                <label for="Banned" class="col-sm-3 p-2 font-white">Banned</label>
+                                <input type="checkbox" id="Beta" name="developer" value="Beta"/>
+                                <label for="Beta" class="col-sm-3 p-2 font-white">Beta</label>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('platforms');arrow('arrow5');return false;" class="filter-item">Platforms<span id="arrow5" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="platforms" class="hide-slide">
+                            <div class="row m-1 text-center">
+                                <input type="checkbox" id="windows" name="platforms" value="windows"/>
+                                <label for="windows" class="col-sm-3 p-2 font-white">windows</label>
+                                <input type="checkbox" id="mac" name="platforms" value="mac"/>
+                                <label for="mac" class="col-sm-3 p-2 font-white">mac</label>
+                                <input type="checkbox" id="linux" name="platforms" value="linux"/>
+                                <label for="linux" class="col-sm-3 p-2 font-white">linux</label>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('required-age');arrow('arrow6');return false;" class="filter-item">Required age<span id="arrow6" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="required-age" class="hide-slide">
+                            <div class="row m-1 text-center">
+                                <input type="radio" id="0" name="age" value="0"/>
+                                <label for="0" class="col-sm-2 p-2 font-white">0+</label>
+                                <input type="radio" id="12" name="age" value="12"/>
+                                <label for="12" class="col-sm-2 p-2 font-white">12+</label>
+                                <input type="radio" id="16" name="age" value="16"/>
+                                <label for="16" class="col-sm-2 p-2 font-white">16+</label>
+                                <input type="radio" id="18" name="age" value="18"/>
+                                <label for="18" class="col-sm-2 p-2 font-white">18+</label>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('categories');arrow('arrow7');return false;" class="filter-item">Categories<span id="arrow7" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="categories" class="hide-slide">
+                            <div class="row m-1 text-center">
+                                <input id="categoryInput" name="categoryInput" onkeyup='liveSearch("Category", this.value, this)'>
+                                <div id="categoryList"></div>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('genres');arrow('arrow8');return false;" class="filter-item">Genres<span id="arrow8" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="genres" class="hide-slide">
+                            <div class="row m-1 text-center">
+                                <input id="genreInput" name="genreInput" onkeyup='liveSearch("Genre", this.value, this)'>
+                                <div id="genreList"></div>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('tags');arrow('arrow9');return false;" class="filter-item">Tags<span id="arrow9" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="tags" name="tags" class="hide-slide">
+                            <div class="row m-1 text-center">
+                                <input id="tagInput" name="tagInput" onkeyup='liveSearch("Tag", this.value, this)'>
+                                <div id="tagList"></div>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('achievements');arrow('arrow10');return false;" class="filter-item">Achievements<span id="arrow10" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="achievements"  class="hide-slide">
+                            <div class="row m-1">
+                                <label class="col-md-1 p-2 font-white">From:</label>
+                                <input type="number" name="achievementsmin" class="col-md-4 p-2"/>
+                                <span class="col-md-2"></span>
+                                <label class="col-md-1 p-2 font-white">To:</label>
+                                <input type="number" name="achievementsmax" class="col-md-4 p-2"/>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('positive-ratings');arrow('arrow11');return false;" class="filter-item">Positive ratings<span id="arrow11" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="positive-ratings" class="hide-slide">
+                            <div class="row m-1">
+                                <label class="col-md-1 p-2 font-white">From:</label>
+                                <input type="number" name="posmin" class="col-md-4 p-2"/>
+                                <span class="col-md-2"></span>
+                                <label class="col-md-1 p-2 font-white">To:</label>
+                                <input type="number" name="posmax" class="col-md-4 p-2"/>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('negative-ratings');arrow('arrow12');return false;" class="filter-item">Negative ratings<span id="arrow12" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="negative-ratings" class="hide-slide">
+                            <div class="row m-1">
+                                <label class="col-md-1 p-2 font-white">From:</label>
+                                <input type="number" name="negmin" class="col-md-4 p-2"/>
+                                <span class="col-md-2"></span>
+                                <label class="col-md-1 p-2 font-white">To:</label>
+                                <input type="number" name="negmax" class="col-md-4 p-2"/>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('average-playtime');arrow('arrow13');return false;" class="filter-item">Average playtime<span id="arrow13" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="average-playtime" class="hide-slide">
+                            <div class="row m-1">
+                                <label class="col-md-1 p-2 font-white">From:</label>
+                                <input type="number" name="playmin" class="col-md-4 p-2"/>
+                                <span class="col-md-2"></span>
+                                <label class="col-md-1 p-2 font-white">To:</label>
+                                <input type="number" name="playmax" class="col-md-4 p-2"/>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('median-playtime');arrow('arrow14');return false;" class="filter-item">Median playtime<span id="arrow14" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="median-playtime" class="hide-slide">
+                            <div class="row m-1">
+                                <label class="col-md-1 p-2 font-white">From:</label>
+                                <input type="number" name="medmin" class="col-md-4 p-2"/>
+                                <span class="col-md-2"></span>
+                                <label class="col-md-1 p-2 font-white">To:</label>
+                                <input type="number" name="medmax" class="col-md-4 p-2"/>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('physical');arrow('arrow15');return false;" class="filter-item">Physical<span id="arrow15" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="physical" class="hide-slide">
+                            <div class="row m-1 text-center">
+                                <input type="radio" id="p-yes" name="physical" value="1" class="col-sm-1 p-2 m-auto"/>
+                                <label for="p-yes" id="yes-lbl" class="col-sm-2 p-2 font-white">Yes</label>
+                                <input type="radio" id="p-no" name="physical" value="0" class="col-sm-1 p-2 m-auto"/>
+                                <label for="p-no" id="no-lbl" class="col-sm-2 p-2 font-white">No</label>
+                                <span class="col-sm-6"></span>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('units-available');arrow('arrow16');return false;" class="filter-item">Units available<span id="arrow16" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="units-available" class="hide-slide">
+                            <div class="row m-1">
+                                <label class="col-md-1 p-2 font-white">From:</label>
+                                <input type="number" name="availmin" class="col-md-4 p-2"/>
+                                <span class="col-md-2"></span>
+                                <label class="col-md-1 p-2 font-white">To:</label>
+                                <input type="number" name="availmax" class="col-md-4 p-2"/>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('units-sold');arrow('arrow17');return false;" class="filter-item">Units sold<span id="arrow17" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="units-sold" class="hide-slide">
+                            <div class="row m-1">
+                                <label class="col-md-1 p-2 font-white">From:</label>
+                                <input type="number" name="soldmin" class="col-md-4 p-2"/>
+                                <span class="col-md-2"></span>
+                                <label class="col-md-1 p-2 font-white">To:</label>
+                                <input type="number" name="soldmax" class="col-md-4 p-2"/>
+                            </div>
+                        </div>
+                        <button onclick="toggleFilter('price');arrow('arrow18');return false;" class="filter-item">Price<span id="arrow18" class="bi bi-arrow-down font-white"></span></button>
+                        <div id="price" class="hide-slide">
+                            <div class="row m-1">
+                                <label class="col-md-1 p-2 font-white">From:</label>
+                                <input type="number" name="pricemin" class="col-md-4 p-2"/>
+                                <span class="col-md-2"></span>
+                                <label class="col-md-1 p-2 font-white">To:</label>
+                                <input type="number" name="pricemax" class="col-md-4 p-2"/>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Code for sorting below here-->
+                    <div class="col-lg-6 col-md-6">
+                        <h1 class="font-white d-inline font-28">Sort By</h1>
+                        <div id="release-date-general-filter">
+                            <p class="p-2 font-white">
+                                Release Date
+                                <select name="release-date-filter-type">
+                                    <option value="none">No General Filter</option>
+                                    <option value="oldestToNewest">Oldest to Newest</option>
+                                    <option value="newestToOldest">Newest to Oldest</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div id="required-age-general-filter">
+                            <p class="p-2 font-white">
+                                Required Age
+                                <select name="required-age-filter-type">
+                                    <option value="none">No General Filter</option>
+                                    <option value="highToLow">High to Low</option>
+                                    <option value="lowToHigh">Low to High</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div id="achievements-general-filter">
+                            <p class="p-2 font-white">
+                                Achievements
+                                <select name="achievements-filter-type">
+                                    <option value="none">No General Filter</option>
+                                    <option value="highToLow">High to Low</option>
+                                    <option value="lowToHigh">Low to High</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div id="positive-ratings-general-filter">
+                            <p class="p-2 font-white">
+                                Positive Ratings
+                                <select name="positive-ratings-filter-type">
+                                    <option value="none">No General Filter</option>
+                                    <option value="highToLow">High to Low</option>
+                                    <option value="lowToHigh">Low to High</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div id="negative-ratings-general-filter">
+                            <p class="p-2 font-white">
+                                Negative Ratings
+                                <select name="negative-ratings-filter-type">
+                                    <option value="none">No General Filter</option>
+                                    <option value="highToLow">High to Low</option>
+                                    <option value="lowToHigh">Low to High</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div id="avg-playtime-general-filter">
+                            <p class="p-2 font-white">
+                                Average Playtime
+                                <select name="avg-playtime-filter-type">
+                                    <option value="none">No General Filter</option>
+                                    <option value="highToLow">High to Low</option>
+                                    <option value="lowToHigh">Low to High</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div id="median-playtime-general-filter">
+                            <p class="p-2 font-white">
+                                Median Playtime
+                                <select name="median-playtime-filter-type">
+                                    <option value="none">No General Filter</option>
+                                    <option value="highToLow">High to Low</option>
+                                    <option value="lowToHigh">Low to High</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div id="units-available-general-filter">
+                            <p class="p-2 font-white">
+                                Units Available
+                                <select name="units-available-filter-type">
+                                    <option value="none">No General Filter</option>
+                                    <option value="highToLow">High to Low</option>
+                                    <option value="lowToHigh">Low to High</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div id="units-sold-general-filter">
+                            <p class="p-2 font-white">
+                                Units Sold
+                                <select name="units-sold-filter-type">
+                                    <option value="none">No General Filter</option>
+                                    <option value="highToLow">High to Low</option>
+                                    <option value="lowToHigh">Low to High</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div id="price-general-filter">
+                            <p class="p-2 font-white">
+                                Price
+                                <select name="price-filter-type">
+                                    <option value="none">No General Filter</option>
+                                    <option value="highToLow">High to Low</option>
+                                    <option value="lowToHigh">Low to High</option>
+                                </select>
+                            </p>
+                        </div>
+                    </div>    
+                </div>
+                    <!-- Code for sorting ends here-->
+                <div class="row my-2 mx-0">
+                    <span class="col-sm-2"></span>
+                    <button class="col-sm-3 my-1 p-0 btn font-grey bg-bright" onclick='toggleFiltersMenu()'><span class="bi bi-x-circle-fill"></span></button>
+                    <span class="col-sm-2"></span>
+                    <button class="col-sm-3 my-1 p-0 btn font-blue bg-bright" name="submitFilterOptions"><span class="bi bi-save-fill"></span></button>
+                    <span class="col-sm-2"></span>
+                </div>
+            </form>
+        </div>
+    </div>

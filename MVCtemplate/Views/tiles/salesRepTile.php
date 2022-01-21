@@ -6,7 +6,7 @@ function tile($row) {
     }
     echo '
     <div id="'.$row->getAppID().'" class="col-lg-2 col-md-4 col-sm-6 text-center bg-bl radius-border font-xs glow-border hover-bg">
-    <div onclick='."'".'miniCard('.'"salesRep","edit",'.$row->getAppID().');return false;'."'".' ondblclick='."'".'cardView('.'"view",'.$row->getAppID().');return false;'."'".'>
+    <div onclick="'."miniCard('salesRep','edit',".$row->getAppID().');return false;" ondblclick="'."cardView('view',".$row->getAppID().');return false;">
         <div class="row font-white">
             <div class="col-sm-6 my-1 p-0">
                 <p>ID</p>

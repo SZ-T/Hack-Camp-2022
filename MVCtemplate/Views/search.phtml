@@ -20,6 +20,5 @@
 </div>
 <?php require('Views/template/footer.phtml') ?>
 <script>
-    LazyLoad.init("/lazySearchData.php", "doughnut", ['Units Sold', 'Units Available']);
-    LazyLoad.loadResults();
+    var load = new LazyLoad("/lazySearchData.php", "doughnut", ['Units Sold', 'Units Available']);
 </script>

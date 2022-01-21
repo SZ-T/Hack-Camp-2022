@@ -1,24 +1,35 @@
-<?php require('Views/template/header.phtml'); ?>
+<?php
+require_once('Views/template/header.phtml');
+require_once("Views/filters.phtml");
+?>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script type="text/javascript" src="/js/custom-js.js"></script>
 <div id="full"></div>
-<div class="row justify-content-md-center m-0 animate__animated animate__fadeInUp animate__delay-07s">
-        <?php
+<div class="row justify-content-md-center m-0 animate__animated animate__fadeInUp animate__delay-07s" onload="destroy()">
+<div class="row font-white">
+<span class="col-sm-8 mx-1"></span>
+<script type="text/javascript">
+var users = <?php echo json_encode($view->IDs); ?>;
+</script>
+<button class="col-sm-1 btn btn-outline-light m-2 font-xs"onclick="selectAll()">Select all</button>
+<button class="col-sm-2 btn btn-outline-light m-2 font-xs" onclick="editSelected()">Edit selected</button>
+</div>
+            <?php
             //var_dump(isset($_POST["filter-form"]));
             //var_dump($_POST["filter-form"]);
             //var_dump($_POST["fromDate"]);
+            var_dump($view->IDs);
             foreach($view->gameDataSet as $gameData) {
                 tile($gameData);
             }
         ?>
     </div>
 <?php 
-
-require('Views/template/footer.phtml');
+require_once('Views/template/footer.phtml');
 
 if (isset($LazyLoad)){
     echo '<script>
-        LazyLoad.init("'.$LazyLoad->url.'", "'.$LazyLoad->type.'", ["'.implode('", "', $array).'"]);
-        LazyLoad.loadResults();
+    var load = new LazyLoad("'.$LazyLoad->url.'", "'.$LazyLoad->type.'", ["'.implode('", "', $array).'"]);
     </script>';
 }
-
 ?>
