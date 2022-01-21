@@ -6,6 +6,27 @@ function slideIn() {
     }
 }
 
+function showOptions() {
+    if(document.getElementById("options").classList.contains("show-options")) {
+        document.getElementById("options").classList.toggle("hide-options");
+        document.getElementById("options").classList.remove("show-options");
+    } else {
+    document.getElementById("options").classList.toggle("show-options");
+    document.getElementById("options").classList.remove("hide-options");
+    }
+}
+
+function showOptionButton(id) {
+    if(document.getElementById(id).classList.contains("show-options")) {
+        document.getElementById(id).classList.toggle("hide-options");
+        document.getElementById(id).classList.remove("show-options");
+    } else {
+    document.getElementById(id).classList.toggle("show-options");
+    document.getElementById(id).classList.remove("hide-options");
+    }
+}
+
+
 function slideOut() {
     document.getElementById("slider").classList.toggle("marginOut");
     document.getElementById("slider").classList.remove("show");
@@ -229,7 +250,7 @@ function arrow(arrow) {
     } 
 }
 
-$(document).on("keydown", "form", function(event) { 
+document.querySelector("form").addEventListener("keydown", function(event){
     return event.key != "Enter";
 });
 
@@ -247,28 +268,46 @@ function select(id) {
             document.getElementById(id).classList.toggle("hover-bg-selected");
             document.getElementById(id).classList.remove("hover-bg");
             }
-        } else {
-        selected.push(id);
-            document.getElementById(id).classList.toggle("hover-bg-selected");
-            document.getElementById(id).classList.remove("hover-bg");
-        }
+    } else {
+    selected.push(id);
+        document.getElementById(id).classList.toggle("hover-bg-selected");
+        document.getElementById(id).classList.remove("hover-bg");
     }
+}
 
 
-    function destroy() {
-        selected = [];
+function destroy() {
+    selected = [];
+}
+
+function selectAll(IDs) {
+    let ids = IDs;
+    for (let i = 0; i < ids.length; i++) {
+        select(ids[i]);
     }
-
-    function selectAll() {
-        let ids = JSON.parse(IDs);
-        for (let i = 0; i < ids.length; i++) {
-            select(ids[i]);
-        }
+    if (document.getElementById("selectAll").innerText == "Deselect all")
+    {
+        document.getElementById("selectAll").innerText = "Select all";
     }
-
-    function editSelected() {
-
+    else
+    {
+        document.getElementById("selectAll").innerText = "Deselect all";
     }
+    
+
+}
+
+function editSelected(target, item) 
+{
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', "/edit.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onerror = function() {
+        alert("Request failed");
+    };
+    xhr.send("target=" + target + "&item=" + item + "&array=" + selected);
+    location.reload();
+}
 
 
     

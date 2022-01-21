@@ -31,10 +31,7 @@ class Search
     }
 
 
-    function paginatedSearchDB($Search, $limitParam)//Term being passed
-    {   
-        $test = '%' . $Search . '%';
-        $sqlQuery = "SELECT * FROM gameinfo WHERE appID  LIKE '" . $test . "' LIMIT $limitParam";  // SQL select statement doing comparison check
+    function customSearch($sqlQuery){//Term being passed
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute(); // execution for data information
         $dataSet = [];

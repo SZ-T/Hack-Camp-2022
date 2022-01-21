@@ -84,7 +84,7 @@ body {
 }
 
 .hover-bg-selected {
-    background-color: #202020;
+    background-color: #1f1f1f;
 }
 
 .radius-border {
@@ -94,6 +94,10 @@ body {
 .no-radius {
      border-radius: 0px 20px 20px 0px !important;
  }
+
+ .noRadius {
+    border-radius: 0px !important;
+}
 
  .radius-left {
      border-radius: 15px 0px 0px 15px !important;
@@ -120,6 +124,12 @@ body {
  a:hover {
      border-bottom: 3px solid #ffffff;
      color: #393939 !important;
+     transition: 0.3s;
+ }
+
+ .but-hover:hover {
+     background-color: #76A1AC !important;
+     color: #ffffff !important;
      transition: 0.3s;
  }
 
@@ -152,6 +162,25 @@ body {
 
 .hide {
     margin-left: -655px;
+}
+
+#optionsCon {
+    position: relative;
+    display: block;
+}
+
+#options {
+    position: absolute;
+    z-index: 2000;
+    margin-top: 0;
+}
+
+.show-options {
+    display: block;
+}
+
+.hide-options {
+    display: none;
 }
 
 .marginOut {

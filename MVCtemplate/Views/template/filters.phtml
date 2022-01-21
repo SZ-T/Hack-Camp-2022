@@ -17,7 +17,7 @@
             <h1 class="font-white d-inline font-28">Filters</h1>
             <button class="btn close-button p-0" onclick="toggleFiltersMenu()"><span class="bi bi-x font-28 font-white"></span></button>
 
-            <form name="filter-form" method="post" autocomplete="off" action="../../filter.php">
+            <form name="filter-form" method="post" autocomplete="off" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
                 <div class="row">
                     <div class="col-lg-6 col-m-6">
                         <button onclick="toggleFilter('release-date');arrow('arrow0');return false;" class="filter-item">Release date<span id="arrow0" class="bi bi-arrow-down font-white"></span></button>

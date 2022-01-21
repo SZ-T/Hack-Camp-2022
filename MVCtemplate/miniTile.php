@@ -79,7 +79,7 @@ if ($_POST['mode'] == "view") {
                 $gamePrice = $gamePrice . ".00";
             }
     echo'
-    <div onmouseenter='."'".'miniCard('.'"proofReader","edit",'.$gameData->getAppID().');return false;'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
+    <div onmouseenter='."'".'miniCard('.'"proofReader","edit",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
     <div class="row font-white">
         <div class="col-sm-6 my-1 p-0">
             <p>ID</p>
@@ -116,7 +116,7 @@ if ($_POST['source'] == "salesRep")
                 $gamePrice = $gamePrice . ".00";
             }
     echo'
-    <div onmouseleave='."'".'miniCard('.'"proofReader","edit",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".'>
+    <div onmouseleave='."'".'miniCard('.'"salesRep","view",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
     <form action="miniTile.php" method="POST">
     <div class="row font-white">
                     <div class="col-sm-6 my-1 p-0">
@@ -163,7 +163,7 @@ if ($_POST['mode'] == "view") {
                 $gamePrice = $gamePrice . ".00";
             }
     echo'
-    <div onclick='."'".'miniCard('.'"salesRep","edit",'.$gameData->getAppID().');return false;'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".'>
+    <div onmouseenter='."'".'miniCard('.'"salesRep","edit",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
                 <div class="row font-white">
                     <div class="col-sm-6 my-1 p-0">
                         <p>ID</p>
@@ -200,7 +200,7 @@ if ($_POST['source'] == "dataAnalyst")
                 $gamePrice = $gamePrice . ".00";
             }
     echo'
-    <div onmouseleave='."'".'miniCard('.'"dataAnalyst","edit",'.$gameData->getAppID().');return false;'."'".'ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".'>
+    <div onmouseleave='."'".'miniCard('.'"dataAnalyst","view",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
     <form action="miniTile.php" method="POST">
     <div class="row font-white">
                     <div class="col-sm-6 my-1 p-0">
@@ -240,7 +240,7 @@ if ($_POST['mode'] == "view") {
                 $gamePrice = $gamePrice . ".00";
             }
     echo'
-    <div onclick='."'".'miniCard('.'"dataAnalyst","edit",'.$gameData->getAppID().');return false;'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".'>
+    <div onmouseenter='."'".'miniCard('.'"dataAnalyst","edit",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
     <div class="row font-white">
                     <div class="col-sm-6 my-1 p-0">
                         <p>ID</p>
@@ -279,7 +279,7 @@ if ($_POST['source'] == "developer")
                 $gamePrice = $gamePrice . ".00";
             }
     echo'
-    <div onmouseleave='."'".'miniCard('.'"developer","edit",'.$gameData->getAppID().');return false;'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".'>
+    <div onmouseleave='."'".'miniCard('.'"developer","view",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
     <form action="miniTile.php" method="POST">
     <div class="row font-white">
                     <div class="col-sm-6 my-1 p-0">
@@ -319,7 +319,7 @@ if ($_POST['mode'] == "view") {
                 $gamePrice = $gamePrice . ".00";
             }
     echo'
-    <div onclick='."'".'miniCard('.'"developer","edit",'.$gameData->getAppID().');return false;'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".'>
+    <div onmouseenter='."'".'miniCard('.'"developer","edit",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
                 <div class="row font-white">
                     <div class="col-sm-6 my-1 p-0">
                         <p>ID</p>
