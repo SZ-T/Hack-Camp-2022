@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e711a36b-c9b7-459f-88f2-d0d93dc584e7" name="HackCampServer" url="https://poseidon.salford.ac.uk">
+        <fileTransfer rootFolder="/home/hc22-6" accessType="SFTP" host="poseidon.salford.ac.uk" port="22" sshConfigId="d6e9b2e5-d7b3-407a-bc45-3f95954cb915" sshConfig="hc22-6@poseidon.salford.ac.uk:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
