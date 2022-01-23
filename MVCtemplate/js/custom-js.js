@@ -112,7 +112,7 @@ function clearSuggestions (type){
     document.getElementById(type + 'List').innerHTML = "";
 }
 
-function makeChart(id, type, yValues, xValues, legend=true){
+function makeChart(id, type, yValues, xValues, legend){
 
     var barColors = [
     "#b91d47",
@@ -254,47 +254,24 @@ document.querySelector("form").addEventListener("keydown", function(event){
     return event.key != "Enter";
 });
 
-var selected = [];
-
 function select(id) {
-    if (!selected.length == 0){
-        if (selected.includes(id)){
-            let index = selected.indexOf(id);
-            selected.splice(index, 1)
-            document.getElementById(id).classList.toggle("hover-bg");
-            document.getElementById(id).classList.remove("hover-bg-selected");
-        } else {
-            selected.push(id);
-            document.getElementById(id).classList.toggle("hover-bg-selected");
-            document.getElementById(id).classList.remove("hover-bg");
-            }
-    } else {
-    selected.push(id);
-        document.getElementById(id).classList.toggle("hover-bg-selected");
-        document.getElementById(id).classList.remove("hover-bg");
-    }
+    document.getElementById(id).classList.toggle("hover-bg");
+    document.getElementById(id).classList.toggle("hover-bg-selected");
 }
 
-
-function destroy() {
-    selected = [];
-}
-
-function selectAll(IDs) {
-    let ids = IDs;
-    for (let i = 0; i < ids.length; i++) {
-        select(ids[i]);
-    }
-    if (document.getElementById("selectAll").innerText == "Deselect all")
-    {
+function selectAll() {
+    if (document.getElementById("selectAll").innerText == "Deselect all") {
+        document.querySelectorAll(".hover-bg-selected").forEach(function(e){
+            select(e.id);
+        });
         document.getElementById("selectAll").innerText = "Select all";
     }
-    else
-    {
+    else {
+        document.querySelectorAll(".hover-bg").forEach(function(e){
+            select(e.id);
+        });
         document.getElementById("selectAll").innerText = "Deselect all";
     }
-    
-
 }
 
 function editSelected(target, item)
@@ -305,9 +282,17 @@ function editSelected(target, item)
     xhr.onerror = function() {
         alert("Request failed");
     };
-    xhr.send("target=" + target + "&item=" + item + "&array=" + selected);
+    xhr.send("target=" + target + "&item=" + item + "&array=" + getSelected());
     location.reload();
 }
+
+function getSelected() {
+    let selected = [];
+    document.querySelectorAll(".hover-bg-selected").forEach(function(e){
+        selected.push(e.id);
+    });
+    return selected;
+} 
 
 function editSelected(target, item, mode)
 {
@@ -317,7 +302,7 @@ function editSelected(target, item, mode)
     xhr.onerror = function() {
         alert("Request failed");
     };
-    xhr.send("target=" + target + "&item=" + item + "&mode=" + mode + "&array=" + selected);
+    xhr.send("target=" + target + "&item=" + item + "&array=" + getSelected() + "&mode=" + mode);
     location.reload();
 }
 //post from index graph to filters, not working

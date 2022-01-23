@@ -511,3 +511,7 @@ h3 {
         transform: scale(0);
     }
 }
+
+#tiles > div {
+    padding: 0px;
+}
