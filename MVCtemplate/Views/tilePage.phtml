@@ -15,7 +15,7 @@ require_once("Views/template/filters.phtml");
                 <div id="options" class="hide-options w-100 bg-grey">
                     <?php
                     $index=0;
-                    foreach ($view->$labels as $value) {
+                    foreach ($view->labels as $value) {
                         if ($value == "Status") {
                             echo '<div>
                        <button class="btn btn-light m-2 noRadius font-xs d-block w-100 mx-auto my-0 py-2 but-hover border-0" onclick="showOptionButton(';
@@ -80,15 +80,6 @@ require_once("Views/template/filters.phtml");
                 </div>
         </div>
         <div id="tiles" class="row">
-            <?php
-                //var_dump(isset($_POST["filter-form"]));
-                //var_dump($_POST["filter-form"]);
-                //var_dump($_POST["fromDate"]);
-                // var_dump($view->IDs);
-                foreach($view->gameDataSet as $gameData) {
-                    tile($gameData);
-                }
-            ?>
         </div>
         <div id="loading" class="center">
             <div class="wave"></div>

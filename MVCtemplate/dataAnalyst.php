@@ -3,11 +3,17 @@ require_once('Models/Filter.php');
 $view = new stdClass();
 $view->pageTitle = 'Data analyst';
 
-$view->$labels = ["Release date", "Average playtime", "Median playtime", "Units sold"];
+$view->labels = ["Release date", "Average playtime", "Median playtime", "Units sold"];
 
 $LazyLoad = new stdClass();
 $LazyLoad->url = substr($_SERVER['PHP_SELF'], 0, -4).'Data.php?';
 foreach ($_POST as $key => $value) {
+    if ($key === 'page') {
+        continue;
+    }
+    $LazyLoad->url = $LazyLoad->url.$key.'='.$value.'&';
+}
+foreach ($_GET as $key => $value) {
     if ($key === 'page') {
         continue;
     }
