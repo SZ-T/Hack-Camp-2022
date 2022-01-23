@@ -317,7 +317,7 @@ function editSelected(target, item, mode)
     xhr.onerror = function() {
         alert("Request failed");
     };
-    xhr.send("target=" + target + "&item=" + item + "&array=" + selected + "$mode=" + mode);
+    xhr.send("target=" + target + "&item=" + item + "&mode=" + mode + "&array=" + selected);
     location.reload();
 }
 //post from index graph to filters, not working

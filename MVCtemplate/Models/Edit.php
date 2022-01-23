@@ -31,17 +31,218 @@ class Edit{
         $statement->execute($data);
     }
 
-    function editCategories ($appID, $item) {
-
+    function editCategoriesAdd ($appID, $item) {
+        //check if exists
+        $sqlQuery = 'SELECT categoryID FROM categories WHERE categoryName = :item;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':item', $item);
+        $statement->execute();
+        $ID = $statement->fetch();
+        //create if not
+        if ($ID == null) {
+            $sqlQuery = 'INSERT INTO categories (categoryName) VALUES (:item)';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $sqlQuery = 'SELECT categoryID FROM categories WHERE categoryName = :item;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $ID = $statement->fetch();
+        }
+        $itemID = $ID[0];
+        $sqlQuery = 'SELECT * FROM categories_connector WHERE appID = :appID AND categoryID = :itemID;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':appID', $appID);
+        $statement->bindParam(':itemID', $itemID);
+        $statement->execute();
+        $isPresent = $statement->fetch();
+        if ($isPresent == null) {
+            $sqlQuery = 'INSERT INTO categories_connector (appID, categoryID) VALUES (:appID, :itemID);';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':appID', $appID);
+            $statement->bindParam(':itemID', $itemID);
+            $statement->execute();
+        }
     }
 
-    function editTags ($appID, $item) {
-
+    function editCategoriesRemove ($appID, $item) {
+        //check if exists
+        $sqlQuery = 'SELECT categoryID FROM categories WHERE categoryName = :item;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':item', $item);
+        $statement->execute();
+        $ID = $statement->fetch();
+        //create if not
+        if ($ID == null) {
+            $sqlQuery = 'INSERT INTO categories (categoryName) VALUES (:item)';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $sqlQuery = 'SELECT categoryID FROM categories WHERE categoryName = :item;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $ID = $statement->fetch();
+        }
+        $itemID = $ID[0];
+        $sqlQuery = 'SELECT * FROM categories_connector WHERE appID = :appID AND categoryID = :itemID;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':appID', $appID);
+        $statement->bindParam(':itemID', $itemID);
+        $statement->execute();
+        $isPresent = $statement->fetch();
+        if ($isPresent != null) {
+            $sqlQuery = 'DELETE FROM categories_connector WHERE appID = :appID AND categoryID = :itemID;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':appID', $appID);
+            $statement->bindParam(':itemID', $itemID);
+            $statement->execute();
+        }
     }
 
-    function editGenres ($appID, $item) {
 
+    function editTagsAdd ($appID, $item) {
+        //check if exists
+        $sqlQuery = 'SELECT tagID FROM tags WHERE tagName = :item;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':item', $item);
+        $statement->execute();
+        $ID = $statement->fetch();
+        //create if not
+        if ($ID == null) {
+            $sqlQuery = 'INSERT INTO tags (tagName) VALUES (:item)';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $sqlQuery = 'SELECT tagID FROM tags WHERE tagName = :item;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $ID = $statement->fetch();
+        }
+        $itemID = $ID[0];
+        $sqlQuery = 'SELECT * FROM tags_connector WHERE appID = :appID AND tagID = :itemID;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':appID', $appID);
+        $statement->bindParam(':itemID', $itemID);
+        $statement->execute();
+        $isPresent = $statement->fetch();
+        if ($isPresent == null) {
+            $sqlQuery = 'INSERT INTO tags_connector (appID, tagID) VALUES (:appID, :itemID);';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':appID', $appID);
+            $statement->bindParam(':itemID', $itemID);
+            $statement->execute();
+        }
     }
+
+    function editTagsRemove ($appID, $item) {
+        //check if exists
+        $sqlQuery = 'SELECT tagID FROM tags WHERE tagName = :item;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':item', $item);
+        $statement->execute();
+        $ID = $statement->fetch();
+        //create if not
+        if ($ID == null) {
+            $sqlQuery = 'INSERT INTO tags (tagName) VALUES (:item)';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $sqlQuery = 'SELECT tagID FROM tags WHERE tagName = :item;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $ID = $statement->fetch();
+        }
+        $itemID = $ID[0];
+        $sqlQuery = 'SELECT * FROM tags_connector WHERE appID = :appID AND tagID = :itemID;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':appID', $appID);
+        $statement->bindParam(':itemID', $itemID);
+        $statement->execute();
+        $isPresent = $statement->fetch();
+        if ($isPresent != null) {
+            $sqlQuery = 'DELETE FROM tags_connector WHERE appID = :appID AND tagID = :itemID;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':appID', $appID);
+            $statement->bindParam(':itemID', $itemID);
+            $statement->execute();
+        }
+    }
+
+
+    function editGenresAdd ($appID, $item) {
+        //check if exists
+        $sqlQuery = 'SELECT genreID FROM genres WHERE genreName = :item;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':item', $item);
+        $statement->execute();
+        $ID = $statement->fetch();
+        //create if not
+        if ($ID == null) {
+            $sqlQuery = 'INSERT INTO genres (genreName) VALUES (:item)';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $sqlQuery = 'SELECT genreID FROM genres WHERE genreName = :item;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $ID = $statement->fetch();
+        }
+        $itemID = $ID[0];
+        $sqlQuery = 'SELECT * FROM genres_connector WHERE appID = :appID AND genreID = :itemID;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':appID', $appID);
+        $statement->bindParam(':itemID', $itemID);
+        $statement->execute();
+        $isPresent = $statement->fetch();
+        if ($isPresent == null) {
+            $sqlQuery = 'INSERT INTO genres_connector (appID, genreID) VALUES (:appID, :itemID);';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':appID', $appID);
+            $statement->bindParam(':itemID', $itemID);
+            $statement->execute();
+        }
+    }
+
+    function editGenresRemove ($appID, $item) {
+        //check if exists
+        $sqlQuery = 'SELECT genreID FROM genres WHERE genreName = :item;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':item', $item);
+        $statement->execute();
+        $ID = $statement->fetch();
+        //create if not
+        if ($ID == null) {
+            $sqlQuery = 'INSERT INTO genres (genreName) VALUES (:item)';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $sqlQuery = 'SELECT genreID FROM genres WHERE genreName = :item;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $ID = $statement->fetch();
+        }
+        $itemID = $ID[0];
+        $sqlQuery = 'SELECT * FROM genres_connector WHERE appID = :appID AND genreID = :itemID;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':appID', $appID);
+        $statement->bindParam(':itemID', $itemID);
+        $statement->execute();
+        $isPresent = $statement->fetch();
+        if ($isPresent != null) {
+            $sqlQuery = 'DELETE FROM genres_connector WHERE appID = :appID AND genreID = :itemID;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':appID', $appID);
+            $statement->bindParam(':itemID', $itemID);
+            $statement->execute();
+        }
+    }
+
 
     function editUnitsAvailable ($appID, $item) {
         $data = [
@@ -160,5 +361,75 @@ class Edit{
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute($data);
+    }
+
+    function editDeveloperAdd ($appID, $item) {
+        //check if exists
+        $sqlQuery = 'SELECT devID FROM developers WHERE devName = :item;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':item', $item);
+        $statement->execute();
+        $ID = $statement->fetch();
+        //create if not
+        if ($ID == null) {
+            $sqlQuery = 'INSERT INTO developers (devName) VALUES (:item)';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $sqlQuery = 'SELECT devID FROM developers WHERE devName = :item;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $ID = $statement->fetch();
+        }
+        $itemID = $ID[0];
+        $sqlQuery = 'SELECT * FROM developers_connector WHERE appID = :appID AND devID = :itemID;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':appID', $appID);
+        $statement->bindParam(':itemID', $itemID);
+        $statement->execute();
+        $isPresent = $statement->fetch();
+        if ($isPresent == null) {
+            $sqlQuery = 'INSERT INTO developers_connector (appID, devID) VALUES (:appID, :itemID);';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':appID', $appID);
+            $statement->bindParam(':itemID', $itemID);
+            $statement->execute();
+        }
+    }
+
+    function editDeveloperRemove ($appID, $item) {
+        //check if exists
+        $sqlQuery = 'SELECT devID FROM developers WHERE devName = :item;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':item', $item);
+        $statement->execute();
+        $ID = $statement->fetch();
+        //create if not
+        if ($ID == null) {
+            $sqlQuery = 'INSERT INTO developers (devName) VALUES (:item)';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $sqlQuery = 'SELECT devID FROM developers WHERE devName = :item;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':item', $item);
+            $statement->execute();
+            $ID = $statement->fetch();
+        }
+        $itemID = $ID[0];
+        $sqlQuery = 'SELECT * FROM developers_connector WHERE appID = :appID AND devID = :itemID;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':appID', $appID);
+        $statement->bindParam(':itemID', $itemID);
+        $statement->execute();
+        $isPresent = $statement->fetch();
+        if ($isPresent != null) {
+            $sqlQuery = 'DELETE FROM developers_connector WHERE appID = :appID AND devID = :itemID;';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->bindParam(':appID', $appID);
+            $statement->bindParam(':itemID', $itemID);
+            $statement->execute();
+        }
     }
 }
