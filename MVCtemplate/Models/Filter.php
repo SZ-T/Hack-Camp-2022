@@ -14,13 +14,19 @@ class Filter {
         $orderStack = [];
         $orderBy = " ORDER BY ";
 
+        if (isset($_GET["searchText"])) {
+            $filterAttribute = $_GET["searchText"];
+            $sql = "(SELECT appID FROM gameinfo        
+            WHERE appID LIKE '%" . $filterAttribute . "%')";
+            array_push($stack, $sql);
+        }
+
         if(isset($_POST["fromDate"]) && isset($_POST["toDate"])  && $_POST["fromDate"] != ""   && $_POST["toDate"] != ""){//1
             $min = $_POST["fromDate"];
             $max = $_POST["toDate"];
             $sql = " (SELECT appID FROM gameinfo
             WHERE releaseDate between  '" . $min . "' AND '" . $max . "')";
             array_push($stack, $sql);
-            
         }
         if(isset($_POST["english"])){//2
             $filterAttribute = $_POST["english"];
