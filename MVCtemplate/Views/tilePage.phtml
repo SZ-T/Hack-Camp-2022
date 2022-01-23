@@ -9,10 +9,7 @@ require_once("Views/template/filters.phtml");
     <div class="row justify-content-md-center m-0 animate__animated animate__fadeInUp animate__delay-07s" onload="destroy()">
         <div class="row font-white">
             <span class="col-sm-7 mx-1"></span>
-            <script type="text/javascript">
-                var users = <?php echo json_encode($view->IDs); ?>;
-            </script>
-            <button id="selectAll" class="col-sm-2 btn btn-outline-light m-2 font-xs mx-auto my-2" onclick="selectAll(users)">Select all</button>
+            <button id="selectAll" class="col-sm-2 btn btn-outline-light m-2 font-xs mx-auto my-2" onclick="selectAll()">Select all</button>
             <div id="optionsCon" class="col-sm-2 p-0">
                 <button class="btn btn-outline-light m-2 font-xs w-100 mx-auto my-2" onclick="showOptions()">Edit selected</button>
                 <div id="options" class="hide-options w-100 bg-grey">
@@ -113,7 +110,7 @@ require_once('Views/template/footer.phtml');
 
 if (isset($LazyLoad)){
     echo '<script>
-    var load = new LazyLoad("'.$LazyLoad->url.'", "'.$LazyLoad->type.'", '.$LazyLoad->xValues.', '.$LazyLoad->chart.');
+        var load = new LazyLoad("'.$LazyLoad->url.'", "'.$LazyLoad->type.'", '.$LazyLoad->xValues.', '.$LazyLoad->chart.', '.$LazyLoad->legend.');
     </script>';
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 function tile($row) {
         echo '
-        <div id="'.$row->getAppID().'" onclick="select('.$row->getAppID().')" class="col-lg-2 col-md-4 col-sm-6 text-center bg-bl radius-border font-xs glow-border hover-bg">
+        <div id="'.$row->getAppID().'" onclick="select(this.id)" class="tile col-lg-2 col-md-4 col-sm-6 text-center bg-bl radius-border font-xs glow-border hover-bg">
         <div onmouseenter="miniCard('."'proofReader','edit',".$row->getAppID().');return false;" ondblclick="cardView('."'view',".$row->getAppID().');return false;">
             <div class="row font-white">
                 <div class="col-sm-6 my-1 p-0">

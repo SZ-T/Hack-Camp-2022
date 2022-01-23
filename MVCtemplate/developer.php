@@ -3,13 +3,6 @@ require_once('Models/Filter.php');
 $view = new stdClass();
 $view->pageTitle = 'Developer';
 
-$view->gameDataSet = (new Filter())->filter();
-$IDs = [];
-foreach ($view->gameDataSet as $gameData) {
-    array_push($IDs, $gameData->getAppID());
-}
-
-$view->IDs = $IDs;
 $view->$labels = ["Developer", "Positive ratings", "Negative ratings", "Price"];
 $LazyLoad = new stdClass();
 $LazyLoad->url = substr($_SERVER['PHP_SELF'], 0, -4).'Data.php?';
@@ -24,6 +17,7 @@ $LazyLoad->url = $LazyLoad->url.'page=';
 $LazyLoad->type = 'bar';
 $LazyLoad->xValues = "['Positive Ratings', 'Negative Ratings']";
 $LazyLoad->chart = true;
+$LazyLoad->legend = false;
 
 require_once("Views/tiles/developerTile.php");
 

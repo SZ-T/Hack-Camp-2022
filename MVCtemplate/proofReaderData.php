@@ -7,7 +7,6 @@ if (isset($_POST["page"])){
 } else {
     $page = 1;
 }
-
 $gameDataSet = (new Filter())->filter($page);
 
 foreach($gameDataSet as $gameData) {

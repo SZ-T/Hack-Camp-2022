@@ -98,9 +98,6 @@ class Game{
         return $this->negative_ratings;
     }
 
-    public function getNegativeRatings(){
-        return $this->negative_ratings;
-    }
     public function getTags(){
         
            return implode(", ", $this->tags);
