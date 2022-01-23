@@ -11,7 +11,24 @@ class Edit{
     }
 
     function editStatus ($appID, $item) {
+        $sqlQuery = 'SELECT statusID FROM status WHERE statusName = :item;';
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':item', $item);
+        $statement->execute();
+        $status = $statement->fetch();
+        $stat = $status[0];
 
+        $data = [
+            'appID' => $appID,
+            'status' => $stat
+        ];
+
+        $sqlQuery = 'UPDATE gameinfo SET
+        status = :status
+        WHERE appID = :appID;';
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute($data);
     }
 
     function editCategories ($appID, $item) {

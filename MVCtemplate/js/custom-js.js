@@ -297,7 +297,7 @@ function selectAll(IDs) {
 
 }
 
-function editSelected(target, item) 
+function editSelected(target, item)
 {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', "/edit.php", true);
@@ -307,6 +307,47 @@ function editSelected(target, item)
     };
     xhr.send("target=" + target + "&item=" + item + "&array=" + selected);
     location.reload();
+}
+
+function editSelected(target, item, mode)
+{
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', "/edit.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onerror = function() {
+        alert("Request failed");
+    };
+    xhr.send("target=" + target + "&item=" + item + "&array=" + selected + "$mode=" + mode);
+    location.reload();
+}
+//post from index graph to filters, not working
+function indexFilter(filterAttribute) {
+
+    //var valueA = "submitFilterOptions";
+    var valueB = filterAttribute;
+    console.log(filterAttribute);
+    $.ajax({
+        url: "Models/Filter.php",
+        type: "POST",
+        data: {genre: valueB, submitFilterOptions: 1 },
+        dataType: 'text',
+        success: function(data){
+            alert("success" + data);
+        },
+
+    })
+
+    // let xhr = new XMLHttpRequest();
+    // xhr.open('POST', "Models.Filter.php", true);
+    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    // xhr.onload = function() {
+    //     document.getElementById("full").innerHTML = xhr.response;
+    // };
+    //
+    // xhr.onerror = function() {
+    //     alert("Request failed");
+    // };
+    // //xhr.send("action=" + action + "&id=" + id);
 }
 
 

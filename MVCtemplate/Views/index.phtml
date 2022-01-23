@@ -1,4 +1,5 @@
 <?php require('Views/template/header.phtml') ?>
+<?php require_once('Models/Filter.php')?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     </nav>
     </header>
@@ -13,7 +14,7 @@
 
         ?> -->
         
-        <h3>Top Five Genres<h3>
+        <h3>Top Five Genres</h3>
         <script type="text/javascript">  
         <?php
             $yValue=1;
@@ -59,9 +60,11 @@
         options: {
           onClick(e) {
           var activePoints = chart.getElementsAtEvent(e);
-          var selectedIndex = activePoints[0]._index;        
-          alert(chart.data.labels[selectedIndex]);          
-          //console.log(chart.data.labels[selectedIndex]);    
+          var selectedIndex = activePoints[0]._index;
+          var  data = chart.data.labels[selectedIndex];
+          alert(data);
+          //location.href='Views/tiles/salesRepTile.php';
+          indexFilter(data);
           },
           responsive: true,
           legend: {
@@ -171,7 +174,7 @@
               $xValue=1;
               foreach($view->publisherDataSet as $publisherData)
             {
-              echo'var Xvalue' . $xValue . '  = "' . ucfirst($publisherData->getPublisherName()) . '";';
+              echo'var Xvalue' . $xValue . '  = "' . ucfirst(strtolower($publisherData->getPublisherName())) . '";';
               $xValue++;
             }
           ?>
