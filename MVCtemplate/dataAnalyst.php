@@ -25,6 +25,4 @@ $LazyLoad->xValues = "['Average Playtime', 'Median Playtime']";
 $LazyLoad->chart = true;
 $LazyLoad->legend = true;
 
-require_once("Views/tiles/dataAnalystTile.php");
-
 require_once('Views/tilePage.phtml');

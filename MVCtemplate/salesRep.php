@@ -25,6 +25,4 @@ $LazyLoad->xValues = "['Units Sold', 'Units Available']";
 $LazyLoad->chart = true;
 $LazyLoad->legend = true;
 
-require_once("Views/tiles/salesRepTile.php");
-
 require_once('Views/tilePage.phtml');

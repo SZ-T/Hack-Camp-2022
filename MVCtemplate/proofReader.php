@@ -25,6 +25,4 @@ $LazyLoad->xValues = '""';
 $LazyLoad->chart = 'false';
 $LazyLoad->legend = false;
 
-require_once("Views/tiles/proofReaderTile.php");
-
 require_once('Views/tilePage.phtml');

@@ -25,6 +25,4 @@ $LazyLoad->xValues = "['Positive Ratings', 'Negative Ratings']";
 $LazyLoad->chart = true;
 $LazyLoad->legend = false;
 
-require_once("Views/tiles/developerTile.php");
-
 require_once('Views/tilePage.phtml');
