@@ -79,7 +79,7 @@ function cardView(action, id) {
     xhr.onerror = function () {
         alert("Request failed");
     };
-    if (action == "editt") {
+    if (action === "edit2") {
         let appID = document.querySelector('input[name="appID"]').value;
         let releaseDate = document.querySelector('input[name="releaseDate2"]').value;
         let isEnglish = document.querySelector('input[name="isEnglish2"]').value;
