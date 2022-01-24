@@ -233,11 +233,13 @@ function editSelected(target, item) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', "/edit.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onload = function () {
+        location.reload();
+    };
     xhr.onerror = function () {
         alert("Request failed");
     };
     xhr.send("target=" + target + "&item=" + item + "&array=" + getSelected());
-    location.reload();
     }
 
 function getSelected() {
@@ -252,11 +254,13 @@ function editSelected(target, item, mode) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', "/edit.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onload = function () {
+        location.reload();
+    };
     xhr.onerror = function () {
         alert("Request failed");
     };
     xhr.send("target=" + target + "&item=" + item + "&array=" + getSelected() + "&mode=" + mode);
-    location.reload();
 }
 
 //post from index graph to filters, not working
