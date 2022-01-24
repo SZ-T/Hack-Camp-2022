@@ -1,7 +1,12 @@
 <?php
 function tile($row) {
+    echo '<div id="'.$row->getAppID().'" onclick="select(this.id)" class="tile col-lg-2 col-md-4 col-sm-6 text-center bg-bl radius-border font-xs glow-border hover-bg">';
+    echo innerTile($row);
+    echo '</div>';
+}
+
+function innerTile($row) {
     echo '
-    <div id="'.$row->getAppID().'" onclick="select(this.id)" class="tile col-lg-2 col-md-4 col-sm-6 text-center bg-bl radius-border font-xs glow-border hover-bg">
     <div onmouseenter="miniCard('."'dataAnalyst','edit',".$row->getAppID().');return false;" ondblclick="cardView('."'view',".$row->getAppID().');return false;">
         <div class="row font-white">
             <div class="col-sm-6 my-1 p-0">
@@ -24,6 +29,5 @@ function tile($row) {
                 <span class="font-blue font-bold">'.$row->getUnitsSold().'</span>
             </div>
         </div>
-    </div>
     </div>';
 }

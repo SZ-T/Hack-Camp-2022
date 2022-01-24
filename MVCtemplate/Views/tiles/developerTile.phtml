@@ -1,11 +1,16 @@
 <?php
 function tile($row) {
+    echo '<div id="'.$row->getAppID().'" onclick="select(this.id)" class="tile col-lg-2 col-md-4 col-sm-6 text-center bg-bl radius-border font-xs glow-border hover-bg">';
+    innerTile($row);
+    echo '</div>';
+}
+
+function innerTile($row){
     $gamePrice = "£" . $row->getPrice();
     if($gamePrice == "£0"){
         $gamePrice = $gamePrice . ".00";
     }
     echo '
-    <div id="'.$row->getAppID().'" onclick="select(this.id)" class="tile col-lg-2 col-md-4 col-sm-6 text-center bg-bl radius-border font-xs glow-border hover-bg">
     <div onmouseenter="miniCard('."'developer','edit',".$row->getAppID().');return false;" ondblclick="cardView('."'view',".$row->getAppID().');return false;">
         <div class="row font-white">
             <div class="col-sm-6 my-1 p-0">
@@ -25,6 +30,5 @@ function tile($row) {
                 <span class="font-blue font-bold">'.$gamePrice.'</span>
             </div>
         </div>
-    </div>
     </div>';
 }

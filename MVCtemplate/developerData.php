@@ -1,6 +1,6 @@
 <?php
 require_once('Models/Filter.php');
-require_once("Views/tiles/developerTile.php");
+require_once("Views/tiles/developerTile.phtml");
 
 if (isset($_POST["page"])){
     $page = $_POST["page"];
