@@ -65,7 +65,7 @@ function liveSearch(type, data, self) {
     xhr.send("type=" + type + "&data=" + data);
 }
 
-function cardView(action, id) {
+function cardViewD(action, id) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', "/cardViewTest.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -78,6 +78,68 @@ function cardView(action, id) {
     xhr.send("action=" + action + "&id=" + id);
 }
 
+function cardView(action, id) {
+    console.log(action);
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', "/cardViewTest.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onload = function () {
+        let string = "";
+        string = xhr.response;
+        $('#full').empty();
+        $('#full').html(string);
+    };
+    xhr.onerror = function () {
+        alert("Request failed");
+    };
+    if (action == "edit2") {
+        let appID = document.querySelector('input[name="appID"]').value;
+        let releaseDate = document.querySelector('input[name="releaseDate"]').value;
+        let isEnglish = document.querySelector('input[name="isEnglish"]').value;
+        let developer = document.querySelector('input[name="developer"]').value;
+        let publisher = document.querySelector('input[name="publisher"]').value;
+        let platforms = document.querySelector('input[name="platforms[]"]').value;
+        let status = document.querySelector('input[name="status"]').value;
+        let requiredAge = document.querySelector('input[name="requiredAge"]').value;
+        let categories = document.querySelector('input[name="categories"]').value;
+        let genres = document.querySelector('input[name="genres"]').value;
+        let tags = document.querySelector('input[name="tags"]').value;
+        let numberOfAchievements = document.querySelector('input[name="numberOfAchievements"]').value;
+        let positiveRatings = document.querySelector('input[name="positiveRatings"]').value;
+        let negativeRatings = document.querySelector('input[name="negativeRatings"]').value;
+        let avgPlaytime = document.querySelector('input[name="avgPlaytime"]').value;
+        let medianPlaytime = document.querySelector('input[name="medianPlaytime"]').value;
+        let physical = document.querySelector('input[name="physical"]').value;
+        let numberOfUnitsAvail = document.querySelector('input[name="numberOfUnitsAvail"]').value;
+        let unitsSold = document.querySelector('input[name="unitsSold"]').value;
+        let pricePerUnit = document.querySelector('input[name="pricePerUnit"]').value;
+        xhr.send("action=" + action
+            + "&id=" + id
+            + "&appID=" + appID
+            + "&releaseDate=" + releaseDate
+            + "&isEnglish=" + isEnglish
+            + "&developer=" + developer
+            + "&publisher=" + publisher
+            + "&platforms=" + platforms
+            + "&status=" + status
+            + "&requiredAge=" + requiredAge
+            + "&categories=" + categories
+            + "&categories=" + categories
+            + "&genres=" + genres
+            + "&tags=" + tags
+            + "&numberOfAchievements=" + numberOfAchievements
+            + "&positiveRatings=" + positiveRatings
+            + "&negativeRatings=" + negativeRatings
+            + "&avgPlaytime=" + avgPlaytime
+            + "&medianPlaytime=" + medianPlaytime
+            + "&physical=" + physical
+            + "&numberOfUnitsAvail=" + numberOfUnitsAvail
+            + "&unitsSold=" + unitsSold
+            + "&pricePerUnit=" + pricePerUnit);
+    } else {
+        xhr.send("action=" + action + "&id=" + id);
+    }
+}
 
 function miniCard(source, mode, id) {
     let xhr = new XMLHttpRequest();
