@@ -78,6 +78,7 @@ function cardView(action, id) {
     xhr.send("action=" + action + "&id=" + id);
 }
 
+
 function miniCard(source, mode, id) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', "/miniTile.php", true);

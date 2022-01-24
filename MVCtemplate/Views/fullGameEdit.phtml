@@ -41,9 +41,9 @@ foreach ($view->cardView as $gameData) {
         }
         $platformsString = strval($gameData->getPlatforms());
         echo '
+        <form method="POST">
         <div id="cardView" class="bg-shadow">
-        <div class="filer-container p-0">
-        <form method="POST">';
+        <div class="filer-container p-0">';
         if ($view->succesfullEdit) {
             echo '<span class="font-blue text-center">Changes applied</span>';
         }
@@ -244,5 +244,5 @@ foreach ($view->cardView as $gameData) {
     <button class="col-sm-3 my-3 p-1 btn font-blue bg-bright" onclick='."'".'cardViewEdit('.'"edit",'.($gameData->getAppID() - 10).')'.";return false;'".'><span class="bi bi-save-fill"></span></button>
     <span class="col-sm-2"></span>
     </div>
-   '
+    </form>'
     ;}
