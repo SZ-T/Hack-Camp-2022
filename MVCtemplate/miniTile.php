@@ -23,43 +23,43 @@ if (isset($_POST['edit'])) {
 }
 if (isset($_POST['source'])) {
     $gameData = $cardView->gameInfo($_POST['id'])[0];
-if ($_POST['source'] == "proofReader")
-{
-    require_once("Views/tiles/proofReaderTile.phtml");
-    innerTile($gameData);
-}
-if ($_POST['source'] == "salesRep")
-{
-    require_once("Views/tiles/salesRepTile.phtml");
-    echo $gameData->getAppID();
-    echo "%&&%";
-    echo $gameData->getUnitsSold();
-    echo "%&&%";
-    echo $gameData->getUnitsAvailable();
-    echo "%&&%";
-    innerTile($gameData);
-}
-if ($_POST['source'] == "dataAnalyst")
-{
-    require_once("Views/tiles/dataAnalystTile.phtml");
-    echo $gameData->getAppID();
-    echo "%&&%";
-    echo $gameData->getAveragePlaytime();
-    echo "%&&%";
-    echo $gameData->getMedianPlaytime();
-    echo "%&&%";
-    innerTile($gameData);
-}
-if ($_POST['source'] == "developer")
-{
-    require_once("Views/tiles/developerTile.phtml");
-    echo $gameData->getAppID();
-    echo "%&&%";
-    echo $gameData->getPositiveRatings();
-    echo "%&&%";
-    echo $gameData->getNegative_Ratings();
-    echo "%&&%";
-    innerTile($gameData);
-}
+    if ($_POST['source'] == "proofReader")
+    {
+        require_once("Views/tiles/proofReaderTile.phtml");
+        innerTile($gameData);
+    }
+    if ($_POST['source'] == "salesRep")
+    {
+        require_once("Views/tiles/salesRepTile.phtml");
+        echo $gameData->getAppID();
+        echo "%&&%";
+        echo $gameData->getUnitsSold();
+        echo "%&&%";
+        echo $gameData->getUnitsAvailable();
+        echo "%&&%";
+        innerTile($gameData);
+    }
+    if ($_POST['source'] == "dataAnalyst")
+    {
+        require_once("Views/tiles/dataAnalystTile.phtml");
+        echo $gameData->getAppID();
+        echo "%&&%";
+        echo $gameData->getAveragePlaytime();
+        echo "%&&%";
+        echo $gameData->getMedianPlaytime();
+        echo "%&&%";
+        innerTile($gameData);
+    }
+    if ($_POST['source'] == "developer")
+    {
+        require_once("Views/tiles/developerTile.phtml");
+        echo $gameData->getAppID();
+        echo "%&&%";
+        echo $gameData->getPositiveRatings();
+        echo "%&&%";
+        echo $gameData->getNegative_Ratings();
+        echo "%&&%";
+        innerTile($gameData);
+    }
 }
 
