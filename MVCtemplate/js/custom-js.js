@@ -81,25 +81,25 @@ function cardView(action, id) {
     };
     if (action == "edit2") {
         let appID = document.querySelector('input[name="appID"]').value;
-        let releaseDate = document.querySelector('input[name="releaseDate"]').value;
-        let isEnglish = document.querySelector('input[name="isEnglish"]').value;
-        let developer = document.querySelector('input[name="developer"]').value;
-        let publisher = document.querySelector('input[name="publisher"]').value;
-        let platforms = document.querySelector('input[name="platforms[]"]').value;
-        let status = document.querySelector('input[name="status"]').value;
-        let requiredAge = document.querySelector('input[name="requiredAge"]').value;
-        let categories = document.querySelector('input[name="categories"]').value;
-        let genres = document.querySelector('input[name="genres"]').value;
+        let releaseDate = document.querySelector('input[name="releaseDate2"]').value;
+        let isEnglish = document.querySelector('input[name="isEnglish2"]').value;
+        let developer = document.querySelector('input[name="developer2"]').value;
+        let publisher = document.querySelector('input[name="publisher2"]').value;
+        let platforms = document.querySelector('input[name="platforms2"]').value;
+        let status = document.querySelector('input[name="status2"]').value;
+        let requiredAge = document.querySelector('input[name="requiredAge2"]').value;
+        let categories = document.querySelector('input[name="categories2"]').value;
+        let genres = document.querySelector('input[name="genres2"]').value;
         let tags = document.querySelector('input[name="tags"]').value;
-        let numberOfAchievements = document.querySelector('input[name="numberOfAchievements"]').value;
-        let positiveRatings = document.querySelector('input[name="positiveRatings"]').value;
-        let negativeRatings = document.querySelector('input[name="negativeRatings"]').value;
-        let avgPlaytime = document.querySelector('input[name="avgPlaytime"]').value;
-        let medianPlaytime = document.querySelector('input[name="medianPlaytime"]').value;
-        let physical = document.querySelector('input[name="physical"]').value;
-        let numberOfUnitsAvail = document.querySelector('input[name="numberOfUnitsAvail"]').value;
-        let unitsSold = document.querySelector('input[name="unitsSold"]').value;
-        let pricePerUnit = document.querySelector('input[name="pricePerUnit"]').value;
+        let numberOfAchievements = document.querySelector('input[name="numberOfAchievements2"]').value;
+        let positiveRatings = document.querySelector('input[name="positiveRatings2"]').value;
+        let negativeRatings = document.querySelector('input[name="negativeRatings2"]').value;
+        let avgPlaytime = document.querySelector('input[name="avgPlaytime2"]').value;
+        let medianPlaytime = document.querySelector('input[name="medianPlaytime2"]').value;
+        let physical = document.querySelector('input[name="physical2"]').value;
+        let numberOfUnitsAvail = document.querySelector('input[name="numberOfUnitsAvail2"]').value;
+        let unitsSold = document.querySelector('input[name="unitsSold2"]').value;
+        let pricePerUnit = document.querySelector('input[name="pricePerUnit2"]').value;
         xhr.send("action=" + action
             + "&id=" + id
             + "&appID=" + appID
