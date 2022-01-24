@@ -79,14 +79,14 @@ function cardView(action, id) {
     xhr.onerror = function () {
         alert("Request failed");
     };
-    if (action == "edit2") {
+    if (action == "editt") {
         let appID = document.querySelector('input[name="appID"]').value;
         let releaseDate = document.querySelector('input[name="releaseDate2"]').value;
         let isEnglish = document.querySelector('input[name="isEnglish2"]').value;
         let developer = document.querySelector('input[name="developer2"]').value;
         let publisher = document.querySelector('input[name="publisher2"]').value;
         let platforms = document.querySelector('input[name="platforms2"]').value;
-        let status = document.querySelector('input[name="status2"]').value;
+        let stat = document.querySelector('input[name="status2"]').value;
         let requiredAge = document.querySelector('input[name="requiredAge2"]').value;
         let categories = document.querySelector('input[name="categories2"]').value;
         let genres = document.querySelector('input[name="genres2"]').value;
@@ -100,6 +100,7 @@ function cardView(action, id) {
         let numberOfUnitsAvail = document.querySelector('input[name="numberOfUnitsAvail2"]').value;
         let unitsSold = document.querySelector('input[name="unitsSold2"]').value;
         let pricePerUnit = document.querySelector('input[name="pricePerUnit2"]').value;
+
         xhr.send("action=" + action
             + "&id=" + id
             + "&appID=" + appID
@@ -108,7 +109,7 @@ function cardView(action, id) {
             + "&developer=" + developer
             + "&publisher=" + publisher
             + "&platforms=" + platforms
-            + "&status=" + status
+            + "&status=" + stat
             + "&requiredAge=" + requiredAge
             + "&categories=" + categories
             + "&categories=" + categories
