@@ -1,0 +1,74 @@
+<?php
+
+function tile($row) {
+    echo '<div id="'.$row->getAppID().'" onclick="select(this.id)" class="tile col-lg-2 col-md-4 col-sm-6 text-center bg-bl radius-border font-xs glow-border hover-bg">';
+    innerTile($row);
+    echo '</div>';
+}
+
+function innerTile($row){
+    $status = array("In-development", "Restricted", "Archived", "Live", "Banned", "Beta");
+    echo '
+    <div id="'.$row->getAppID().'-front" onmouseenter="flip(this);return false;" ondblclick="cardView('."'view',".$row->getAppID().');return false;">
+        <div class="row font-white">
+            <div class="col-sm-6 my-1 p-0">
+                <p>ID</p>
+                <p class="font-blue">'.$row->getAppID().'</p>
+            </div>
+            <div class="col-sm-6 my-1 p-0">
+                <p>Status</p>
+                <p class="font-blue">'.$row->getStatus().'</p>
+            </div>
+            <div class="col-sm-12 my-1 p-0">
+                <p>Categories</p>
+                <p class="font-blue over-flow2 w-100">'.$row->getCategories().'</p>
+            </div>
+            <div class="col-sm-12 my-1 p-0">
+                <p>Tags</p>
+                <p class="font-blue">'.$row->getTags().'</p>
+            </div>
+            <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
+                <span>Genres</span>
+                <span class="font-blue">'.$row->getGenres().'</span>
+            </div>
+        </div>
+    </div>
+    <div id="'.$row->getAppID().'-back" onmouseleave='."'".'miniCard('.'"proofReader","view",'.$row->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$row->getAppID().');return false;'."'".' class="animate__animated animate__flipInY d-none">
+    <form action="miniTile.php" method="POST">
+    <div class="row font-white">
+                    <div class="col-sm-6 my-1 p-0">
+                        <p>ID</p>
+                        <p class="font-white col-sm-4 w-75">'.$row->getAppID().'</p>
+                        <input type="hidden" id="appID" class="font-white col-sm-4" value="'.$row->getAppID().'" />
+                    </div>
+                    <div class="col-sm-6 my-1 p-0">
+                        <p>Status</p>
+                        <select list="status" class="font-white col-sm-4 w-75 bg-grey" name="status" id="att1">';
+                        foreach ($status as $value) {
+                            echo '<option value="'.$value.'"';
+                            if ($value == $row->getStatus()) {
+                                echo ' selected ';
+                            }
+                        echo '>'.$value.'</option>';
+                        }
+                    echo '</select></div>
+                    <div class="col-sm-12 my-1 p-0">
+                        <p>Categories</p>
+                        <input type="text" id="att2" class="font-white col-sm-4 w-75" value="'.$row->getCategories().'" />
+                    </div>
+                    <div class="col-sm-12 my-1 p-0">
+                        <p>Tags</p>
+                        <input type="text" id="att3" class="font-white col-sm-4 w-75" value="'.$row->getTags().'" />
+                    </div>
+                    <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
+                        <span>Genres</span>
+                        <input type="text" id="att4" class="font-white col-sm-4 w-75" value="'.$row->getGenres().'" />
+                    </div>
+                </div>
+                <div class="row my-3 mx-0">
+            <button class="col-sm-3 my-1 btn p-0 m-auto font-grey bg-bright" onclick='."'".'miniCard('.'"proofReader","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-x-octagon-fill"></span></button>
+            <button class="col-sm-3 my-1 btn p-0 m-auto font-blue bg-bright" onclick='."'".'miniCardEdit('.'"proofReader","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-save-fill"></span></button>
+            </div>
+            </form>
+            </div>';
+}
