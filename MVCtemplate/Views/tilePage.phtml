@@ -18,10 +18,10 @@ require_once("Views/template/filters.phtml");
                     foreach ($view->labels as $value) {
                         if ($value == "Status") {
                             echo '<div>
-                       <button class="btn btn-light m-2 noRadius font-xs d-block w-100 mx-auto my-0 py-2 but-hover border-0" onclick="showOptionButton(';
+                            <button class="btn btn-light m-2 noRadius font-xs d-block w-100 mx-auto my-0 py-2 but-hover border-0" onclick="showOptionButton(';
                             echo "'optionButton" . $index . "')";
                             echo '"/>' . $value . '</button>
-                        <div id="optionButton' . $index . '" class="hide-options my-2 text-center">';
+                            <div id="optionButton' . $index . '" class="hide-options my-2 text-center">';
                             $status = array("In-development", "Restricted", "Archived", "Live", "Banned", "Beta");
                             echo '<select list="status" class="font-white col-sm-4 w-75 bg-grey mx-auto my-2" name="status" id="item' . $index . '">';
                             foreach ($status as $value2) {
@@ -31,53 +31,51 @@ require_once("Views/template/filters.phtml");
                             echo '</select><button class="btn btn-success m-2 font-xs d-block w-75 mx-auto my-0 py-2 but-hover border-0" onclick="editSelected(';
                             echo "'" . $value . "',document.getElementById('item" . $index . "').value)";
                             echo '"/>Apply</button>
-                       </div>
-                       </div>
-                       ';
+                            </div>
+                            </div>
+                            ';
                             $index++;
                         } elseif ($value == "Categories" || $value == "Tags" || $value == "Genres" || $value == "Developer") {
-
                             echo '
-                       <div>
-                       <button class="btn btn-light m-2 noRadius font-xs d-block w-100 mx-auto my-0 py-2 but-hover border-0" onclick="showOptionButton(';
-                            echo "'optionButton" . $index . "')";
-                            echo '"/>' . $value . '</button>
-                       <div id="optionButton' . $index . '" class="hide-options my-2">
-                       <input class="w-75 my-3 mx-auto d-block col-sm-12" id="item' . $index . '" type="text" />
-                       
-                       <button class="btn btn-danger m-2 font-xs d-block w-75 mx-auto my-2 py-2 but-hover border-0" onclick="editSelected(';
-                            echo "'" . $value . "',document.getElementById('item" . $index . "').value, 'Remove')";
-                            echo '"/>Remove</button>
+                            <div>
+                            <button class="btn btn-light m-2 noRadius font-xs d-block w-100 mx-auto my-0 py-2 but-hover border-0" onclick="showOptionButton(';
+                                echo "'optionButton" . $index . "')";
+                                echo '"/>' . $value . '</button>
+                            <div id="optionButton' . $index . '" class="hide-options my-2">
+                            <input class="w-75 my-3 mx-auto d-block col-sm-12" id="item' . $index . '" type="text" />
+                            
+                            <button class="btn btn-danger m-2 font-xs d-block w-75 mx-auto my-2 py-2 but-hover border-0" onclick="editSelected(';
+                                echo "'" . $value . "',document.getElementById('item" . $index . "').value, 'Remove')";
+                                echo '"/>Remove</button>
 
-                                <button class="btn btn-success m-2 font-xs d-block w-75 mx-auto my-2 py-2 but-hover border-0" onclick="editSelected(';
-                            echo "'" . $value . "',document.getElementById('item" . $index . "').value, 'Add')";
-                            echo '"/>Add</button>
-                       </div>
-                       </div>
-                       ';
+                                    <button class="btn btn-success m-2 font-xs d-block w-75 mx-auto my-2 py-2 but-hover border-0" onclick="editSelected(';
+                                echo "'" . $value . "',document.getElementById('item" . $index . "').value, 'Add')";
+                                echo '"/>Add</button>
+                            </div>
+                            </div>
+                            ';
                             $index++;
                         }
                         else {
-
                             echo '
-                       <div>
-                       <button class="btn btn-light m-2 noRadius font-xs d-block w-100 mx-auto my-0 py-2 but-hover border-0" onclick="showOptionButton(';
-                            echo "'optionButton" . $index . "')";
-                            echo '"/>' . $value . '</button>
-                       <div id="optionButton' . $index . '" class="hide-options my-2">
-                       <input class="w-75 my-3 mx-auto d-block" id="item' . $index . '" type="text" />
-                       <button class="btn btn-success m-2 font-xs d-block w-75 mx-auto my-0 py-2 but-hover border-0" onclick="editSelected(';
-                            echo "'" . $value . "',document.getElementById('item" . $index . "').value)";
-                            echo '"/>Apply</button>
-                       </div>
-                       </div>
-                       ';
+                            <div>
+                            <button class="btn btn-light m-2 noRadius font-xs d-block w-100 mx-auto my-0 py-2 but-hover border-0" onclick="showOptionButton(';
+                                echo "'optionButton" . $index . "')";
+                                echo '"/>' . $value . '</button>
+                            <div id="optionButton' . $index . '" class="hide-options my-2">
+                            <input class="w-75 my-3 mx-auto d-block" id="item' . $index . '" type="text" />
+                            <button class="btn btn-success m-2 font-xs d-block w-75 mx-auto my-0 py-2 but-hover border-0" onclick="editSelected(';
+                                echo "'" . $value . "',document.getElementById('item" . $index . "').value)";
+                                echo '"/>Apply</button>
+                            </div>
+                            </div>
+                            ';
                             $index++;
                         }
                     }
                     ?>
                 </div>
-                </div>
+            </div>
         </div>
         <div id="tiles" class="row">
         </div>
@@ -101,7 +99,7 @@ require_once('Views/template/footer.phtml');
 
 if (isset($LazyLoad)){
     echo '<script>
-        var load = new LazyLoad("'.$LazyLoad->url.'", "'.$LazyLoad->type.'", '.$LazyLoad->xValues.', '.$LazyLoad->chart.', '.$LazyLoad->legend.');
+        var load = new LazyLoad("'.$LazyLoad->url.'", "'.$LazyLoad->data.'", "'.$LazyLoad->type.'", '.$LazyLoad->xValues.', '.$LazyLoad->chart.', '.$LazyLoad->legend.');
     </script>';
 }
 ?>

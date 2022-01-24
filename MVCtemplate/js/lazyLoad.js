@@ -5,10 +5,11 @@ var legend;
 
 class LazyLoad {
     
-    constructor(url, type, xValues, chart, legend){
+    constructor(url, data, type, xValues, chart, legend){
         this.isRunning = false;
         this.page = 1;
         this.url = url;
+        this.data = data;
         globalThis.type = type;
         globalThis.xValues = xValues;
         globalThis.chart = chart;
@@ -36,7 +37,7 @@ class LazyLoad {
                 this.isRunning = false;
             };
             var data = document.getElementById("searchText").value;
-            xhr.send('&page=' + this.page);
+            xhr.send(this.data + this.page);
             this.page += 1;
         }
     }

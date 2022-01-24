@@ -33,41 +33,41 @@ function innerTile($row){
         </div>
     </div>
     <div id="'.$row->getAppID().'-back" onmouseleave='."'".'miniCard('.'"salesRep","view",'.$row->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$row->getAppID().');return false;'."'".' class="animate__animated animate__flipInY d-none">
-    <form action="miniTile.php" method="POST">
-    <div class="row font-white">
-                    <div class="col-sm-6 my-1 p-0">
-                        <p>ID</p>
-                        <p class="font-white col-sm-4 w-75">'.$row->getAppID().'</p>
-                        <input type="hidden" id="appID" class="font-white col-sm-4" value="'.$row->getAppID().'" />
-                    </div>
-                    <div class="col-sm-6 my-1 p-0">
-                        <p>Status</p>
-                        <select list="status" class="font-white col-sm-4 w-75 bg-grey" name="status" id="att1">';
-                        foreach ($status as $value) {
-                            echo '<option value="'.$value.'"';
-                            if ($value == $row->getStatus()) {
-                                echo ' selected ';
-                            }
-                        echo '>'.$value.'</option>';
-                        }
-                    echo '</select></div>
-                    <div class="col-sm-12 my-1 p-0">
-                        <p>Units available</p>
-                        <input type="text" id="att2" class="font-white col-sm-4 w-75" value="'.$row->getUnitsAvailable().'" />
-                    </div>
-                    <div class="col-sm-12 my-1 p-0">
-                        <p>Units sold</p>
-                        <input type="text" id="att3" class="font-white col-sm-4 w-75" value="'.$row->getUnitsSold().'" />
-                    </div>
-                    <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
-                        <span>Price</span>
-                        <input type="text" id="att4" class="font-white col-sm-4 w-75" value="'.$row->getPrice().'" />
-                    </div>
-                </div>
-                <div class="row my-3 mx-0">
+        <form action="miniTile.php" method="POST">
+        <div class="row font-white">
+            <div class="col-sm-6 my-1 p-0">
+                <p>ID</p>
+                <p class="font-white col-sm-4 w-75">'.$row->getAppID().'</p>
+                <input type="hidden" id="appID" class="font-white col-sm-4" value="'.$row->getAppID().'" />
+            </div>
+            <div class="col-sm-6 my-1 p-0">
+                <p>Status</p>
+                <select list="status" class="font-white col-sm-4 w-75 bg-grey" name="status" id="att1">';
+                foreach ($status as $value) {
+                    echo '<option value="'.$value.'"';
+                    if ($value == $row->getStatus()) {
+                        echo ' selected ';
+                    }
+                echo '>'.$value.'</option>';
+                }
+                echo '</select></div>
+            <div class="col-sm-12 my-1 p-0">
+                <p>Units available</p>
+                <input type="text" id="att2" class="font-white col-sm-4 w-75" value="'.$row->getUnitsAvailable().'" />
+            </div>
+            <div class="col-sm-12 my-1 p-0">
+                <p>Units sold</p>
+                <input type="text" id="att3" class="font-white col-sm-4 w-75" value="'.$row->getUnitsSold().'" />
+            </div>
+            <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
+                <span>Price</span>
+                <input type="text" id="att4" class="font-white col-sm-4 w-75" value="'.$row->getPrice().'" />
+            </div>
+        </div>
+        <div class="row my-3 mx-0">
             <button class="col-sm-3 my-1 btn p-0 m-auto font-grey bg-bright" onclick='."'".'miniCard('.'"salesRep","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-x-octagon-fill"></span></button>
             <button class="col-sm-3 my-1 btn p-0 m-auto font-blue bg-bright" onclick='."'".'miniCardEdit('.'"salesRep","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-save-fill"></span></button>
             </div>
-            </form>
-            </div>';
+        </form>
+    </div>';
 }

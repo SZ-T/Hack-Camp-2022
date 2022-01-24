@@ -7,18 +7,20 @@ $view->labels = ["Release date", "Average playtime", "Median playtime", "Units s
 
 $LazyLoad = new stdClass();
 $LazyLoad->url = substr($_SERVER['PHP_SELF'], 0, -4).'Data.php?';
+$LazyLoad->data = '';
 foreach ($_POST as $key => $value) {
     if ($key === 'page') {
         continue;
     }
-    $LazyLoad->url = $LazyLoad->url.$key.'='.$value.'&';
+    $LazyLoad->data = $LazyLoad->data.$key.'='.$value.'&';
 }
 foreach ($_GET as $key => $value) {
     if ($key === 'page') {
         continue;
     }
-    $LazyLoad->url = $LazyLoad->url.$key.'='.$value.'&';
+    $LazyLoad->data = $LazyLoad->data.$key.'='.$value.'&';
 }
+$LazyLoad->data = $LazyLoad->data.'page=';
 
 $LazyLoad->type = 'pie';
 $LazyLoad->xValues = "['Average Playtime', 'Median Playtime']";
