@@ -1,0 +1,24 @@
+<?php require('template/header.phtml') ?>
+<div id="full"></div>
+<h3 class="text-center">Results for <?php echo $view->userSearchTerm; ?>:</h3>
+<div class="row text-center m-auto">
+    <div id="tiles" class="row m-0 col-md-12">
+    </div>
+    <div id="loading" class="center">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+    <h3 id="end" class="d-none">End of results</h3>
+</div>
+<?php require('Views/template/footer.phtml') ?>
+<script>
+    var load = new LazyLoad("/lazySearchData.php", "doughnut", ['Units Sold', 'Units Available']);
+</script>
