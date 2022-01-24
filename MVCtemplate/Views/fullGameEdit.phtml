@@ -1,4 +1,25 @@
-<?php require('Views/template/header.phtml') ?>
+<link href="/css/my-style.css" rel="stylesheet">
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/bootstrap.rtl.css" rel="stylesheet">
+<link href="/css/bootstrap-grid.css" rel="stylesheet">
+<link href="/css/bootstrap-grid.rtl.css" rel="stylesheet">
+<link href="/css/bootstrap-reboot.css" rel="stylesheet">
+<link href="/css/bootstrap-reboot.rtl.css" rel="stylesheet">
+<link href="/css/bootstrap-utilities.css" rel="stylesheet">
+<link href="/css/bootstrap-utilities.rtl.css" rel="stylesheet">
+<link href="/css/bootstrap-tagsinput.css" rel="stylesheet">
+<link href="/css/bootstrap-tagsinput.less" rel="stylesheet">
+<link href="/css/animate.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jQuery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/js/bootstrap.esm.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/bootstrap-tagsinput.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-tagsinput.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script type="text/javascript" src="/js/custom-js.js"></script>
+<script type="text/javascript" src="/js/lazyLoad.js"></script>
 <?php
 $platforms = array("windows", "mac", "linux");
 $status = array("In-development", "Restricted", "Archived", "Live", "Banned", "Beta");
@@ -20,28 +41,28 @@ foreach ($view->cardView as $gameData) {
         }
         $platformsString = strval($gameData->getPlatforms());
         echo '
-        <form action="/cardViewTest.php" method="POST">
         <div id="cardView" class="bg-shadow">
-        <div class="filer-container p-0">';
+        <div class="filer-container p-0">
+        <form method="POST">';
         if ($view->succesfullEdit) {
-            echo '<p>Done</p>';
+            echo '<span class="font-blue text-center">Changes applied</span>';
         }
         if (!$view->succesfullEdit) {
-            echo '<p>Not done</p>';
+            echo '<span class="font-blue text-center"Somethinsg went wrong</span>';
         }
-        echo '<button class="btn close-button p-0 d-block" onclick="history.back();return false;"><span class="bi bi-x display-5 font-white"></span></button>
+        echo '<button class="btn close-button p-0 d-block" onclick="hideCard();return false;"><span class="bi bi-x display-5 font-white"></span></button>
         <div class="row d-block m-0">';            
         echo '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">App ID</span>
         <span class="font-white col-sm-4">'.$gameData->getAppID().'</span>
-        <input type="hidden" name="appID" class="font-white col-sm-4" value="'.$gameData->getAppID().'" />
+        <input type="hidden" name="appID" id="e1" class="font-white col-sm-4" value="'.$gameData->getAppID().'" />
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
         <span class="col-sm-2"></span>
         <span class="font-blue col-sm-4">Release date</span>
-        <input type="date" name="releaseDate" class="font-white col-sm-4" value="'.$gameData->getReleaseDate().'" />
+        <input type="date" name="releaseDate" id="e2" class="font-white col-sm-4" value="'.$gameData->getReleaseDate().'" />
         <span class="col-sm-2"></span>
         </div>'.
         '<div class="col-sm-12 row m-1">
@@ -49,9 +70,9 @@ foreach ($view->cardView as $gameData) {
         <span class="font-blue col-sm-4">English</span>
         <div class="col-sm-4 row text-center m-0 bg-trans">';
         if ($isEnglish == "Yes") {
-            echo '<input type="radio" name="isEnglish" checked id="e-yes2"  value="1" class="col-sm-1 p-0 m-auto"/>
+            echo '<input type="radio" name="isEnglish" checked id="e-yes"  value="1" class="col-sm-1 p-0 m-auto"/>
         <label for="e-yes2" id="yes-lbl" class="col-sm-6 p-0 font-white">Yes</label>
-        <input type="radio" id="e-no2" name="isEnglish"  value="0" class="col-sm-1 p-2 m-auto"/>
+        <input type="radio" id="e-no" name="isEnglish"  value="0" class="col-sm-1 p-2 m-auto"/>
         <label for="e-no2" id="no-lbl"  class="col-sm-6 p-0 font-white">No</label>';
         }
         if ($isEnglish == "No") {
@@ -218,12 +239,10 @@ foreach ($view->cardView as $gameData) {
         </div>
         <div class="row m-0">
     <span class="col-sm-2"></span>
-    <button class="col-sm-3 p-0 my-3 btn font-grey bg-bright" onclick="history.back();return false;"><span class="bi bi-x-octagon-fill"></span></button>
+    <button class="col-sm-3 p-1 my-3 btn font-grey bg-bright" onclick="hideCard();return false;"><span class="bi bi-x-octagon-fill"></span></button>
     <span class="col-sm-2"></span>
-    <button class="col-sm-3 my-3 p-0 btn font-blue bg-bright" type="submit" name="edit" value="edit"><span class="bi bi-save-fill"></span></button>
+    <button class="col-sm-3 my-3 p-1 btn font-blue bg-bright" onclick='."'".'cardViewEdit('.'"edit",'.($gameData->getAppID() - 10).')'.";return false;'".'><span class="bi bi-save-fill"></span></button>
     <span class="col-sm-2"></span>
     </div>
-    </form>'
+   '
     ;}
-
-    require('Views/template/footer.phtml');

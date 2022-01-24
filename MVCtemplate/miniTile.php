@@ -79,7 +79,7 @@ if ($_POST['mode'] == "view") {
                 $gamePrice = $gamePrice . ".00";
             }
     echo'
-    <div onmouseenter='."'".'miniCard('.'"proofReader","edit",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
+    <div onmouseenter='."'".'miniCard('.'"proofReader","edit",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".'>
     <div class="row font-white">
         <div class="col-sm-6 my-1 p-0">
             <p>ID</p>

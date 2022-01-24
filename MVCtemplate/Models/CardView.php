@@ -174,7 +174,6 @@ class CardView{
         $statement->bindParam(':appID', $appID);
         $statement->execute();
 
-        $platforms = explode(',', $platforms);
         foreach ($platforms as $item) {
             //check if exists
             $sqlQuery = 'SELECT platformID FROM platforms WHERE platformName = :item;';
