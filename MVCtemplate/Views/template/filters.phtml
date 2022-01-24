@@ -1,4 +1,4 @@
-                <form action="/lazySearch.php" method="post" id="" class="form-check-inline col-md-4 m-auto animate__animated animate__fadeIn animate__delay-1s">
+            <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" id="" class="form-check-inline col-md-4 m-auto animate__animated animate__fadeIn animate__delay-1s">
                 <div class="input-group glow-border">
                     <input id="searchText" class="form-control px-2 bg-grey font-blue radius-left font-xs" name="searchText" type="text" placeholder="Search by App ID" aria-label="Search" <?php if (isset($view)){echo 'value="'.$view->userSearchTerm.'"';} ?>/>
                     <div class="input-group-append">

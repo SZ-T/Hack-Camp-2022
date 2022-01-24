@@ -30,7 +30,6 @@ class Search
         return $dataSet;
     }
 
-
     function customSearch($sqlQuery){//Term being passed
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute(); // execution for data information
