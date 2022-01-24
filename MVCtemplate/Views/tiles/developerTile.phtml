@@ -11,7 +11,7 @@ function innerTile($row){
         $gamePrice = $gamePrice . ".00";
     }
     echo '
-    <div onmouseenter="miniCard('."'developer','edit',".$row->getAppID().');return false;" ondblclick="cardView('."'view',".$row->getAppID().');return false;">
+    <div id="'.$row->getAppID().'-front" onmouseenter="flip(this);return false;" ondblclick="cardView('."'view',".$row->getAppID().');return false;">
         <div class="row font-white">
             <div class="col-sm-6 my-1 p-0">
                 <p>ID</p>
@@ -30,5 +30,36 @@ function innerTile($row){
                 <span class="font-blue font-bold">'.$gamePrice.'</span>
             </div>
         </div>
+    </div>
+    <div id="'.$row->getAppID().'-back" onmouseleave='."'".'miniCard('.'"developer","view",'.$row->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$row->getAppID().');return false;'."'".' class="animate__animated animate__flipInY d-none">
+    <form action="miniTile.php" method="POST">
+        <div class="row font-white">
+            <div class="col-sm-6 my-1 p-0">
+                <p>ID</p>
+                <p class="font-white col-sm-4 w-75">'.$row->getAppID().'</p>
+                <input type="hidden" id="appID" class="font-white col-sm-4" value="'.$row->getAppID().'" />
+            </div>
+            <div class="col-sm-6 my-1 p-0">
+                <p>Developer</p>
+                <input type="text" id="att1" class="font-white col-sm-4 w-75" value="'.$row->getDeveloper().'" />
+            </div>
+            <div class="col-sm-12 my-1 p-0">
+                <p>Positive ratings</p>
+                <input type="text" id="att2" class="font-white col-sm-4 w-75" value="'.$row->getPositiveRatings().'" />
+            </div>
+            <div class="col-sm-12 my-1 p-0">
+                <p>Negative ratings</p>
+                <input type="text" id="att3" class="font-white col-sm-4 w-75" value="'.$row->getNegative_Ratings().'" />
+            </div>
+            <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
+                <span>Price</span>
+                <input type="text" id="att4" class="font-white col-sm-4 w-75" value="'.$row->getNegative_Ratings().'" />
+            </div>
+        </div>
+        <div class="row my-3 mx-0">
+            <button class="col-sm-3 my-1 btn p-0 m-auto font-grey bg-bright" onclick='."'".'miniCard('.'"developer","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-x-octagon-fill"></span></button>
+            <button class="col-sm-3 my-1 btn p-0 m-auto font-blue bg-bright" onclick='."'".'miniCardEdit('.'"developer","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-save-fill"></span></button>
+        </div>
+        </form>
     </div>';
 }

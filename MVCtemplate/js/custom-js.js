@@ -239,8 +239,8 @@ function indexFilter(filterAttribute) {
     // //xhr.send("action=" + action + "&id=" + id);
 }
 
-
-    
-    
-
-
+function flip (innerTile){
+    tile = innerTile.parentElement.id;
+    document.getElementById(tile + "-front").classList.toggle("d-none");
+    document.getElementById(tile + "-back").classList.toggle("d-none");
+}
