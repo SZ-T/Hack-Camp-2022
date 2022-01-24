@@ -22,15 +22,14 @@ if (isset($_POST['edit'])) {
     }
 }
 if (isset($_POST['source'])) {
-    $view->cardView = $cardView->gameInfo($_POST['id']);
+    $gameData = $cardView->gameInfo($_POST['id'])[0];
 if ($_POST['source'] == "proofReader")
 {
     if ($_POST['mode'] == "edit") {
-    foreach ($view->cardView as $gameData) {
-        $gamePrice = "£" . $gameData->getPrice();
-            if($gamePrice == "£0"){
-                $gamePrice = $gamePrice . ".00";
-            }
+    $gamePrice = "£" . $gameData->getPrice();
+    if($gamePrice == "£0"){
+        $gamePrice = $gamePrice . ".00";
+    }
     echo'
     <div onmouseleave='."'".'miniCard('.'"proofReader","view",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
     <form action="miniTile.php" method="POST">
@@ -71,50 +70,18 @@ if ($_POST['source'] == "proofReader")
             </form>
             </div>';
 }
-}
 if ($_POST['mode'] == "view") {
-    foreach ($view->cardView as $gameData) {
-        $gamePrice = "£" . $gameData->getPrice();
-            if($gamePrice == "£0"){
-                $gamePrice = $gamePrice . ".00";
-            }
-    echo'
-    <div onmouseenter='."'".'miniCard('.'"proofReader","edit",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
-    <div class="row font-white">
-        <div class="col-sm-6 my-1 p-0">
-            <p>ID</p>
-            <p class="font-blue">'.$gameData->getAppID().'</p>
-        </div>
-        <div class="col-sm-6 my-1 p-0">
-            <p>Status</p>
-            <p class="font-blue">'.$gameData->getStatus().'</p>
-        </div>
-        <div class="col-sm-12 my-1 p-0">
-            <p>Categories</p>
-            <p class="font-blue">'.$gameData->getCategories().'</p>
-        </div>
-        <div class="col-sm-12 my-1 p-0">
-            <p>Tags</p>
-            <p class="font-blue">'.$gameData->getTags().'</p>
-        </div>
-        <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
-            <span>Genres</span>
-            <span class="font-blue">'.$gameData->getGenres().'</span>
-        </div>
-    </div>
-</div>
-</div>';
-        }
+    require_once("Views/tiles/proofReaderTile.phtml");
+    innerTile($gameData);
 }
 }
 if ($_POST['source'] == "salesRep")
 {
     if ($_POST['mode'] == "edit") {
-    foreach ($view->cardView as $gameData) {
-        $gamePrice = "£" . $gameData->getPrice();
-            if($gamePrice == "£0"){
-                $gamePrice = $gamePrice . ".00";
-            }
+    $gamePrice = "£" . $gameData->getPrice();
+    if($gamePrice == "£0"){
+        $gamePrice = $gamePrice . ".00";
+    }
     echo'
     <div onmouseleave='."'".'miniCard('.'"salesRep","view",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
     <form action="miniTile.php" method="POST">
@@ -155,50 +122,24 @@ if ($_POST['source'] == "salesRep")
             </form>
             </div>';
 }
-}
 if ($_POST['mode'] == "view") {
-    foreach ($view->cardView as $gameData) {
-        $gamePrice = "£" . $gameData->getPrice();
-            if($gamePrice == "£0"){
-                $gamePrice = $gamePrice . ".00";
-            }
-    echo'
-    <div onmouseenter='."'".'miniCard('.'"salesRep","edit",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
-                <div class="row font-white">
-                    <div class="col-sm-6 my-1 p-0">
-                        <p>ID</p>
-                        <p class="font-blue font-bold">'.$gameData->getAppID().'</p>
-                    </div>
-                    <div class="col-sm-6 my-1 p-0">
-                        <p>Status</p>
-                        <p class="font-blue font-bold">'.$gameData->getStatus().'</p>
-                    </div>                    
-                    <div class="col-sm-12 my-1 p-0">
-                    <p>Units available</p>
-                    <p class="font-blue font-bold">'.$gameData->getUnitsAvailable().'</p>
-                </div>
-                <div class="col-sm-12 my-1 p-0">
-                    <p>Units sold</p>
-                    <p class="font-blue font-bold">'.$gameData->getUnitsSold().'</p>
-                </div>
-                    <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
-                        <span>Price</span>
-                        <span class="font-blue font-bold">'.$gamePrice.'</span>
-                    </div>
-                </div>
-            </div>
-            </div>';
-        }
+    require_once("Views/tiles/salesRepTile.phtml");
+    echo $gameData->getAppID();
+    echo "%&&%";
+    echo $gameData->getUnitsSold();
+    echo "%&&%";
+    echo $gameData->getUnitsAvailable();
+    echo "%&&%";
+    innerTile($gameData);
 }
 }
 if ($_POST['source'] == "dataAnalyst")
 {
     if ($_POST['mode'] == "edit") {
-    foreach ($view->cardView as $gameData) {
-        $gamePrice = "£" . $gameData->getPrice();
-            if($gamePrice == "£0"){
-                $gamePrice = $gamePrice . ".00";
-            }
+    $gamePrice = "£" . $gameData->getPrice();
+    if($gamePrice == "£0"){
+        $gamePrice = $gamePrice . ".00";
+    }
     echo'
     <div onmouseleave='."'".'miniCard('.'"dataAnalyst","view",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
     <form action="miniTile.php" method="POST">
@@ -232,52 +173,24 @@ if ($_POST['source'] == "dataAnalyst")
             </form>
             </div>';
 }
-}
 if ($_POST['mode'] == "view") {
-    foreach ($view->cardView as $gameData) {
-        $gamePrice = "£" . $gameData->getPrice();
-            if($gamePrice == "£0"){
-                $gamePrice = $gamePrice . ".00";
-            }
-    echo'
-    <div onmouseenter='."'".'miniCard('.'"dataAnalyst","edit",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
-    <div class="row font-white">
-                    <div class="col-sm-6 my-1 p-0">
-                        <p>ID</p>
-                        <p class="font-blue font-bold">'.$gameData->getAppID().'</p>
-                    </div>
-                    <div class="col-sm-6 my-1 p-0">
-                        <p>Release date</p>
-                        <p class="font-blue font-bold">'.$gameData->getReleaseDate().'</p>
-                    </div>                    
-                    <div class="col-sm-12 my-1 p-0">
-                    <p>Average playtime</p>
-                    <p class="font-blue font-bold">'.$gameData->getAveragePlaytime().'</p>
-                </div>
-                <div class="col-sm-12 my-1 p-0">
-                    <p>Median playtime</p>
-                    <p class="font-blue font-bold">'.$gameData->getMedianPlaytime().'</p>
-                </div>
-                    <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
-                        <span>Units sold</span>
-                        <span class="font-blue font-bold">'.$gameData->getUnitsSold().'</span>
-                    </div>
-                </div>
-            </div>
-            </div>
-    </div>
-    </div>';
-        }
+    require_once("Views/tiles/dataAnalystTile.phtml");
+    echo $gameData->getAppID();
+    echo "%&&%";
+    echo $gameData->getAveragePlaytime();
+    echo "%&&%";
+    echo $gameData->getMedianPlaytime();
+    echo "%&&%";
+    innerTile($gameData);
 }
 }
 if ($_POST['source'] == "developer")
 {
     if ($_POST['mode'] == "edit") {
-    foreach ($view->cardView as $gameData) {
-        $gamePrice = "£" . $gameData->getPrice();
-            if($gamePrice == "£0"){
-                $gamePrice = $gamePrice . ".00";
-            }
+    $gamePrice = "£" . $gameData->getPrice();
+    if($gamePrice == "£0"){
+        $gamePrice = $gamePrice . ".00";
+    }
     echo'
     <div onmouseleave='."'".'miniCard('.'"developer","view",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
     <form action="miniTile.php" method="POST">
@@ -311,39 +224,15 @@ if ($_POST['source'] == "developer")
             </form>
             </div>';
 }
-}
 if ($_POST['mode'] == "view") {
-    foreach ($view->cardView as $gameData) {
-        $gamePrice = "£" . $gameData->getPrice();
-            if($gamePrice == "£0"){
-                $gamePrice = $gamePrice . ".00";
-            }
-    echo'
-    <div onmouseenter='."'".'miniCard('.'"developer","edit",'.$gameData->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$gameData->getAppID().');return false;'."'".' class="animate__animated animate__flipInY">
-                <div class="row font-white">
-                    <div class="col-sm-6 my-1 p-0">
-                        <p>ID</p>
-                        <p class="font-blue font-bold">'.$gameData->getAppID().'</p>
-                    </div>
-                    <div class="col-sm-6 my-1 p-0">
-                        <p>Developer</p>
-                        <p class="font-blue font-bold">'.$gameData->getDeveloper().'</p>
-                    </div>                    
-                    <div class="col-sm-12 my-1 p-0">
-                    <p>Positive ratings</p>
-                    <p class="font-blue font-bold">'.$gameData->getPositiveRatings().'</p>
-                </div>
-                <div class="col-sm-12 my-1 p-0">
-                    <p>Negative ratings</p>
-                    <p class="font-blue font-bold">'.$gameData->getNegative_Ratings().'</p>
-                </div>
-                    <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
-                        <span>Price</span>
-                        <span class="font-blue font-bold">'.$gamePrice.'</span>
-                    </div>
-                </div>
-            </div>';
-        }
+    require_once("Views/tiles/developerTile.phtml");
+    echo $gameData->getAppID();
+    echo "%&&%";
+    echo $gameData->getPositiveRatings();
+    echo "%&&%";
+    echo $gameData->getNegative_Ratings();
+    echo "%&&%";
+    innerTile($gameData);
 }
 }
 }

@@ -1,13 +1,18 @@
+var type;
+var xValues;
+var chart;
+var legend;
+
 class LazyLoad {
     
     constructor(url, type, xValues, chart, legend){
         this.isRunning = false;
         this.page = 1;
         this.url = url;
-        this.type = type;
-        this.xValues = xValues;
-        this.chart = chart;
-        this.legend = legend;
+        globalThis.type = type;
+        globalThis.xValues = xValues;
+        globalThis.chart = chart;
+        globalThis.legend = legend;
         this.loadResults();
         window.onscroll = function(ev) {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
@@ -37,7 +42,7 @@ class LazyLoad {
     }
 
     processResponse(response){
-        if (this.chart){
+        if (chart){
             let data = response.split("%&&%");
             if (data[3] == ""){
                 document.getElementById("end").classList.remove("d-none");
@@ -71,7 +76,7 @@ class LazyLoad {
         let data1 = JSON.parse(data1_json);
         let data2 = JSON.parse(data2_json);
         for (let i = 0; i < ids.length; i++) {
-            makeChart('myChart' + ids[i], this.type, [data1[i], data2[i]], this.xValues, this.legend);
+            makeChart('myChart' + ids[i], type, [data1[i], data2[i]], xValues, legend);
         }
     }
 }
