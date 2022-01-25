@@ -166,7 +166,13 @@ function miniCardEdit(source, id) {
     xhr.open('POST', "/miniTile.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function () {
-        document.getElementById(id).innerHTML = xhr.response;
+        let data = xhr.response.split("%&&%");
+        if (data.length == 4) {
+            document.getElementById(id).innerHTML = data[3];
+            makeChart('myChart' + data[0], type, [data[1], data[2]], xValues, legend);
+        } else {
+            document.getElementById(id).innerHTML = data[0];
+        }
     };
     xhr.onerror = function () {
         alert("Request failed");

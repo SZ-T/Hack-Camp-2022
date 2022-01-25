@@ -245,30 +245,56 @@ class Edit{
 
 
     function editUnitsAvailable ($appID, $item) {
+        if (in_array(substr($item, 0, 1), [' ', '-', '*', 'x', '/'] )) {
+            $op = substr($item, 0, 1);
+            if ($op == ' ') {
+                $op = '+';
+            }
+            $val = (integer) substr($item, 1);
+            $sqlQuery = 'SELECT numberOfUnitsAvail FROM gameinfo WHERE appID = ?';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->execute([$appID]);
+            $current = (integer) $statement->fetch()["numberOfUnitsAvail"];
+            eval('$item = '.$current.$op.$val.';');
+        }
+        if ($item < 0) {
+            $item = 0;
+        }
         $data = [
             'appID' => $appID,
             'numberOfUnitsAvail' => $item
         ];
-
         $sqlQuery = 'UPDATE gameinfo SET
         numberOfUnitsAvail = :numberOfUnitsAvail
         WHERE appID = :appID;';
-
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute($data);
     }
 
 
     function editUnitsSold ($appID, $item) {
+        if (in_array(substr($item, 0, 1), [' ', '-', '*', 'x', '/'] )) {
+            $op = substr($item, 0, 1);
+            if ($op == ' ') {
+                $op = '+';
+            }
+            $val = (integer) substr($item, 1);
+            $sqlQuery = 'SELECT unitsSold FROM gameinfo WHERE appID = ?';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->execute([$appID]);
+            $current = (integer) $statement->fetch()["unitsSold"];
+            eval('$item = '.$current.$op.$val.';');
+        }
+        if ($item < 0) {
+            $item = 0;
+        }
         $data = [
             'appID' => $appID,
             'unitsSold' => $item
         ];
-
         $sqlQuery = 'UPDATE gameinfo SET
         unitsSold = :unitsSold
         WHERE appID = :appID;';
-
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute($data);
     }
@@ -276,9 +302,6 @@ class Edit{
     function editPrice ($appID, $item) {
         if (in_array(substr($item, 0, 1), [' ', '-', '*', 'x', '/'] )) {
             $op = substr($item, 0, 1);
-            if ($op == 'x') {
-                $op = '*';
-            }
             if ($op == ' ') {
                 $op = '+';
             }
@@ -306,29 +329,55 @@ class Edit{
     }
 
     function editPositiveRatings ($appID, $item) {
+        if (in_array(substr($item, 0, 1), [' ', '-', '*', 'x', '/'] )) {
+            $op = substr($item, 0, 1);
+            if ($op == ' ') {
+                $op = '+';
+            }
+            $val = (integer) substr($item, 1);
+            $sqlQuery = 'SELECT positiveRatings FROM gameinfo WHERE appID = ?';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->execute([$appID]);
+            $current = (integer) $statement->fetch()["positiveRatings"];
+            eval('$item = '.$current.$op.$val.';');
+        }
+        if ($item < 0) {
+            $item = 0;
+        }
         $data = [
             'appID' => $appID,
             'positiveRatings' => $item
         ];
-
         $sqlQuery = 'UPDATE gameinfo SET
         positiveRatings = :positiveRatings
         WHERE appID = :appID;';
-
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute($data);
     }
 
     function editNegativeRatings ($appID, $item) {
+        if (in_array(substr($item, 0, 1), [' ', '-', '*', 'x', '/'] )) {
+            $op = substr($item, 0, 1);
+            if ($op == ' ') {
+                $op = '+';
+            }
+            $val = (integer) substr($item, 1);
+            $sqlQuery = 'SELECT negativeRatings FROM gameinfo WHERE appID = ?';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->execute([$appID]);
+            $current = (integer) $statement->fetch()["negativeRatings"];
+            eval('$item = '.$current.$op.$val.';');
+        }
+        if ($item < 0) {
+            $item = 0;
+        }
         $data = [
             'appID' => $appID,
             'negativeRatings' => $item
         ];
-
         $sqlQuery = 'UPDATE gameinfo SET
         negativeRatings = :negativeRatings
         WHERE appID = :appID;';
-
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute($data);
     }
@@ -348,29 +397,55 @@ class Edit{
     }
 
     function editAveragePlaytime ($appID, $item) {
+        if (in_array(substr($item, 0, 1), [' ', '-', '*', 'x', '/'] )) {
+            $op = substr($item, 0, 1);
+            if ($op == ' ') {
+                $op = '+';
+            }
+            $val = (integer) substr($item, 1);
+            $sqlQuery = 'SELECT avgPlaytime FROM gameinfo WHERE appID = ?';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->execute([$appID]);
+            $current = (integer) $statement->fetch()["avgPlaytime"];
+            eval('$item = '.$current.$op.$val.';');
+        }
+        if ($item < 0) {
+            $item = 0;
+        }
         $data = [
             'appID' => $appID,
             'avgPlaytime' => $item
         ];
-
         $sqlQuery = 'UPDATE gameinfo SET
         avgPlaytime = :avgPlaytime
         WHERE appID = :appID;';
-
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute($data);
     }
 
     function editMedianPlaytime ($appID, $item) {
+        if (in_array(substr($item, 0, 1), [' ', '-', '*', 'x', '/'] )) {
+            $op = substr($item, 0, 1);
+            if ($op == ' ') {
+                $op = '+';
+            }
+            $val = (integer) substr($item, 1);
+            $sqlQuery = 'SELECT medianPlaytime FROM gameinfo WHERE appID = ?';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->execute([$appID]);
+            $current = (integer) $statement->fetch()["medianPlaytime"];
+            eval('$item = '.$current.$op.$val.';');
+        }
+        if ($item < 0) {
+            $item = 0;
+        }
         $data = [
             'appID' => $appID,
             'medianPlaytime' => $item
         ];
-
         $sqlQuery = 'UPDATE gameinfo SET
         medianPlaytime = :medianPlaytime
         WHERE appID = :appID;';
-
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute($data);
     }
