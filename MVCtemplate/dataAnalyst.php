@@ -3,6 +3,9 @@ require_once('Models/Filter.php');
 $view = new stdClass();
 $view->pageTitle = 'Data analyst';
 
+if (isset($_POST["searchText"])) {
+    $view->userSearchTerm = $_POST["searchText"];
+}
 $view->labels = ["Release date", "Average playtime", "Median playtime", "Units sold"];
 
 $LazyLoad = new stdClass();

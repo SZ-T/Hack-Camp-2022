@@ -6,7 +6,7 @@ function tile($row) {
 }
 
 function innerTile($row){
-    $gamePrice = "£" . $row->getPrice();
+    $gamePrice = "£" . number_format($row->getPrice(), 2);
     if($gamePrice == "£0"){
         $gamePrice = $gamePrice . ".00";
     }

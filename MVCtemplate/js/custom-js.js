@@ -85,13 +85,14 @@ function cardView(action, id) {
         let isEnglish = document.querySelector('input[name="isEnglish2"]:checked').value;
         let developer = document.querySelector('input[name="developer2"]').value;
         let publisher = document.querySelector('input[name="publisher2"]').value;
-        let platforms = [];
+        let platforms;
+
         if (document.querySelector('input[name="windows2"]:checked') !== null) {
             let windows = document.querySelector('input[name="windows2"]:checked').value;
             platforms.push(windows);
         }  
         if (document.querySelector('input[name="mac2"]:checked') !== null) {
-            let mac = document.querySelector('input[name="mac2"]:checked').value;
+            let mac = document.querySelector('input[name="windows2"]:checked').value;
             platforms.push(mac);
             }  
         if (document.querySelector('input[name="linux2"]:checked') !== null) {

@@ -3,6 +3,9 @@ require_once('Models/Filter.php');
 $view = new stdClass();
 $view->pageTitle = 'Proof reader';
 
+if (isset($_POST["searchText"])) {
+    $view->userSearchTerm = $_POST["searchText"];
+}
 $view->labels = ["Status", "Categories", "Tags", "Genres"];
 
 $LazyLoad = new stdClass();

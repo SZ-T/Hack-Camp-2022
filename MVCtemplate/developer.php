@@ -3,6 +3,9 @@ require_once('Models/Filter.php');
 $view = new stdClass();
 $view->pageTitle = 'Developer';
 
+if (isset($_POST["searchText"])) {
+    $view->userSearchTerm = $_POST["searchText"];
+}
 $view->labels = ["Developer", "Positive ratings", "Negative ratings", "Price"];
 
 $LazyLoad = new stdClass();

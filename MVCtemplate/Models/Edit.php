@@ -274,23 +274,35 @@ class Edit{
     }
 
     function editPrice ($appID, $item) {
-
+        if (in_array(substr($item, 0, 1), [' ', '-', '*', 'x', '/'] )) {
+            $op = substr($item, 0, 1);
+            if ($op == 'x') {
+                $op = '*';
+            }
+            if ($op == ' ') {
+                $op = '+';
+            }
+            $val = (float) substr($item, 1);
+            $sqlQuery = 'SELECT pricePerUnit FROM gameinfo WHERE appID = ?';
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $statement->execute([$appID]);
+            $current = (float) $statement->fetch()["pricePerUnit"];
+            eval('$item = '.$current.$op.$val.';');
+        }
+        if ($item < 0.00) {
+            $item = 0.00;
+        }
+        $item = number_format($item, 2);
         $data = [
             'appID' => $appID,
             'pricePerUnit' => $item
         ];
-
         $sqlQuery = 'UPDATE gameinfo SET
         pricePerUnit = :pricePerUnit
         WHERE appID = :appID;';
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute($data);
-
-    }
-
-    function editDeveloper ($appID, $item) {
-
     }
 
     function editPositiveRatings ($appID, $item) {
