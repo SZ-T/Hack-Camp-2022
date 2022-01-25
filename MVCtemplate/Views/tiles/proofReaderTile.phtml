@@ -9,7 +9,7 @@ function tile($row) {
 function innerTile($row){
     $status = array("In-development", "Restricted", "Archived", "Live", "Banned", "Beta");
     echo '
-    <div id="'.$row->getAppID().'-front" onmouseenter="flip(this);return false;" ondblclick="cardView('."'view',".$row->getAppID().');return false;">
+    <div id="'.$row->getAppID().'-front" onmouseenter="new flip(this);return false;" ondblclick="cardView('."'view',".$row->getAppID().');return false;">
         <div class="row font-white">
             <div class="col-sm-6 my-1 p-0">
                 <p>ID</p>
@@ -33,8 +33,7 @@ function innerTile($row){
             </div>
         </div>
     </div>
-    <div id="'.$row->getAppID().'-back" onmouseleave='."'".'miniCard('.'"proofReader","view",'.$row->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$row->getAppID().');return false;'."'".' class="animate__animated animate__flipInY d-none">
-        <form action="miniTile.php" method="POST">
+    <div id="'.$row->getAppID().'-back" ondblclick='."'".'cardView('.'"view",'.$row->getAppID().');return false;'."'".' class="animate__animated animate__flipInY d-none">
         <div class="row font-white">
             <div class="col-sm-6 my-1 p-0">
                 <p>ID</p>
@@ -43,7 +42,7 @@ function innerTile($row){
             </div>
             <div class="col-sm-6 my-1 p-0">
                 <p>Status</p>
-                <select list="status" class="font-white col-sm-4 w-75 bg-grey" name="status" id="att1">';
+                <select list="status" class="font-white col-sm-4 w-75 bg-grey" id="att1-'.$row->getAppID().'">';
                 foreach ($status as $value) {
                     echo '<option value="'.$value.'"';
                     if ($value == $row->getStatus()) {
@@ -54,21 +53,20 @@ function innerTile($row){
                 echo '</select></div>
             <div class="col-sm-12 my-1 p-0">
                 <p>Categories</p>
-                <input type="text" id="att2" class="font-white col-sm-4 w-75" value="'.$row->getCategories().'" />
+                <input type="text" id="att2-'.$row->getAppID().'" class="font-white col-sm-4 w-75" value="'.$row->getCategories().'" />
             </div>
             <div class="col-sm-12 my-1 p-0">
                 <p>Tags</p>
-                <input type="text" id="att3" class="font-white col-sm-4 w-75" value="'.$row->getTags().'" />
+                <input type="text" id="att3-'.$row->getAppID().'" class="font-white col-sm-4 w-75" value="'.$row->getTags().'" />
             </div>
             <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
                 <span>Genres</span>
-                <input type="text" id="att4" class="font-white col-sm-4 w-75" value="'.$row->getGenres().'" />
+                <input type="text" id="att4-'.$row->getAppID().'" class="font-white col-sm-4 w-75" value="'.$row->getGenres().'" />
             </div>
         </div>
         <div class="row my-3 mx-0">
-            <button class="col-sm-3 my-1 btn p-0 m-auto font-grey bg-bright" onclick='."'".'miniCard('.'"proofReader","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-x-octagon-fill"></span></button>
-            <button class="col-sm-3 my-1 btn p-0 m-auto font-blue bg-bright" onclick='."'".'miniCardEdit('.'"proofReader","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-save-fill"></span></button>
+            <button class="col-sm-3 my-1 btn p-0 m-auto font-grey bg-bright" onclick="miniCard('."'proofReader','view',".$row->getAppID().');return false;"><span class="bi bi-x-octagon-fill"></span></button>
+            <button class="col-sm-3 my-1 btn p-0 m-auto font-blue bg-bright" onclick="miniCardEdit('."'proofReader',".$row->getAppID().');return false;"><span class="bi bi-save-fill"></span></button>
         </div>
-        </form>
     </div>';
 }

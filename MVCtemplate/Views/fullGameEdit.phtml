@@ -19,7 +19,6 @@
 <script type="text/javascript" src="/js/bootstrap-tagsinput.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script type="text/javascript" src="/js/custom-js.js"></script>
-<script type="text/javascript" src="/js/lazyLoad.js"></script>
 <?php
 $platforms = array("windows", "mac", "linux");
 $status = array("In-Development", "Restricted", "Archived", "Live", "Banned", "Beta");
@@ -44,12 +43,6 @@ foreach ($view->cardView as $gameData) {
 
         <div id="cardView" class="bg-shadow">
         <div class="filer-container p-0">';
-        if ($view->succesfullEdit) {
-            echo '<span class="font-blue text-center">Changes applied</span>';
-        }
-        if (!$view->succesfullEdit) {
-            echo '<span class="font-blue text-center">Something went wrong</span>';
-        }
         echo '<button class="btn close-button p-0 d-block" onclick="hideCard();return false;"><span class="bi bi-x display-5 font-white"></span></button>
         <div class="row d-block m-0">';            
         echo '<div class="col-sm-12 row m-1">
@@ -105,7 +98,7 @@ foreach ($view->cardView as $gameData) {
         <span class="font-blue col-sm-4">Platforms</span>
         <div class="col-sm-4 row text-center m-0 bg-trans">';
         foreach ($platforms as $value) {
-            echo '<input type="checkbox" name="platforms2[]" id="'.$value.'2" value="'.$value.'"';
+            echo '<input type="checkbox" name="'.$value.'2" id="'.$value.'2" value="'.$value.'"';
             if (strstr($platformsString, $value)) {
                 echo 'checked';
             }

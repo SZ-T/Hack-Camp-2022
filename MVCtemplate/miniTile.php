@@ -3,7 +3,7 @@ require('Models/CardView.php');
 $view = new stdClass();
 $cardView = new CardView();
 $status = array("In-development", "Restricted", "Archived", "Live", "Banned", "Beta");
-if (isset($_POST['edit'])) {
+if (isset($_POST['mode']) && $_POST['mode'] == "edit") {
     if ($_POST['source'] == "proofReader")
     {
         $cardView -> editProofReader($_POST['id'], $_POST['att1'], $_POST['att2'], $_POST['att3'], $_POST['att4']);

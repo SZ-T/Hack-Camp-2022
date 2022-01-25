@@ -30,7 +30,7 @@ function innerTile($row) {
             </div>
         </div>
     </div>
-    <div id="'.$row->getAppID().'-back" onmouseleave='."'".'miniCard('.'"dataAnalyst","view",'.$row->getAppID().')'."'".' ondblclick='."'".'cardView('.'"view",'.$row->getAppID().');return false;'."'".' class="animate__animated animate__flipInY d-none">
+    <div id="'.$row->getAppID().'-back" ondblclick='."'".'cardView('.'"view",'.$row->getAppID().');return false;'."'".' class="animate__animated animate__flipInY d-none">
         <form action="miniTile.php" method="POST">
         <div class="row font-white">
             <div class="col-sm-6 my-1 p-0">
@@ -40,24 +40,24 @@ function innerTile($row) {
             </div>
             <div class="col-sm-6 my-1 p-0">
                 <p>Release date</p>
-                <input type="text" id="att1" class="font-white col-sm-4 w-75" value="'.$row->getReleaseDate().'" />
+                <input type="text" id="att1-'.$row->getAppID().'" class="font-white col-sm-4 w-75" value="'.$row->getReleaseDate().'" />
             </div>
             <div class="col-sm-12 my-1 p-0">
                 <p>Average playtime</p>
-                <input type="text" id="att2" class="font-white col-sm-4 w-75" value="'.$row->getAveragePlaytime().'" />
+                <input type="text" id="att2-'.$row->getAppID().'" class="font-white col-sm-4 w-75" value="'.$row->getAveragePlaytime().'" />
             </div>
             <div class="col-sm-12 my-1 p-0">
                 <p>Median Playtime</p>
-                <input type="text" id="att3" class="font-white col-sm-4 w-75" value="'.$row->getMedianPlaytime().'" />
+                <input type="text" id="att3-'.$row->getAppID().'" class="font-white col-sm-4 w-75" value="'.$row->getMedianPlaytime().'" />
             </div>
             <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
                 <span>Units sold</span>
-                <input type="text" id="att4" class="font-white col-sm-4 w-75" value="'.$row->getUnitsSold().'" />
+                <input type="text" id="att4-'.$row->getAppID().'" class="font-white col-sm-4 w-75" value="'.$row->getUnitsSold().'" />
             </div>
         </div>
         <div class="row my-3 mx-0">
             <button class="col-sm-3 my-1 btn p-0 m-auto font-grey bg-bright" onclick='."'".'miniCard('.'"dataAnalyst","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-x-octagon-fill"></span></button>
-            <button class="col-sm-3 my-1 btn p-0 m-auto font-blue bg-bright" onclick='."'".'miniCardEdit('.'"dataAnalyst","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-save-fill"></span></button>
+            <button class="col-sm-3 my-1 btn p-0 m-auto font-blue bg-bright" onclick='."'".'miniCardEdit('.'"dataAnalyst",'.$row->getAppID().');return false;'."'".'><span class="bi bi-save-fill"></span></button>
         </div>
         </form>
     </div>';

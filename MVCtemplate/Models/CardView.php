@@ -77,6 +77,7 @@ class CardView{
 
         $developer = explode(',', $developer);
         foreach ($developer as $item) {
+            $item = trim($item);
             //check if exists
             $sqlQuery = 'SELECT devID FROM developers WHERE devName = :item;';
             $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -110,6 +111,7 @@ class CardView{
 
         $categories = explode(',', $categories);
         foreach ($categories as $item) {
+            $item = trim($item);
             //check if exists
             $sqlQuery = 'SELECT categoryID FROM categories WHERE categoryName = :item;';
             $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -143,6 +145,7 @@ class CardView{
 
         $genres = explode(',', $genres);
         foreach ($genres as $item) {
+            $item = trim($item);
             //check if exists
             $sqlQuery = 'SELECT genreID FROM genres WHERE genreName = :item;';
             $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -174,7 +177,9 @@ class CardView{
         $statement->bindParam(':appID', $appID);
         $statement->execute();
 
+        $platforms = explode(',', $platforms);
         foreach ($platforms as $item) {
+            $item = trim($item);
             //check if exists
             $sqlQuery = 'SELECT platformID FROM platforms WHERE platformName = :item;';
             $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -208,6 +213,7 @@ class CardView{
 
         $publisher = explode(',', $publisher);
         foreach ($publisher as $item) {
+            $item = trim($item);
             //check if exists
             $sqlQuery = 'SELECT publisherID FROM publishers WHERE publisherName = :item;';
             $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -241,6 +247,7 @@ class CardView{
 
         $tags = explode(',', $tags);
         foreach ($tags as $item) {
+            $item = trim($item);
             //check if exists
             $sqlQuery = 'SELECT tagID FROM tags WHERE tagName = :item;';
             $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -294,6 +301,7 @@ class CardView{
 
         $categories = explode(',', $categories);
         foreach ($categories as $item) {
+            $item = trim($item);
             //check if exists
             $sqlQuery = 'SELECT categoryID FROM categories WHERE categoryName = :item;';
             $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -327,6 +335,7 @@ class CardView{
 
         $tags = explode(',', $tags);
         foreach ($tags as $item) {
+            $item = trim($item);
             //check if exists
             $sqlQuery = 'SELECT tagID FROM tags WHERE tagName = :item;';
             $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -360,6 +369,7 @@ class CardView{
 
         $genres = explode(',', $genres);
         foreach ($genres as $item) {
+            $item = trim($item);
             //check if exists
             $sqlQuery = 'SELECT genreID FROM genres WHERE genreName = :item;';
             $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -422,6 +432,7 @@ class CardView{
 
         $developer = explode(',', $developer);
         foreach ($developer as $item) {
+            $item = trim($item);
             //check if exists
             $sqlQuery = 'SELECT devID FROM developers WHERE devName = :item;';
             $statement = $this->_dbHandle->prepare($sqlQuery);

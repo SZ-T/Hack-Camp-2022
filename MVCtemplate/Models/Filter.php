@@ -14,8 +14,8 @@ class Filter {
         $orderStack = [];
         $orderBy = " ORDER BY ";
 
-        if (isset($_GET["searchText"])) {
-            $filterAttribute = $_GET["searchText"];
+        if (isset($_POST["searchText"])) {
+            $filterAttribute = $_POST["searchText"];
             $sql = "(SELECT appID FROM gameinfo        
             WHERE appID LIKE '%" . $filterAttribute . "%')";
             array_push($stack, $sql);
@@ -162,15 +162,15 @@ class Filter {
             WHERE numberOfUnitsAvail between  '" . $min . "' AND '" . $max . "')";
             array_push($stack, $sql);    }
 
-            if(isset($_POST["soldmin"]) && isset($_POST["soldmax"])  && $_POST["soldmin"] != ""   && $_POST["soldmax"] != "")//18
+        if(isset($_POST["soldmin"]) && isset($_POST["soldmax"])  && $_POST["soldmin"] != ""   && $_POST["soldmax"] != "")//18
         {
             $min = $_POST["soldmin"];
             $max = $_POST["soldmax"];
             $sql = "(SELECT appID FROM gameinfo
-            WHERE pricePerUnit between  '" . $min . "' AND '" . $max . "')";
+            WHERE unitsSold between  '" . $min . "' AND '" . $max . "')";
             array_push($stack, $sql);    }
 
-            if(isset($_POST["pricemin"]) && isset($_POST["pricemax"])  && $_POST["pricemin"] != ""   && $_POST["pricemax"] != "")//19
+        if(isset($_POST["pricemin"]) && isset($_POST["pricemax"])  && $_POST["pricemin"] != ""   && $_POST["pricemax"] != "")//19
         {
             $min = $_POST["pricemin"];
             $max = $_POST["pricemax"];

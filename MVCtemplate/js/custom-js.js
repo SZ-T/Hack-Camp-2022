@@ -66,6 +66,7 @@ function liveSearch(type, data, self) {
 }
 
 function cardView(action, id) {
+    globalThis.card = id;
     let xhr = new XMLHttpRequest();
     xhr.open('POST', "/cardViewTest.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -81,13 +82,24 @@ function cardView(action, id) {
     if (action === "edit2") {
         let appID = document.querySelector('input[name="appID"]').value;
         let releaseDate = document.querySelector('input[name="releaseDate2"]').value;
-        let isEnglish = document.querySelector('input[name="isEnglish2"]').value;
+        let isEnglish = document.querySelector('input[name="isEnglish2"]:checked').value;
         let developer = document.querySelector('input[name="developer2"]').value;
         let publisher = document.querySelector('input[name="publisher2"]').value;
-        let platforms = document.querySelector('input[name="platforms2[]"]').values;
-        console.log(platforms);
-        let stat = document.querySelector('input[name="status2"]').value;
-        let requiredAge = document.querySelector('input[name="requiredAge2"]').value;
+        let platforms = [];
+        if (document.querySelector('input[name="windows2"]:checked') !== null) {
+            let windows = document.querySelector('input[name="windows2"]:checked').value;
+            platforms.push(windows);
+        }  
+        if (document.querySelector('input[name="mac2"]:checked') !== null) {
+            let mac = document.querySelector('input[name="mac2"]:checked').value;
+            platforms.push(mac);
+            }  
+        if (document.querySelector('input[name="linux2"]:checked') !== null) {
+            let linux = document.querySelector('input[name="linux2"]:checked').value;  
+            platforms.push(linux);
+            }  
+        let stat = document.querySelector('input[name="status2"]:checked').value;
+        let requiredAge = document.querySelector('input[name="requiredAge2"]:checked').value;
         let categories = document.querySelector('input[name="categories2"]').value;
         let genres = document.querySelector('input[name="genres2"]').value;
         let tags = document.querySelector('input[name="tags2"]').value;
@@ -96,11 +108,11 @@ function cardView(action, id) {
         let negativeRatings = document.querySelector('input[name="negativeRatings2"]').value;
         let avgPlaytime = document.querySelector('input[name="avgPlaytime2"]').value;
         let medianPlaytime = document.querySelector('input[name="medianPlaytime2"]').value;
-        let physical = document.querySelector('input[name="physical2"]').value;
+        let physical = document.querySelector('input[name="physical2"]:checked').value;
         let numberOfUnitsAvail = document.querySelector('input[name="numberOfUnitsAvail2"]').value;
         let unitsSold = document.querySelector('input[name="unitsSold2"]').value;
         let pricePerUnit = document.querySelector('input[name="pricePerUnit2"]').value;
-
+        
         xhr.send("action=" + action
             + "&id=" + id
             + "&appID=" + appID
@@ -108,7 +120,7 @@ function cardView(action, id) {
             + "&isEnglish=" + isEnglish
             + "&developer=" + developer
             + "&publisher=" + publisher
-            + "&platforms[]=" + platforms
+            + "&platforms=" + platforms
             + "&status=" + stat
             + "&requiredAge=" + requiredAge
             + "&categories=" + categories
@@ -148,7 +160,7 @@ function miniCard(source, mode, id) {
     xhr.send("source=" + source + "&id=" + id + "&mode=" + mode);
 }
 
-function miniCardEdit(source, mode, id) {
+function miniCardEdit(source, id) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', "/miniTile.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -158,11 +170,11 @@ function miniCardEdit(source, mode, id) {
     xhr.onerror = function () {
         alert("Request failed");
     };
-    att1 = document.getElementById("att1").value;
-    att2 = document.getElementById("att2").value;
-    att3 = document.getElementById("att3").value;
-    att4 = document.getElementById("att4").value;
-    xhr.send("source=" + source + "&id=" + id + "&mode=" + mode + "&edit=edit" + "&att1=" + att1 + "&att2=" + att2 + "&att3=" + att3 + "&att4=" + att4);
+    att1 = document.getElementById("att1-" + id).value;
+    att2 = document.getElementById("att2-" + id).value;
+    att3 = document.getElementById("att3-" + id).value;
+    att4 = document.getElementById("att4-" + id).value;
+    xhr.send("source=" + source + "&id=" + id + "&mode=edit&att1=" + att1 + "&att2=" + att2 + "&att3=" + att3 + "&att4=" + att4);
 }
 
 function clearSuggestions(type) {
@@ -294,7 +306,27 @@ function indexFilter(filterAttribute) {
 }
 
 function flip(innerTile) {
-    tile = innerTile.parentElement.id;
-    document.getElementById(tile + "-front").classList.toggle("d-none");
-    document.getElementById(tile + "-back").classList.toggle("d-none");
+    let tile = innerTile.parentElement.id;
+    setTimeout(function(){
+        try {
+            let old = document.querySelector(".tile-edit").id;
+            document.getElementById(old).classList.remove("tile-edit");
+            document.getElementById(old + "-front").classList.remove("d-none");
+            document.getElementById(old + "-back").classList.add("d-none");
+        } finally {
+            document.getElementById(tile).classList.add("tile-edit");
+            document.getElementById(tile + "-front").classList.add("d-none");
+            document.getElementById(tile + "-back").classList.remove("d-none");
+        }
+    },700);
+}
+
+var card;
+
+function nextCard() {
+    return document.getElementById(globalThis.card).nextElementSibling.id;
+}
+
+function previousCard() {
+    return document.getElementById(globalThis.card).previousElementSibling.id;
 }

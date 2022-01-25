@@ -156,13 +156,13 @@
             <div class="d-flex justify-content-between">';
                
             if ($gameData->getAppID() > 10) {
-                echo '<button class="btn close-button p-0 m-3" onclick='."'".'cardView('.'"view",'.($gameData->getAppID() - 10).')'."'".'><span class="bi bi-arrow-left-circle-fill display-5 font-white"></span></button>';
+                echo '<button class="btn close-button p-0 m-3" onclick='."'".'cardView('.'"view", previousCard())'."'".'><span class="bi bi-arrow-left-circle-fill display-5 font-white"></span></button>';
                 }
                 else {
                     echo '<button type="button" class="btn close-button p-0 m-3" onclick="" disabled><span class="bi bi-arrow-left-circle display-5 font-grey"></span></button>';
                 }
                 echo'
-                <button class="btn close-button p-0 m-3" onclick='."'".'cardView('.'"view",'.($gameData->getAppID() + 10).')'."'".'><span class="bi bi-arrow-right-circle-fill display-5 font-white"></span></button>';
+                <button class="btn close-button p-0 m-3" onclick='."'".'cardView('.'"view", nextCard())'."'".'><span class="bi bi-arrow-right-circle-fill display-5 font-white"></span></button>';
             echo '
             </div>
             </div>
