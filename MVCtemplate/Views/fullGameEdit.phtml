@@ -41,7 +41,7 @@ foreach ($view->cardView as $gameData) {
         }
         $platformsString = strval($gameData->getPlatforms());
         echo '
-        <form method="POST" action="/cardViewTest.php">
+
         <div id="cardView" class="bg-shadow">
         <div class="filer-container p-0">';
         if ($view->succesfullEdit) {
@@ -241,8 +241,7 @@ foreach ($view->cardView as $gameData) {
     <span class="col-sm-2"></span>
     <button class="col-sm-3 p-1 my-3 btn font-grey bg-bright" onclick="hideCard();return false;"><span class="bi bi-x-octagon-fill"></span></button>
     <span class="col-sm-2"></span>
-    <button class="col-sm-3 my-3 p-1 btn font-blue bg-bright" onclick='."'".'cardView('.'"edit2",'.$gameData->getAppID().';return false;)'."'".'><span class="bi bi-save-fill"></span></button>
+    <button class="col-sm-3 my-3 p-1 btn font-blue bg-bright" onclick='."'".'cardView('.'"edit2",'.$gameData->getAppID().')'."'".'><span class="bi bi-save-fill"></span></button>
     <span class="col-sm-2"></span>
-    </div>
-    </form>'
+    </div>'
     ;}

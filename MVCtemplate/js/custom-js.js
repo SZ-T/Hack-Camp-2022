@@ -66,7 +66,6 @@ function liveSearch(type, data, self) {
 }
 
 function cardView(action, id) {
-    console.log(action);
     let xhr = new XMLHttpRequest();
     xhr.open('POST', "/cardViewTest.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -85,12 +84,13 @@ function cardView(action, id) {
         let isEnglish = document.querySelector('input[name="isEnglish2"]').value;
         let developer = document.querySelector('input[name="developer2"]').value;
         let publisher = document.querySelector('input[name="publisher2"]').value;
-        let platforms = document.querySelector('input[name="platforms2"]').value;
+        let platforms = document.querySelector('input[name="platforms2[]"]').values;
+        console.log(platforms);
         let stat = document.querySelector('input[name="status2"]').value;
         let requiredAge = document.querySelector('input[name="requiredAge2"]').value;
         let categories = document.querySelector('input[name="categories2"]').value;
         let genres = document.querySelector('input[name="genres2"]').value;
-        let tags = document.querySelector('input[name="tags"]').value;
+        let tags = document.querySelector('input[name="tags2"]').value;
         let numberOfAchievements = document.querySelector('input[name="numberOfAchievements2"]').value;
         let positiveRatings = document.querySelector('input[name="positiveRatings2"]').value;
         let negativeRatings = document.querySelector('input[name="negativeRatings2"]').value;
@@ -108,7 +108,7 @@ function cardView(action, id) {
             + "&isEnglish=" + isEnglish
             + "&developer=" + developer
             + "&publisher=" + publisher
-            + "&platforms=" + platforms
+            + "&platforms[]=" + platforms
             + "&status=" + stat
             + "&requiredAge=" + requiredAge
             + "&categories=" + categories
