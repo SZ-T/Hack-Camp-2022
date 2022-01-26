@@ -150,19 +150,19 @@
             <span class="col-sm-2"></span>
             <button class="col-sm-3 my-1 btn font-grey bg-bright p-1" onclick="hideCard()"><span class="bi bi-x-circle-fill"></span></button>
             <span class="col-sm-2"></span>
-            <button class="btn font-blue bg-bright col-sm-3 p-1 my-1 m-0" onclick='."'".'cardView('.'"edit",'.$gameData->getAppID().')'.";return false;'".'><span class="bi bi-gear-fill"></span></button>
+            <button class="btn font-blue bg-bright col-sm-3 p-1 my-1 m-0" onclick="cardView('."'edit',".$gameData->getAppID().');return false;"><span class="bi bi-gear-fill"></span></button>
             <span class="col-sm-2"></span>
             </div>
             <div class="d-flex justify-content-between">';
                
             if ($gameData->getAppID() > 10) {
-                echo '<button class="btn close-button p-0 m-3" onclick='."'".'cardView('.'"view", previousCard())'."'".'><span class="bi bi-arrow-left-circle-fill display-5 font-white"></span></button>';
+                echo '<button class="btn close-button p-0 m-3" onclick="cardView('."'view', previousCard())".'"><span class="bi bi-arrow-left-circle-fill display-5 font-white"></span></button>';
                 }
                 else {
                     echo '<button type="button" class="btn close-button p-0 m-3" onclick="" disabled><span class="bi bi-arrow-left-circle display-5 font-grey"></span></button>';
                 }
                 echo'
-                <button class="btn close-button p-0 m-3" onclick='."'".'cardView('.'"view", nextCard())'."'".'><span class="bi bi-arrow-right-circle-fill display-5 font-white"></span></button>';
+                <button class="btn close-button p-0 m-3" onclick="cardView('."'view', nextCard())".'"><span class="bi bi-arrow-right-circle-fill display-5 font-white"></span></button>';
             echo '
             </div>
             </div>

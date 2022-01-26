@@ -100,6 +100,7 @@ require_once('Views/template/footer.phtml');
 if (isset($LazyLoad)){
     echo '<script>
         var load = new LazyLoad("'.$LazyLoad->url.'", "'.$LazyLoad->data.'", "'.$LazyLoad->type.'", '.$LazyLoad->xValues.', '.$LazyLoad->chart.', '.$LazyLoad->legend.');
+        const url = "'.$view->url.'";
     </script>';
 }
 ?>

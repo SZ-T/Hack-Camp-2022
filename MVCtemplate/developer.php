@@ -3,25 +3,21 @@ require_once('Models/Filter.php');
 $view = new stdClass();
 $view->pageTitle = 'Developer';
 
-if (isset($_POST["searchText"])) {
-    $view->userSearchTerm = $_POST["searchText"];
+if (isset($_REQUEST["searchText"])) {
+    $view->userSearchTerm = $_REQUEST["searchText"];
 }
 $view->labels = ["Developer", "Positive ratings", "Negative ratings", "Price"];
+$view->url = $_SERVER['PHP_SELF'].'?';
 
 $LazyLoad = new stdClass();
 $LazyLoad->url = substr($_SERVER['PHP_SELF'], 0, -4).'Data.php?';
 $LazyLoad->data = '';
-foreach ($_POST as $key => $value) {
+foreach ($_REQUEST as $key => $value) {
     if ($key === 'page') {
         continue;
     }
     $LazyLoad->data = $LazyLoad->data.$key.'='.$value.'&';
-}
-foreach ($_GET as $key => $value) {
-    if ($key === 'page') {
-        continue;
-    }
-    $LazyLoad->data = $LazyLoad->data.$key.'='.$value.'&';
+    $view->url = $view->url.$key.'='.$value.'&';
 }
 $LazyLoad->data = $LazyLoad->data.'page=';
 

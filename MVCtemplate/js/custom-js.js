@@ -85,19 +85,16 @@ function cardView(action, id) {
         let isEnglish = document.querySelector('input[name="isEnglish2"]:checked').value;
         let developer = document.querySelector('input[name="developer2"]').value;
         let publisher = document.querySelector('input[name="publisher2"]').value;
-        let platforms;
+        let platforms = [];
 
-        if (document.querySelector('input[name="windows2"]:checked') !== null) {
-            let windows = document.querySelector('input[name="windows2"]:checked').value;
-            platforms.push(windows);
+        if (document.getElementById('windows2').checked) {
+            platforms.push('windows');
         }  
-        if (document.querySelector('input[name="mac2"]:checked') !== null) {
-            let mac = document.querySelector('input[name="windows2"]:checked').value;
-            platforms.push(mac);
+        if (document.getElementById('mac2').checked) {
+            platforms.push('mac');
             }  
-        if (document.querySelector('input[name="linux2"]:checked') !== null) {
-            let linux = document.querySelector('input[name="linux2"]:checked').value;  
-            platforms.push(linux);
+        if (document.getElementById('linux2').checked) {
+            platforms.push('linux');
             }  
         let stat = document.querySelector('input[name="status2"]:checked').value;
         let requiredAge = document.querySelector('input[name="requiredAge2"]:checked').value;
@@ -253,7 +250,7 @@ function editSelected(target, item) {
     xhr.open('POST', "/edit.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function () {
-        location.reload();
+        window.location.href = url;
     };
     xhr.onerror = function () {
         alert("Request failed");
@@ -274,7 +271,7 @@ function editSelected(target, item, mode) {
     xhr.open('POST', "/edit.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function () {
-        location.reload();
+        window.location.href = url;
     };
     xhr.onerror = function () {
         alert("Request failed");

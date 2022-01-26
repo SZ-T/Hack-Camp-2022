@@ -62,7 +62,7 @@
           var activePoints = chart.getElementsAtEvent(e);
           var selectedIndex = activePoints[0]._index;
           var  data = chart.data.labels[selectedIndex];
-          window.location.href = "/salesRep.php?submitFilterOptions=&genreInput=" + data;
+          window.location.href = "/proofReader.php?submitFilterOptions=&genreInput=" + data;
           },
           responsive: true,
           legend: {
@@ -139,7 +139,7 @@
         },
         options: {
           onClick(e) {
-          var activePoints = chart.getElementsAtEvent(e);
+          var activePoints = chartb.getElementsAtEvent(e);
           var selectedIndex = activePoints[0]._index; 
           var data = chartb.data.labels[selectedIndex];
           window.location.href = "/developer.php?submitFilterOptions=&developerInput=" + data;
@@ -202,7 +202,7 @@
         },
         options: {
           onClick(e) {
-          var activePoints = chart.getElementsAtEvent(e);
+          var activePoints = chartc.getElementsAtEvent(e);
           var selectedIndex = activePoints[0]._index; 
           var data = chartc.data.labels[selectedIndex];
           window.location.href = "/developer.php?submitFilterOptions=&publisherInput=" + data;
@@ -285,7 +285,7 @@
         },
         options: {
           onClick(e) {
-          var activePoints = chart.getElementsAtEvent(e);
+          var activePoints = chartd.getElementsAtEvent(e);
           var selectedIndex = activePoints[0]._index; 
           var data = chartd.data.labels[selectedIndex];
           window.location.href = "/proofReader.php?submitFilterOptions=&platforms=" + data;
