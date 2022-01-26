@@ -283,36 +283,6 @@ function editSelected(target, item, mode) {
     xhr.send("target=" + target + "&item=" + item + "&array=" + getSelected() + "&mode=" + mode);
 }
 
-//post from index graph to filters, not working
-function indexFilter(filterAttribute) {
-
-    //var valueA = "submitFilterOptions";
-    var valueB = filterAttribute;
-    console.log(filterAttribute);
-    $.ajax({
-        url: "Models/Filter.php",
-        type: "POST",
-        data: {genre: valueB, submitFilterOptions: 1},
-        dataType: 'text',
-        success: function (data) {
-            alert("success" + data);
-        },
-
-    })
-
-    // let xhr = new XMLHttpRequest();
-    // xhr.open('POST', "Models.Filter.php", true);
-    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    // xhr.onload = function() {
-    //     document.getElementById("full").innerHTML = xhr.response;
-    // };
-    //
-    // xhr.onerror = function() {
-    //     alert("Request failed");
-    // };
-    // //xhr.send("action=" + action + "&id=" + id);
-}
-
 function flip(innerTile) {
     let tile = innerTile.parentElement.id;
     setTimeout(function(){

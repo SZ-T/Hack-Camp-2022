@@ -4,12 +4,6 @@ require_once('Models/Genre.php');
 $view = new stdClass();
 $view->pageTitle = 'Homepage';
 
-$gameDataSet = new TestDataSet();
-$view->gameDataSet = $gameDataSet->returnEight();
-
-//$genreDataSet = new Genre();
-//$view->genre = $genreDataSet->getGenreName();
-//$view->genre = $genreDataSet->getGameNumber();
 
 $genreDataSet = new TestDataSet();
 $view->genreDataSet = $genreDataSet->topGenre();
@@ -27,9 +21,4 @@ foreach($view->platformDataSet as $platformData)
 {
     $view->total = $view->total + $platformData->getPlatformNumber();
 }
-//var_dump($_POST["submitFilterOptions"]));
-// if(isset($_POST["submitFilterOptions"]))
-// {
-//     echo '<h3>Working</h3>';
-// }
 require_once('Views/index.phtml');
