@@ -193,11 +193,15 @@ body {
 .bg-shadow {
     background-color: rgba(57, 56, 56, 0.50);
     width: 100%;
-    position: absolute;
-    height: 250%;
+    height: 100%;
     top: 0;
     left: 0;
     z-index: 2000;
+    position:fixed;
+    overflow: scroll;
+}
+.bg-shadow>div {
+    margin-top: 0%;
 }
 .filer-container {
     background-color: #40585E;
