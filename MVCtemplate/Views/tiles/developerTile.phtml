@@ -1,6 +1,6 @@
 <?php
 function tile($row) {
-    echo '<div id="'.$row->getAppID().'" onclick="select(this.id)" class="tile col-lg-2 col-md-4 col-sm-6 text-center bg-bl radius-border font-xs glow-border hover-bg">';
+    echo '<div id="'.$row->getAppID().'" onclick="select(this.id, event)" class="tile col-lg-2 col-md-4 col-sm-6 text-center bg-bl radius-border font-xs glow-border hover-bg">';
     innerTile($row);
     echo '</div>';
 }
@@ -41,24 +41,24 @@ function innerTile($row){
             </div>
             <div class="col-sm-6 my-1 p-0">
                 <p>Developer</p>
-                <input type="text" id="att1-'.$row->getAppID().'" class="font-white col-sm-4 w-75" value="'.$row->getDeveloper().'" />
+                <input type="text" id="att1-'.$row->getAppID().'" class="font-white col-sm-4 w-75 no-select" value="'.$row->getDeveloper().'" />
             </div>
             <div class="col-sm-12 my-1 p-0">
                 <p>Positive ratings</p>
-                <input type="text" id="att2-'.$row->getAppID().'" class="font-white col-sm-4 w-75" value="'.$row->getPositiveRatings().'" />
+                <input type="text" id="att2-'.$row->getAppID().'" class="font-white col-sm-4 w-75 no-select" value="'.$row->getPositiveRatings().'" />
             </div>
             <div class="col-sm-12 my-1 p-0">
                 <p>Negative ratings</p>
-                <input type="text" id="att3-'.$row->getAppID().'" class="font-white col-sm-4 w-75" value="'.$row->getNegative_Ratings().'" />
+                <input type="text" id="att3-'.$row->getAppID().'" class="font-white col-sm-4 w-75 no-select" value="'.$row->getNegative_Ratings().'" />
             </div>
             <div class="w-75 col-sm-12 mx-auto py-2 d-flex justify-content-between border-top">
                 <span>Price</span>
-                <input type="text" id="att4-'.$row->getAppID().'" class="font-white col-sm-4 w-75" value="'.$row->getPrice().'" />
+                <input type="text" id="att4-'.$row->getAppID().'" class="font-white col-sm-4 w-75 no-select" value="'.$row->getPrice().'" />
             </div>
         </div>
         <div class="row my-3 mx-0">
-            <button class="col-sm-3 my-1 btn p-0 m-auto font-grey bg-bright" onclick='."'".'miniCard('.'"developer","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-x-octagon-fill"></span></button>
-            <button class="col-sm-3 my-1 btn p-0 m-auto font-blue bg-bright" onclick='."'".'miniCardEdit('.'"developer",'.$row->getAppID().');return false;'."'".'><span class="bi bi-save-fill"></span></button>
+            <button class="col-sm-3 my-1 btn p-0 m-auto font-grey bg-bright no-select" onclick='."'".'miniCard('.'"developer","view",'.$row->getAppID().');return false;'."'".'><span class="bi bi-x-octagon-fill no-select"></span></button>
+            <button class="col-sm-3 my-1 btn p-0 m-auto font-blue bg-bright no-select" onclick='."'".'miniCardEdit('.'"developer",'.$row->getAppID().');return false;'."'".'><span class="bi bi-save-fill no-select"></span></button>
         </div>
         </form>
     </div>';

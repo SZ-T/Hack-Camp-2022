@@ -226,9 +226,13 @@ document.querySelector("form").addEventListener("keydown", function (event) {
     return event.key != "Enter";
 });
 
-function select(id) {
+function select(id, event=null) {
+    if (event != null && event.target.classList.contains("no-select")) {
+        return;
+    }
     document.getElementById(id).classList.toggle("hover-bg");
     document.getElementById(id).classList.toggle("hover-bg-selected");
+    console.log(id)
 }
 
 function selectAll() {
